@@ -19,11 +19,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gajraj+One&family=Poppins:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Menu Navegacio -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src='images/logoPodCat00blanc.svg' width="35" alt="PodCat"/>
                 <div class="titol-logo">PodCat</div>
             </a>
@@ -32,9 +33,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbar-toggler">
                 <ul class="navbar-nav ms-auto d-flex justify-content-center align-items-center">
+                    <!-- L'enllaç a HOME és el logo
                     <li class="nav-item">
-                        <a class="nav-link text-white px-3" href="#">Home</a>
+                        <a class="nav-link text-white px-3" href="/">Home</a>
                     </li>
+                    -->
                     <li class="nav-item">
                         <!-- Boto Modal -->
                         <button type="button" class="modal-buttonnav" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -94,11 +97,11 @@
                         <h3 class="text-center text-white">Registre Usuaris</h3>
                         <br>
                         <form action="/registre" method="post">
-                            <input class="controls" type="text" name="username" placeholder="Nom d'usuari" class="form-control" required/>
-                            <input class="controls" type="text" name="nom" placeholder="Nom" class="form-control" required/>
-                            <input class="controls" type="text" name="cognom" placeholder="Cognom"class="form-control" required/>
-                            <input class="controls" type="email" name="email" placeholder="Correu electrònic" class="form-control" required/>
-                            <input class="controls" type="password" name="password" placeholder="Contrasenya" class="form-control" required/>
+                            <input class="controls form-control" type="text" name="username" placeholder="Nom d'usuari" required/>
+                            <input class="controls form-control" type="text" name="nom" placeholder="Nom" required/>
+                            <input class="controls form-control" type="text" name="cognom" placeholder="Cognom" required/>
+                            <input class="controls form-control" type="email" name="email" placeholder="Correu electrònic" required/>
+                            <input class="controls form-control" type="password" name="password" placeholder="Contrasenya" required/>
                             <br><br>
                             <div class="bt">
                                 <button type="submit" class="btn-registre">Registra't</button>

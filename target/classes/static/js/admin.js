@@ -54,7 +54,7 @@ for(let i=0; i<menu.length; i++){
 // USUARIS
 function usuaris(){
 	var usTr = document.createElement("tr");
-	usTr.innerHTML = "<th></th><th>Usuari</th><th>Rol</th><th>Nom</th><th>Cognom</th><th>Email</th><th>Data de registre</th><th></th><th></th>";
+	usTr.innerHTML = "<th></th><th>Usuari</th><th>Rol</th><th>Nom</th><th>Cognom</th><th>Email</th><th></th><th></th>";
 	taula.appendChild(usTr);
 	
 	var url = "http://localhost:8080/api/v1/usuaris";
@@ -87,9 +87,6 @@ function usuaris(){
 				var usTdEmail = document.createElement("td");
 					usTdEmail.innerHTML = dades[u].email;
 					usTr.appendChild(usTdEmail);
-				var usTdDataReg = document.createElement("td");
-					usTdDataReg.innerHTML = dades[u].dataRegistre;
-					usTr.appendChild(usTdDataReg);
 				var usTdEdit = document.createElement("td");
 					usTdEdit.innerHTML = "<button class='button button1' onclick='modificarUsuari("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
 					usTr.appendChild(usTdEdit);
