@@ -1,0 +1,146 @@
+/*
+// IOC 2022 S2
+// DAW Desenvolupament d'Aplicacions Web
+// M12B0 Projecte de desenvolupament d'aplicacions web
+// Pied Piper
+*/
+
+/* Variables */
+:root {
+	/* Colors */
+	--color-text: #e1e1e1;
+	--color-gris-clar: #888888;
+	--color-gris-mig: #666666;
+	--color-gris-fosc: #333333;
+	--color-fons: #202020;
+	--color-primer: #c99500;
+	--color-segon: #c7bb7b;
+    --color-logo:#e1e1e1;
+	/* Marges */
+    --marge-quart: 5px;
+	--marge-mig: 10px;
+	--marge: 20px;
+	--marge-doble: 40px;
+	/* Transició */
+	--transicio: 0.4s;
+}
+
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-fons);
+}
+
+nav{
+    background-color: var(--color-primer);
+}
+
+.navbar-toggler{
+    color:var(--color-text); 
+    font-size:28px;  
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.titol-logo{
+    float:right;
+    font-size: 35px;
+    font-weight: 900;
+    color: var(--color-text);
+    margin: -7px 5px;
+}
+
+.contingut {
+    display: grid;
+    gap: 0px;
+    margin-top:70px;
+    grid-template-rows: 1fr 1fr auto;
+    grid-template-areas:"main aside" 
+                        "main-2 aside"
+                        "footer footer";
+}
+
+main {
+    grid-area: main;
+}
+
+.portada{
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 20px;
+    background: url('../images/foto_intro.jpg') no-repeat center;
+    background-size: cover;
+}
+
+.textTitols{
+    font-family: 'Gajraj One';
+    color: var(--color-text);
+    font-size: 34px;
+    line-height: 38px;
+    text-shadow: 0px 2px 5px var(--color-fons);
+}
+
+.main-2 {
+    grid-area: main-2;
+    background-color: var(--color-fons);
+}
+
+.main-2 h3{
+    color: var(--color-text);
+    font-weight: 600;
+    text-align: center;
+    padding:20px;
+}
+  
+aside {
+    grid-area: aside;
+    background-color: var(--color-gris-fosc);
+}
+  
+footer {
+    display: flex;
+    grid-area: footer;
+    min-height: 250px;
+    font-size: 12px;
+    background: var(--color-gris-mig);
+    color: var(--color-primer);
+    line-height: 20px;
+}
+
+footer > p{
+    margin: 0px;
+    padding: 40px;
+}
+
+.ocult{
+    display: none;
+}
+
+/* Responsive Mobile */
+@media all and (max-width: 768px){
+    .contingut{ 
+        grid-template-areas: "main" 
+                             "main-2"
+                             "aside"
+                             "footer";
+    }
+
+    .portada{
+        height: 34vh;
+    }
+
+    .textTitols{
+        font-size: 24px;
+    }
+
+    .main-2 h3{
+        font-size:21px;
+    }
+      
+}
+
+
