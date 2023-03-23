@@ -1,12 +1,9 @@
 package cat.xtec.ioc.podcat.Controller;
 
 import cat.xtec.ioc.podcat.Model.Usuari;
-import cat.xtec.ioc.podcat.Repository.UsuariRepository;
 import cat.xtec.ioc.podcat.Service.UsuariService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -18,9 +15,6 @@ public class UsuariController {
 
     @Autowired
     private UsuariService usuariService;
-
-    @Autowired
-    private UsuariRepository usuariRepository;
 
     @GetMapping()
     public ArrayList<Usuari> getAllUsuaris() {
@@ -56,24 +50,6 @@ public class UsuariController {
         } else {
             return "No es pot eliminar l'usuari. Error.";
         }
-    }
-
-    @PostMapping("/registre")
-    @Transactional
-    public RedirectView registreUsuari(@RequestParam("username") String username,
-                                       @RequestParam("nom") String nom,
-                                       @RequestParam("cognom") String cognom,
-                                       @RequestParam("email") String email,
-                                       @RequestParam("password") String password) {
-        Usuari usuari = new Usuari();
-        usuari.setUsername(username);
-        usuari.setNom(nom);
-        usuari.setCognom(cognom);
-        usuari.setEmail(email);
-        usuari.setPassword(password);
-        usuari.setRol("usuari"); // rol per defecte
-        usuariRepository.save(usuari);
-        return new RedirectView("/guia_estil.html");
     }
 }
 
