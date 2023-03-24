@@ -17,6 +17,7 @@
 	--color-primer: #c99500;
 	--color-segon: #c7bb7b;
 	/* Marges */
+	--marge-quart: 5px;
 	--marge-mig: 10px;
 	--marge: 20px;
 	--marge-doble: 40px;
@@ -122,7 +123,49 @@
 		border-top: 1px solid var(--color-gris-clar);
 		border-bottom: 1px solid var(--color-segon);
 	}
-	
+
+
+	/* MODAL */
+	.modalModUsuari{
+		position: fixed;
+		top: var(--marge-doble);
+		left: 0;
+		width: 100%;
+		height: 100vh;
+	}
+	.modUsuari{
+		width: 50%;
+		margin: 0 auto;
+		padding: var(--marge);
+		color: var(--color-text);
+		background-color: var(--color-fons);
+	}
+
+	/* Missatge*/
+	#missatge{
+		position: fixed;
+		bottom: var(--marge-doble);
+		left: 0;
+		width: 100%;
+	}
+	#missatge > p{
+		width: 300px;
+		margin: 0 auto;
+		font-size: 20px;
+		font-weight: 700;
+		text-align: center;
+		padding: var(--marge-mig);
+		color: var(--color-text);
+		border-radius: var(--marge-quart);
+		background-color: var(--color-primer);
+	}
+
+	.visible{
+		display: block;
+	}
+	.ocult{
+		display: none;
+	}
 	
 	
 	

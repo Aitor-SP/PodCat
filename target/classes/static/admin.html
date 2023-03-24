@@ -117,9 +117,28 @@
 						-->
 					</table>
 				</article>
+
+				<div id="missatge" class="ocult">
+					<p id="missatgeText"></p>
+				</div>
+
+				<div class="modalModUsuari ocult">
+					<div class="modUsuari">
+						<h3 class="text-center text-white">Modificar Usuari</h3>
+						<input id="modUsername" type="text" name="username" placeholder="Nom d'usuari" required/>
+						<input id="modNom"  type="text" name="nom" placeholder="Nom" required/>
+						<input id="modCognom" type="text" name="cognom" placeholder="Cognom" required/>
+						<input id="modEmail" type="email" name="email" placeholder="Correu electrònic" required/>
+						<input id="modId" type="hidden" name="id" />
+						<br><br>
+						<button type="submit" id="modificar" class="button button1">MODIFICA</button>
+						<button type="submit" id="tancar" class="button button2">CANCEL·LA</button>
+					</div>
+				</div>
 				
 			</section>
 			
 		</main>
+
 	</body>
 </html>
