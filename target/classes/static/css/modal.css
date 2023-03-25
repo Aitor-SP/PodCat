@@ -52,6 +52,7 @@
 
 .formulari-entrar, 
 .formulari-registre{
+    margin: 0 auto;
     padding: 32px;
     max-width: 100%; 
 }

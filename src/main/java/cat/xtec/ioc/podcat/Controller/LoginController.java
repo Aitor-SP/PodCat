@@ -27,11 +27,11 @@ public class LoginController {
             if ("admin".equals(rol)) {
                 // Agrega l'atribut a la sessió HTTP
                 //session.setAttribute("usuariLogOn", usuari);
-                return new RedirectView("/admin.html");
+                return new RedirectView("/admin");
             } else if ("usuari".equals(rol)) {
                 // Agrega l'atribut a la sessió HTTP
                 //session.setAttribute("usuariLogOn", usuari);
-                return new RedirectView("/index.html");
+                return new RedirectView("/");
             } else {
                 // Si el rol és desconegut, mostra un missatge d'error
                 model.addAttribute("error", "Rol desconegut");
