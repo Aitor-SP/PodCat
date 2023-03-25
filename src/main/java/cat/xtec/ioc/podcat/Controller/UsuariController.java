@@ -43,6 +43,7 @@ public class UsuariController {
 
     @DeleteMapping(path = "/{id}")
     public String deleteUsuariById(@PathVariable("id") Long id){
+
         boolean okDelete = this.usuariService.deleteUsuariById(id);
 
         if (okDelete){

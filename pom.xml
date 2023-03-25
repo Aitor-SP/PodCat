@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>cat.xtec.ioc</groupId>
   <artifactId>PodCat</artifactId>
@@ -10,10 +10,10 @@
   </properties>
   <version>1.0-SNAPSHOT</version>
   <name>PodCat Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+  <url>https://maven.apache.org</url>
   <dependencies>
-    <!-- Spring -->
 
+    <!-- Spring -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -50,9 +50,9 @@
       <artifactId>spring-webmvc</artifactId>
       <version>6.0.7</version>
     </dependency>
+    <!-- Spring -->
 
     <!-- Spring Security -->
-
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-core</artifactId>
@@ -64,25 +64,25 @@
       <artifactId>spring-boot-starter-tomcat</artifactId>
       <version>3.0.4</version>
     </dependency>
+    <!-- Spring Security -->
 
     <!-- Thymeleaf -->
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
       <version>3.0.4</version>
     </dependency>
+    <!-- Thymeleaf -->
 
-    <!-- BBDD MySQL -->
-
+    <!-- BB DD MySQL -->
     <dependency>
       <groupId>com.mysql</groupId>
       <artifactId>mysql-connector-j</artifactId>
       <version>8.0.32</version>
     </dependency>
+    <!-- BB DD MySQL -->
 
     <!-- Hibernate -->
-
     <dependency>
       <groupId>org.hibernate.orm</groupId>
       <artifactId>hibernate-core</artifactId>
@@ -94,9 +94,9 @@
       <artifactId>hibernate-jpa-2.1-api</artifactId>
       <version>1.0.2.Final</version>
     </dependency>
+    <!-- Hibernate -->
 
-    <!-- Servlet -->
-
+    <!-- JSP -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
@@ -116,15 +116,23 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
+    <!-- JSP -->
 
-    <!-- Junit5 -->
-
+    <!-- Junit Test -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <version>5.9.2</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- Junit Test -->
 
   </dependencies>
   <build>

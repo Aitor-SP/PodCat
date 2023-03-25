@@ -26,17 +26,14 @@ public class UsuariService {
         return usuariRepository.findById(id);
     }
 
-    public Usuari findUserByEmail(String email) {
-        return usuariRepository.findByEmail(email);
-    }
-
     public Usuari addUsuari(Usuari usuari) {
         return usuariRepository.save(usuari);
     }
 
     public Usuari updateFullUsuariById(Usuari request, Long id) {
+
         Usuari usuari = usuariRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuari no trobat"));
-        // Aquí podries fer validacions dels camps de l'objecte request abans d'actualitzar-los
+
         usuari.setId(request.getId());
         usuari.setUsername(request.getUsername());
         usuari.setPassword(request.getPassword());
@@ -49,8 +46,9 @@ public class UsuariService {
     }
 
     public Usuari updateUsuariFieldById(Usuari request, Long id) {
+
         Usuari usuari = usuariRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuari no trobat"));
-        // Aquí podries fer validacions dels camps de l'objecte request abans d'actualitzar-los
+
         usuari.setUsername(request.getUsername());
         usuari.setNom(request.getNom());
         usuari.setCognom(request.getCognom());

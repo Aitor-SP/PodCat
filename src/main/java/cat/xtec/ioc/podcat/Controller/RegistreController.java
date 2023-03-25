@@ -22,6 +22,7 @@ public class RegistreController {
                                        @RequestParam("cognom") String cognom,
                                        @RequestParam("email") String email,
                                        @RequestParam("password") String password) {
+
         Usuari usuari = new Usuari();
         usuari.setUsername(username);
         usuari.setNom(nom);
@@ -48,7 +49,7 @@ public class RegistreController {
     public String registre00() {
         return "Wello Horld!";
     }
-    
+
     @RequestMapping(value = "/registre", method = RequestMethod.GET)
     public String registre00(ModelMap model) {
         model.addAttribute("salutacio", "Hola Mon de nou Spring amb Java configuration");
