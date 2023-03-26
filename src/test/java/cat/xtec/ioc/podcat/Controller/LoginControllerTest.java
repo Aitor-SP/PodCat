@@ -34,6 +34,8 @@ public class LoginControllerTest {
 
         // WHEN
         when(usuariService.getUserByUsernameAndPassword("admin", "admin")).thenReturn(usuari);
+
+        // EXECUTE
         RedirectView redirectView = loginController.login("admin", "admin", model);
 
         // ASSERT
@@ -49,6 +51,8 @@ public class LoginControllerTest {
 
         // WHEN
         when(usuariService.getUserByUsernameAndPassword("usuari1", "12345")).thenReturn(usuari);
+
+        // EXECUTE
         RedirectView redirectView = loginController.login("usuari1", "12345", model);
 
         // ASSERT
@@ -63,6 +67,8 @@ public class LoginControllerTest {
 
         // WHEN
         when(usuariService.getUserByUsernameAndPassword("", "")).thenReturn(null);
+
+        // EXECUTE
         RedirectView redirectView = loginController.login("", "", model);
 
         // ASSERT
@@ -78,6 +84,8 @@ public class LoginControllerTest {
 
         // WHEN
         when(usuariService.getUserByUsernameAndPassword("usuari1", "12345")).thenReturn(usuari);
+
+        // EXECUTE
         RedirectView redirectView = loginController.login("usuari1", "12345", model);
 
         // ASSERT

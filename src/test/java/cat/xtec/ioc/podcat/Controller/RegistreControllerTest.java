@@ -33,7 +33,7 @@ public class RegistreControllerTest {
         String password = "password123";
         ModelAndView modelAndView = registreController.registreUsuari(username, nom, cognom, email, password);
 
-        // VERIFY
+        // VERIFY - EXECUTE
         ArgumentCaptor<Usuari> captor = ArgumentCaptor.forClass(Usuari.class);
         verify(usuariRepository).save(captor.capture());
         Usuari savedUsuari = captor.getValue();
