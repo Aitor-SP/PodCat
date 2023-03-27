@@ -5,7 +5,8 @@
 	Script Zona ADMIN
 
 Recursos
-https://jasonwatmore.com/post/2021/09/21/fetch-http-delete-request-examples
+// fetch	https://jasonwatmore.com/post/2021/09/21/fetch-http-delete-request-examples
+// PATCH	https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 */
 
 // Elementes
@@ -25,10 +26,8 @@ function conObj(){
 	// Processament de respostes com a JSON
 	if(window.XMLHttpRequest) { // Mozilla, Safari, IE7+
 		httpRequest = new XMLHttpRequest();
-		// console.log("Objecte creat a partir de XMLHttpRequest");
 	}else if(window.ActiveXObject) { // IE 6 i anteriors
 		httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-		// console.log("Objecte creat a partir d'ActiveXObject");
 	}else{
 		console.error("Error! Aquest navegador no suporta AJAX");
 	}
@@ -71,70 +70,78 @@ function usuaris(){
 	usTr.innerHTML = "<th></th><th>Usuari</th><th>Rol</th><th>Nom</th><th>Cognom</th><th>Email</th><th></th><th></th>";
 	taula.appendChild(usTr);
 	
-	var url = "http://localhost:8080/api/v1/usuaris";
-	var dadesI00 = conObj();
-	dadesI00.onloadstart = function(){
-		console.log("Carregant petició");
-	};
-	dadesI00.onload = function(){
-		var dades = JSON.parse(dadesI00.responseText);
-	//	console.log(dades);
-		
-		var n = 1;
-		for(const u in dades){
-			var usTr = document.createElement("tr");
-				usTr.setAttribute("idus", dades[u].id);
-				var usTdId = document.createElement("td");
-					usTdId.innerHTML = n++ +".";
-					usTr.appendChild(usTdId);
-				var usTdUsername = document.createElement("td");
-					usTdUsername.innerHTML = dades[u].username;
-					usTr.appendChild(usTdUsername);
-				var usTdRol = document.createElement("td");
-					usTdRol.innerHTML = dades[u].rol;
-					usTr.appendChild(usTdRol);
-				var usTdNom = document.createElement("td");
-					usTdNom.innerHTML = dades[u].nom;
-					usTr.appendChild(usTdNom);
-				var usTdCognom = document.createElement("td");
-					usTdCognom.innerHTML = dades[u].cognom;
-					usTr.appendChild(usTdCognom);
-				var usTdEmail = document.createElement("td");
-					usTdEmail.innerHTML = dades[u].email;
-					usTr.appendChild(usTdEmail);
-				var usTdEdit = document.createElement("td");
-					usTdEdit.innerHTML = "<button class='button button1' onclick='modificarUsuari("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
-					usTr.appendChild(usTdEdit);
-				var usTdDelete = document.createElement("td");
-					usTdDelete.innerHTML = "<button class='button button1' onclick='eliminarUsuari("+dades[u].id+")'><i class='fa fa-trash'></i></button>";
-					usTr.appendChild(usTdDelete);
-			taula.appendChild(usTr);
+	// GET Usuaris
+	fetch('/api/v1/usuaris')
+    .then(async response => {
+        const isJson = response.headers.get('content-type')?.includes('application/json');
+        const dades = isJson && await response.json();
+        // check for error response
+        if (!response.ok) {
+            missatge("error","No s'ha pogut rebre la petició HTTP");
+        }else{
+			// console.log(dades);
+			var n = 1;
+			for(const u in dades){
+				var usTr = document.createElement("tr");
+					usTr.setAttribute("idus", dades[u].id);
+					var usTdId = document.createElement("td");
+						usTdId.innerHTML = n++ +".";
+						usTr.appendChild(usTdId);
+					var usTdUsername = document.createElement("td");
+						usTdUsername.innerHTML = dades[u].username;
+						usTr.appendChild(usTdUsername);
+					var usTdRol = document.createElement("td");
+						usTdRol.innerHTML = dades[u].rol;
+						usTr.appendChild(usTdRol);
+					var usTdNom = document.createElement("td");
+						usTdNom.innerHTML = dades[u].nom;
+						usTr.appendChild(usTdNom);
+					var usTdCognom = document.createElement("td");
+						usTdCognom.innerHTML = dades[u].cognom;
+						usTr.appendChild(usTdCognom);
+					var usTdEmail = document.createElement("td");
+						usTdEmail.innerHTML = dades[u].email;
+						usTr.appendChild(usTdEmail);
+					var usTdEdit = document.createElement("td");
+						usTdEdit.innerHTML = "<button class='button button1' onclick='modificarUsuari("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
+						usTr.appendChild(usTdEdit);
+					var usTdDelete = document.createElement("td");
+						usTdDelete.innerHTML = "<button class='button button1' onclick='eliminarUsuari("+dades[u].id+")'><i class='fa fa-trash'></i></button>";
+						usTr.appendChild(usTdDelete);
+				taula.appendChild(usTr);
+			}
 		}
-		
-	};
-	dadesI00.error = function(){
-		console.log("Error de la petició");
-	};
-	dadesI00.open('GET', url, true);
-	dadesI00.send(null);
+	})
+	.catch((error) => {
+		missatge('error', error);
+	});
 }
 	
 
 // Modificar Usuari
-// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 function modificarUsuari(id){
-	console.log("Modificar usuari "+id);
-	modUsuari.classList.remove("ocult");
-
+	// console.log("Modificar usuari "+id);
+	// GET Usuari: el posem al formulari com a valor inicial
 	fetch('/api/v1/usuaris/'+id)
-	.then((response) => response.json())
-	.then((data) => {
-		// console.log(data);
-		document.getElementById('modId').value = data.id;
-		document.getElementById('modUsername').value = data.username;
-		document.getElementById('modNom').value = data.nom;
-		document.getElementById('modCognom').value = data.cognom;
-		document.getElementById('modEmail').value = data.email;
+    .then(async response => {
+        const isJson = response.headers.get('content-type')?.includes('application/json');
+        const dades = isJson && await response.json();
+        // check for error response
+        if (!response.ok) {
+			// Control d'errors
+            missatge("error","No s'ha pogut rebre la petició HTTP");
+        }else{
+			modUsuari.classList.remove("ocult");
+			// console.log(dades);
+			document.getElementById('modId').value = dades.id;
+			document.getElementById('modUsername').value = dades.username;
+			document.getElementById('modNom').value = dades.nom;
+			document.getElementById('modCognom').value = dades.cognom;
+			document.getElementById('modEmail').value = dades.email;
+		}
+	})
+	.catch((error) => {
+		missatge('error', error);
 	});
 }
 
@@ -142,7 +149,7 @@ function modificarUsuari(id){
 modificar.onclick = function(){
 	modUsuari.classList.add("ocult");
 	var idMod = document.getElementById('modId').value;
-	// Modifiquem l'usuari
+	// PATCH: Modifiquem l'usuari
 	fetch('/api/v1/usuaris/'+idMod, {
 		method: 'PATCH',
 		body: JSON.stringify({
@@ -155,20 +162,30 @@ modificar.onclick = function(){
 			'Content-type': 'application/json; charset=UTF-8',
 		},
 	})
-	.then((response) => response.json())
-	.then((dades) => {
-		// console.log(dades);
-		// Actualitzem la fila de l'usuari modificat
-		var trs = document.getElementsByTagName("tr");
-		for(let i=0; i<trs.length; i++){
-			if(idMod == trs[i].getAttribute('idus')){
-				trs[i].childNodes[1].innerHTML = dades.username;
-				trs[i].childNodes[3].innerHTML = dades.nom;
-				trs[i].childNodes[4].innerHTML = dades.cognom;
-				trs[i].childNodes[5].innerHTML = dades.email;
+	.then(async response => {
+		const isJson = response.headers.get('content-type')?.includes('application/json');
+		const dades = isJson && await response.json();
+		// check for error response
+		if (!response.ok) {
+			// Control d'errors
+			missatge("error","No s'ha pogut establir la petició HTTP");
+		}else{
+			// console.log(dades);
+			// Actualitzem la fila de l'usuari modificat
+			var trs = document.getElementsByTagName("tr");
+			for(let i=0; i<trs.length; i++){
+				if(idMod == trs[i].getAttribute('idus')){
+					trs[i].childNodes[1].innerHTML = dades.username;
+					trs[i].childNodes[3].innerHTML = dades.nom;
+					trs[i].childNodes[4].innerHTML = dades.cognom;
+					trs[i].childNodes[5].innerHTML = dades.email;
+				}
 			}
+			missatge("missatge", "S'ha modificat l'usuari");
 		}
-		missatge("missatge", "S'ha modificat l'usuari");
+	})
+	.catch((error) => {
+		missatge('error', error);
 	});
 };
 
@@ -181,37 +198,53 @@ tancar.onclick = function(){
 // Eliminar Usuari
 function eliminarUsuari(id){
 	if(confirm("Estàs segur que vols eliminar aquest usuari?")){
-		console.log("Eliminar usuari "+id);
-		// Eliminem l'usuari
-		fetch('/api/v1/usuaris/'+id, {
-			method: 'DELETE'
-		});
-		// Eliminem la fila de la taula de l'usuari que eliminem
-		var trs = document.getElementsByTagName("tr");
-		for(let i=0; i<trs.length; i++){
-			if(id == trs[i].getAttribute('idus')){
-				trs[i].remove();
+		// console.log("Eliminar usuari "+id);
+		// DELETE: Eliminem l'usuari
+		fetch('/api/v1/usuaris/'+id, { method: 'DELETE' })
+		.then(async response => {
+			const isJson = response.headers.get('content-type')?.includes('application/json');
+			const dades = isJson && await response.json();
+			if (!response.ok) {
+				// Control d'errors
+				missatge('error', "No s'ha pogut fer la petició HTTP");
+			}else{
+				// Eliminem la fila de la taula de l'usuari que eliminem
+				var trs = document.getElementsByTagName("tr");
+				for(let i=0; i<trs.length; i++){
+					if(id == trs[i].getAttribute('idus')){
+						trs[i].remove();
+					}
+				}
+				missatge("missatge", "S'ha eliminat l'usuari");
 			}
-		}
-		missatge("missatge", "S'ha eliminat l'usuari");
+		})
+		.catch(error => {
+			missatge('error', error);
+		});
 	}
 }
 
 
 // Mostrar missatge
 function missatge(tipus, m){
-	var capa = document.getElementById('missatge');
-	var capaM = document.getElementById('missatgeText');
-	// Canviem el color
+	// Creem el popup d'error
+	var capaError = document.createElement("div");
+	capaError.classList.add("popup");
+	
+	let textInici = "";
 	if(tipus == 'missatge'){
-		capaM.style.backgroundColor = "#0ca203";
+		capaError.classList.add("popupMissatge");
 	}else if(tipus == 'alerta'){
+		textInici = "<span class='warning'>&#9888;</span> Alerta!";
+		capaError.classList.add("popupAlerta");
 	}else if(tipus == 'error'){
-		capaM.style.backgroundColor = "#c12121";
+		textInici = "<span class='warning'>&#9888;</span> Error!";
+		capaError.classList.add("popupError");
 	}
-	capaM.innerHTML = m;
-	capa.classList.remove("ocult");
-	setTimeout(function() { capa.classList.add("ocult"); }, 4000);
+	capaError.innerHTML = textInici+" "+m;
+	document.body.appendChild(capaError);
+	// Eliminar la capa al cap de 5 segons
+	setTimeout(function(){ capaError.remove(); }, 5000);
 }
 
 
