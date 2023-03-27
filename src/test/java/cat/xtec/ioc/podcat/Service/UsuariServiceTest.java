@@ -100,7 +100,7 @@ public class UsuariServiceTest {
     }
 
     @Test
-    public void UpdateFullUsuariByIdTest() {
+    public void updateFullUsuariByIdTest() {
 
         // SET UP
         Usuari request = new Usuari();
@@ -133,7 +133,7 @@ public class UsuariServiceTest {
     }
 
     @Test
-    public void UpdateUsuariFieldByIdTest() {
+    public void updateUsuariFieldByIdTest() {
 
         // SET UP
         Usuari request = new Usuari();
@@ -164,7 +164,7 @@ public class UsuariServiceTest {
     }
 
     @Test
-    public void DeleteUsuariByIdTest() {
+    public void deleteUsuariByIdTest() {
 
         // SET UP
         Long idToDelete = 1L;
@@ -180,7 +180,7 @@ public class UsuariServiceTest {
     }
 
     @Test
-    public void testGetUserByUsernameAndPassword() {
+    public void getUserByUsernameAndPasswordTest() {
 
         // SET UP
         Usuari usuari = new Usuari();

@@ -23,7 +23,7 @@ public class RegistreControllerTest {
     private RegistreController registreController;
 
     @Test
-    public void testRegistreUsuari() {
+    public void registreUsuariTest() {
 
         // SET UP
         String username = "testuser";
