@@ -150,7 +150,7 @@ modificar.onclick = function(){
 	modUsuari.classList.add("ocult");
 	var idMod = document.getElementById('modId').value;
 	// PATCH: Modifiquem l'usuari
-	fetch('/api/v1/usuariss/'+idMod, {
+	fetch('/api/v1/usuaris/'+idMod, {
 		method: 'PATCH',
 		body: JSON.stringify({
 			username: document.getElementById('modUsername').value,
