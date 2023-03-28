@@ -44,7 +44,7 @@ public class LoginControllerTest {
 
         // ASSERT
         assertEquals("/admin", redirectView.getUrl());
-        verify(session).setAttribute("usuariLogOn", usuari);
+        verify(session).setAttribute("usuari", usuari);
     }
 
     @Test
@@ -62,7 +62,7 @@ public class LoginControllerTest {
 
         // ASSERT
         assertEquals("/", redirectView.getUrl());
-        verify(session).setAttribute("usuariLogOn", usuari);
+        verify(session).setAttribute("usuari", usuari);
     }
 
     @Test
@@ -96,6 +96,6 @@ public class LoginControllerTest {
 
         // ASSERT
         assertEquals("/login?error", redirectView.getUrl());
-        verify(session).setAttribute("usuariLogOn", usuari);
+        verify(session).setAttribute("usuari", usuari);
     }
 }
