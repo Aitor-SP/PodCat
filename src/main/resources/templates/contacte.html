@@ -5,19 +5,18 @@
 <body>
     <div th:include="fragments :: nav"></div>
 
-
     <!-- Contacto -->
-    <section id="contacte">
+    <section id="contacte-form">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1 class="section-heading text-uppercase">Contácte</h1>
-                    <h3 class="section-subheading text-muted">Envia'ns un missatge i ens posarem en contacte amb tu.</h3>
+                    <h1 class="section-heading">Contácte amb nosaltres</h1>
+                    <h3 class="section-subheading">Envia'ns un missatge i ens posarem en contacte amb tu.</h3>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <form id="contactForm" name="sentMessage" novalidate="novalidate">
+                    <form action="" method="post">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
@@ -37,13 +36,9 @@
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
-                            <br>
-                            <br>
-                            <br>
-
-                            <div class="col-lg-12 text-center">
+                            <div class="col-lg-12 text-center bt-form">
                                 <div id="success"></div>
-                                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Enviar</button>
+                                <button type="submit" class="btn-entrar-form">Enviar</button>
                             </div>
                         </div>
                     </form>
