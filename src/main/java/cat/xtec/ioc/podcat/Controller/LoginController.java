@@ -31,11 +31,11 @@ public class LoginController {
             // Redirigeix a l'usuari a la pàgina corresponent segons el seu rol
             if ("admin".equals(rol)) {
                 // Agrega l'atribut a la sessió HTTP
-                model.addAttribute("usuariLogOn", usuari);
+                model.addAttribute("usuari", usuari);
                 return new RedirectView("/admin");
             } else if ("usuari".equals(rol)) {
                 // Agrega l'atribut a la sessió HTTP
-                model.addAttribute("usuariLogOn", usuari);
+                model.addAttribute("usuari", usuari);
                 return new RedirectView("/");
             } else {
                 // Si el rol és desconegut, mostra un missatge d'error
