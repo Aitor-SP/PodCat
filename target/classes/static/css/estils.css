@@ -190,6 +190,17 @@ h4{
     .main-2 h3{
         font-size:21px;
     }
+
+    #contacte-form{
+        margin:100px 0 50px;
+        padding: 0px;
+    }
+    #contacte-form h1{
+        font-size: 21px;
+    }
+    #contacte-form h3{
+        font-size: 16px;
+    }
       
 }
 
