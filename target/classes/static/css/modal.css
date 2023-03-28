@@ -37,8 +37,8 @@
     padding: 15px;
 }
 
-/* Estils Formularis Acces i Registre */
-.btn-entrar, .btn-registre {
+/* Estils Formularis Acces, Registre, Contacte */
+.btn-entrar, .btn-registre, .btn-entrar-form{
     padding: 8px 22px;
     min-width: 180px;
     letter-spacing: 3px;
@@ -64,7 +64,8 @@
 }
 
 .btn-entrar:hover,
-.btn-registre:hover{
+.btn-registre:hover,
+.btn-entrar-form:hover{
     background-color:#888888;
     color:#ffffff;
 }

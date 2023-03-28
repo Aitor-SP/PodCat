@@ -42,7 +42,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-white px-3" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" th:if="${session.usuari == null}">
                         <!-- Boto Modal -->
                         <button type="button" class="modal-buttonnav" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             Acces Usuari
@@ -50,6 +50,17 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white px-3" href="/contacte">Contacte</a>
+                    </li>
+                    
+                    <li class="nav-item" th:if="${session.usuari != null}">
+                        <a th:text="${session.usuari.username}"></a>
+                    </li>
+                    <li class="nav-item" th:if="${session.usuari != null}">
+                        <a th:if="${session.usuari.rol == 'admin'}"
+                            class="nav-link text-white px-3" href="/admin">admin</a>
+                    </li>
+                    <li class="nav-item" th:if="${session.usuari != null}">
+                        <a class="nav-link text-white px-3" href="/logout">logout</a>
                     </li>
                 </ul>
             </div> 

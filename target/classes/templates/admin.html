@@ -1,67 +1,17 @@
 <!DOCTYPE html>
 <html lang="ca">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<meta name="author" content="Pied Piper" />
-
-		<title>PodCat</title>
-		<meta name='title' content="PodCat" />
-		<meta name='description' content="El món dels Podcasts" />
-		<link rel="icon" type="image/x-icon" href="favicon.ico">
-		
-		<!-- Font Awesome -->
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-		<!-- Responsive -->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-		<meta name="language" content="ca" />
-		<link rel="stylesheet" type="text/css" href="css/admin.css" />
-		
-		<script type="text/javascript" src="js/admin.js" defer></script>
-		
-		<!-- Importem les fonts de Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Gajraj+One&family=Poppins:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-		
-	</head>
+	<div th:replace="fragmentsAdmin :: head"></div>
 	
 	<body>
 	
-		<header>
-			<img id='logo' src='images/logoPodCat00blanc.svg'/>
-			<div class='titol'>PodCat > ADMIN</div>
-		</header>
+		<div th:replace="fragmentsAdmin :: header"></div>
 	
 		<main>
 			<!-- Desplegable -->
 			<input type="checkbox" class="checkburg" id="h00"/>
 			<label for="h00" class="hamburguesa">≡</label>
 			<!-- Barra de navegació -->
-			<nav>
-				<ul>
-					<li>
-						<a href="/">< INICI</a>
-					</li>
-					<li>
-						<a class='menu' seccio='usuaris' >USUARIS</a>
-					</li>
-					<li>
-						<a class='menu' seccio='canals'>CANALS</a>
-					</li>
-					<li>
-						<a class='menu' seccio='podcasts'>PODCASTS</a>
-					</li>
-					<li class='dropdown'>
-						<a href="">ADMIN &#9662;</a>
-						<div class="dropdown-content">
-							<a href="">DESPLEGABLE 1</a>
-							<a href="">DESPLEGABLE 2</a>
-						</div>
-					</li>
-				</ul>
-			</nav>
+			<div th:replace="fragmentsAdmin :: nav"></div>
 			
 			<section>
 			

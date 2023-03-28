@@ -5,16 +5,47 @@
 <body>
     <div th:include="fragments :: nav"></div>
 
-    <!-- Contingut Main -->
-    <div class="contingut">
-        <main>
-           <section>
-                <article>
-                    <h1>Contacte</h1>
-                    <p>// En construcció</p>
-                </article>
-            </section>
-        </main>
+    <!-- Contacto -->
+    <section id="contacte-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 class="section-heading">Contácte amb nosaltres</h1>
+                    <h3 class="section-subheading">Envia'ns un missatge i ens posarem en contacte amb tu.</h3>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <form action="" method="post">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input class="form-control" id="name" type="text" placeholder="Nom" required="required" data-validation-required-message="Si us plau, introduïu el seu nom.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" id="email" type="email" placeholder="Email" required="required" data-validation-required-message="Si us plau, introduïu el seu email.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" id="phone" type="tel" placeholder="Teléfon" required="required" data-validation-required-message="Si us plau, introduïu el seu teléfon.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="message" placeholder="Escriu el teu missatge" required="required" data-validation-required-message="Si us plau, introduïu el seu missatge."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 text-center bt-form">
+                                <div id="success"></div>
+                                <button type="submit" class="btn-entrar-form">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
         <div th:replace="fragments :: aside"></div>
 

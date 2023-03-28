@@ -20,6 +20,7 @@ var modUsuari = document.getElementsByClassName('modalModUsuari')[0];
 var modificar = document.getElementById('modificar');
 var tancar = document.getElementById('tancar');
 
+/* OBSOLET
 // Creació de l'objecte en AJAX 
 function conObj(){
 	var httpRequest;
@@ -33,7 +34,7 @@ function conObj(){
 	}
 	return httpRequest;
 }
-
+*/
 
 // MENÚ 
 for(let i=0; i<menu.length; i++){

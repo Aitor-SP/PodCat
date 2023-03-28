@@ -148,6 +148,28 @@ h4{
 	font-size: 18px;
 }
 
+/* formulari contacte */
+#contacte-form{
+    padding: 140px;
+}
+
+#contacte-form h1{
+    text-transform: uppercase;
+    color:#ffffff;
+    margin-bottom: 20px;
+}
+
+#contacte-form h3{
+    color:#c99500;
+    margin-bottom: 30px;
+}
+
+.bt-form{
+    margin-top:20px;
+}
+
+
+
 /* Responsive Mobile */
 @media all and (max-width: 768px){
     .contingut{ 
@@ -170,5 +192,7 @@ h4{
     }
       
 }
+
+
 
 

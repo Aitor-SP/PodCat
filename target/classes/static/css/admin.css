@@ -57,6 +57,10 @@
 		color: var(--color-fons);
 		background: var(--color-primer);
 	}
+	a:link { color:var(--color-fons); text-decoration:none; }
+	a:visited { color:var(--color-fons); text-decoration:none; }
+	a:active { color:var(--color-gris-clar); text-decoration:none; }
+	a:hover { color:var(--color-gris-clar); text-decoration:none; transition: var(--transicio); }
 
 	#logo{
 		float: left;

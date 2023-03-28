@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<!-- RECURSOS https://frontbackend.com/thymeleaf/how-to-work-with-fragments-in-thymeleaf -->
+<!-- https://attacomsian.com/blog/thymeleaf-fragments -->
+<html lang="ca" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<head th:fragment="head">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="Pied Piper" />
+
+    <title>PodCat</title>
+    <meta name='title' content="PodCat" />
+    <meta name='description' content="El món dels Podcasts ADMIN" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="language" content="ca" />
+    <link rel="stylesheet" type="text/css" href="css/admin.css" />
+    <script type="text/javascript" src="js/admin.js" defer></script>
+    <!-- Importem les fonts de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gajraj+One&family=Poppins:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">  
+</head>
+
+<!-- Header -->
+<header th:fragment="header">
+    <img id='logo' src='images/logoPodCat00blanc.svg'/>
+    <div class='titol'>PodCat > ADMIN</div>
+</header>
+
+<!-- Barra de navegació -->
+<nav th:fragment="nav">
+    <nav>
+        <ul>
+            <li>
+                <a href="/">< INICI</a>
+            </li>
+            <li>
+                <a class='menu' seccio='usuaris' >USUARIS</a>
+            </li>
+            <li>
+                <a class='menu' seccio='canals'>CANALS</a>
+            </li>
+            <li>
+                <a class='menu' seccio='podcasts'>PODCASTS</a>
+            </li>
+            <li class='dropdown' th:if="${session.usuari != null}"></a>
+                <a href="">ADMIN &#9662;</a>
+                <div class="dropdown-content">
+                    <a href="/perfil" >
+                        <span th:text="${session.usuari.username}"></span>
+                    </a>
+                    <a href="/logout" th:if="${session.usuari != null}">
+                        logout
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</nav>
+
+</body>
+</html>
