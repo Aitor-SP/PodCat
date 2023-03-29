@@ -32,7 +32,7 @@ public class LoginController {
             if ("admin".equals(rol)) {
                 // Agrega l'atribut a la sessió HTTP
                 model.addAttribute("usuari", usuari);
-                return new RedirectView("/admin");
+                return new RedirectView("/");
             } else if ("usuari".equals(rol)) {
                 // Agrega l'atribut a la sessió HTTP
                 model.addAttribute("usuari", usuari);

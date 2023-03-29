@@ -33,33 +33,33 @@
 
 <!-- Barra de navegació -->
 <nav th:fragment="nav">
-    <nav>
-        <ul>
-            <li>
-                <a href="/">< INICI</a>
-            </li>
-            <li>
-                <a class='menu' seccio='usuaris' >USUARIS</a>
-            </li>
-            <li>
-                <a class='menu' seccio='canals'>CANALS</a>
-            </li>
-            <li>
-                <a class='menu' seccio='podcasts'>PODCASTS</a>
-            </li>
-            <li class='dropdown' th:if="${session.usuari != null}"></a>
-                <a href="">ADMIN &#9662;</a>
-                <div class="dropdown-content">
-                    <a href="/perfil" >
-                        <span th:text="${session.usuari.username}"></span>
-                    </a>
-                    <a href="/logout" th:if="${session.usuari != null}">
-                        logout
-                    </a>
-                </div>
-            </li>
-        </ul>
-    </nav>
+    <ul>
+        <li>
+            <a href="/">< INICI</a>
+        </li>
+        <li>
+            <a class='menu' seccio='usuaris' >USUARIS</a>
+        </li>
+        <li>
+            <a class='menu' seccio='canals'>CANALS</a>
+        </li>
+        <li>
+            <a class='menu' seccio='podcasts'>PODCASTS</a>
+        </li>
+        <li class='dropdown' th:if="${session.usuari != null}"></a>
+            <a href="">ADMIN &#9662;</a>
+            <div class="dropdown-content">
+                <a href="/perfil" >
+                    <i class="fas fa-user" style="color: #e1e1e1;"></i>
+                    <span th:text="${session.usuari.username}"></span>
+                </a>
+                <a href="/logout" th:if="${session.usuari != null}">
+                    <i class="fas fa-power-off" style="color: #e1e1e1;"></i>
+                    logout
+                </a>
+            </div>
+        </li>
+    </ul>
 </nav>
 
 </body>
