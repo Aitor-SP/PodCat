@@ -190,6 +190,15 @@ h4{
     margin-top: 30px;
 }
 
+li.nav-item{
+    display: contents;
+}
+
+/* imatges icones login i logout*/
+svg{
+    fill:#ffffff;
+}
+
 /* Responsive Mobile */
 @media all and (max-width: 768px){
     .contingut{ 
