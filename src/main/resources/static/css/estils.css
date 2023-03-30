@@ -27,8 +27,13 @@
 
 
 body{
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--color-fons);
+	font-family: 'Poppins', sans-serif;
+	font-weight: 300;
+	margin: 0px;
+	padding: 0px;
+	font-size: 14px;
+	color: var(--color-text);
+	background-color: var(--color-fons);
 }
 
 nav{
@@ -55,7 +60,7 @@ nav{
 .contingut {
     display: grid;
     gap: 0px;
-    margin-top: 70px;
+    margin-top: 65px;
     grid-template-rows: 1fr 1fr auto;
     grid-template-areas:"main aside" 
                         "main-2 aside"

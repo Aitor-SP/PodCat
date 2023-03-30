@@ -33,7 +33,6 @@ body {
 	font-size: 14px;
 	line-height: 22px;
 	color: var(--color-text);
-	transition: 0.4s;
 	background-color: var(--color-fons);
 	transition: var(--transicio);
 }

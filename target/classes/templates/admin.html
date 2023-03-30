@@ -1,67 +1,69 @@
 <!DOCTYPE html>
 <html lang="ca">
-	<div th:replace="fragmentsAdmin :: head"></div>
+<div th:replace="fragmentsAdmin :: head"></div>
 	
-	<body>
+<body>
 	
-		<div th:replace="fragmentsAdmin :: header"></div>
-	
-		<main>
-			<!-- Desplegable -->
-			<input type="checkbox" class="checkburg" id="h00"/>
-			<label for="h00" class="hamburguesa">≡</label>
-			<!-- Barra de navegació -->
-			<div th:replace="fragmentsAdmin :: nav"></div>
-			
-			<section>
-			
-				<article>
-					<h1 id='titol'>ADMIN</h1>
-					<p id='paragraf'>Zona d'administració</p>
-					
-					<table id='taula' class='taula'>
-						<!--
-						<tr>
-							<th></th>
-							<th>Usuari</th>
-							<th>Rol</th>
-							<th>Nom</th>
-							<th>Cognom</th>
-							<th>Email</th>
-							<th></th>
-							<th></th>
-						</tr>
-						<tr>
-							<td>1.</td>
-							<td>flurris</td>
-							<td>admin</td>
-							<td>Flurris</td>
-							<td>Morris</td>
-							<td>flurris@morris.com</td>
-							<td><a href=''>edit</a></td>
-							<td><a href=''>delete</a></td>
-						</tr>
-						-->
-					</table>
-				</article>
+	<div th:replace="fragments :: nav"></div>
 
-				<div class="modalModUsuari ocult">
-					<div class="modUsuari">
-						<h3 class="text-center text-white">Modificar Usuari</h3>
-						<input id="modUsername" type="text" name="username" placeholder="Nom d'usuari" required/>
-						<input id="modNom"  type="text" name="nom" placeholder="Nom" required/>
-						<input id="modCognom" type="text" name="cognom" placeholder="Cognom" required/>
-						<input id="modEmail" type="email" name="email" placeholder="Correu electrònic" required/>
-						<input id="modId" type="hidden" name="id" />
-						<br><br>
-						<button type="submit" id="modificar" class="button button1">MODIFICA</button>
-						<button type="submit" id="tancar" class="button button2">CANCEL·LA</button>
-					</div>
+
+    <!-- Contingut Main -->
+    <main>
+
+		<input type="checkbox" class="checkburg" id="h00"/>
+		<label for="h00" class="hamburguesa">≡</label>
+		<div th:replace="fragmentsAdmin :: nav"></div>
+		
+		<section>
+
+			<article>
+				<h1 id='titol'>ADMIN</h1>
+				<p id='paragraf'>Zona d'administració</p>
+
+				<table id='taula' class='taula'>
+					<!--
+					<tr>
+						<th></th>
+						<th>Usuari</th>
+						<th>Rol</th>
+						<th>Nom</th>
+						<th>Cognom</th>
+						<th>Email</th>
+						<th></th>
+						<th></th>
+					</tr>
+					<tr>
+						<td>1.</td>
+						<td>flurris</td>
+						<td>admin</td>
+						<td>Flurris</td>
+						<td>Morris</td>
+						<td>flurris@morris.com</td>
+						<td><a href=''>edit</a></td>
+						<td><a href=''>delete</a></td>
+					</tr>
+					-->
+				</table>
+			</article>
+
+			<div class="modalModUsuari ocult">
+				<div class="modUsuari">
+					<h3 class="text-center text-white">Modificar Usuari</h3>
+					<input id="modUsername" type="text" name="username" placeholder="Nom d'usuari" required/>
+					<input id="modNom"  type="text" name="nom" placeholder="Nom" required/>
+					<input id="modCognom" type="text" name="cognom" placeholder="Cognom" required/>
+					<input id="modEmail" type="email" name="email" placeholder="Correu electrònic" required/>
+					<input id="modId" type="hidden" name="id" />
+					<br><br>
+					<button type="submit" id="modificar" class="button button1">MODIFICA</button>
+					<button type="submit" id="tancar" class="button button2">CANCEL·LA</button>
 				</div>
-				
-			</section>
-			
-		</main>
+			</div>
 
-	</body>
+		</section>
+    </main>
+
+	<div th:include="fragments :: scripts"></div>
+
+</body>
 </html>
