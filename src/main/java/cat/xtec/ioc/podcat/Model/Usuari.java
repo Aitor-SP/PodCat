@@ -1,14 +1,25 @@
 package cat.xtec.ioc.podcat.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "usuaris", catalog = "podcat")
 public class Usuari {
 
+    @OneToMany(mappedBy = "usuari")
+    @JsonIgnore
+    private List<Canal> canals;
+
+    @OneToMany(mappedBy = "usuari")
+    @JsonIgnore
+    private List<Podcast> podcasts;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_usuari")
     private Long id;
 
     @Column(name = "username",nullable = false, unique = true)
@@ -32,7 +43,9 @@ public class Usuari {
     public Usuari() {
     }
 
-    public Usuari(Long id, String username, String password, String nom, String cognom, String email, String rol) {
+    public Usuari(List<Canal> canals, List<Podcast> podcasts, Long id, String username, String password, String nom, String cognom, String email, String rol) {
+        this.canals = canals;
+        this.podcasts = podcasts;
         this.id = id;
         this.username = username;
         this.password = password;
@@ -40,6 +53,22 @@ public class Usuari {
         this.cognom = cognom;
         this.email = email;
         this.rol = rol;
+    }
+
+    public List<Canal> getCanals() {
+        return canals;
+    }
+
+    public void setCanals(List<Canal> canals) {
+        this.canals = canals;
+    }
+
+    public List<Podcast> getPodcasts() {
+        return podcasts;
+    }
+
+    public void setPodcasts(List<Podcast> podcasts) {
+        this.podcasts = podcasts;
     }
 
     public Long getId() {
@@ -101,7 +130,9 @@ public class Usuari {
     @Override
     public String toString() {
         return "Usuari{" +
-                "id=" + id +
+                "canals=" + canals +
+                ", podcasts=" + podcasts +
+                ", id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", nom='" + nom + '\'' +
