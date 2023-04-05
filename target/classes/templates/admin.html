@@ -46,6 +46,8 @@
 				</table>
 			</article>
 
+			<div class="modalFons ocult"></div>
+
 			<div class="modalModUsuari ocult">
 				<div class="modUsuari">
 					<h3 class="text-center text-white">Modificar Usuari</h3>
@@ -55,15 +57,25 @@
 					<input id="modEmail" type="email" name="email" placeholder="Correu electrònic" required/>
 					<input id="modId" type="hidden" name="id" />
 					<br><br>
-					<button type="submit" id="modificar" class="button button1">MODIFICA</button>
-					<button type="submit" id="tancar" class="button button2">CANCEL·LA</button>
+					<button type="submit" id="modificarUs" class="button button1">MODIFICA</button>
+					<button type="submit" id="tancarUs" class="button button2">CANCEL·LA</button>
 				</div>
 			</div>
 
+			<div class="modalModCanal ocult">
+				<div class="modCanal">
+					<h3 class="text-center text-white">Modificar Canal</h3>
+					<input id="modcTitol" type="text" name="titol" placeholder="Títol" required/>
+					<input id="modcId" type="hidden" name="id" />
+					<br><br>
+					<button type="submit" id="modificarCa" class="button button1">MODIFICA</button>
+					<button type="submit" id="tancarCa" class="button button2">CANCEL·LA</button>
+				</div>
+			</div>
 		</section>
     </main>
 
-	<div th:include="fragments :: scripts"></div>
+	<div th:include="fragmentsAdmin :: scripts"></div>
 
 </body>
 </html>
