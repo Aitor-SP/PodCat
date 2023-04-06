@@ -2,8 +2,7 @@ package cat.xtec.ioc.podcat.Model;
 
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.lang.Nullable;
-
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,6 +15,7 @@ public class Podcast {
 
     @ManyToOne
     @JoinColumn(name = "id_canal")
+    @NotNull
     private Canal canal;
 
     @Id
@@ -23,41 +23,44 @@ public class Podcast {
     @Column(name = "id_podcast")
     private Long id;
 
-    @Column(name = "fil", nullable = false, unique = true)
-    private Integer fil;
-
     @Column(name = "titol", nullable = false, unique = true)
     private String titol;
 
-    @Column(name = "descripcio")
+    @Column(name = "descripcio", nullable = false)
     private String descripcio;
 
-    @Column(name = "etiquetes")
+    @Column(name = "genere", nullable = false)
+    private String genere;
+
+    @Column(name = "etiquetes", nullable = false)
     private String etiquetes;
 
-    @Column(name = "data_publicacio")
+    @Column(name = "data_publicacio", nullable = true)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @Nullable
     private LocalDateTime dataPublicacio;
 
-    @Column(name = "imatge")
+    @Column(name = "fil", nullable = true)
+    private Integer fil;
+
+    @Column(name = "imatge", nullable = false)
     private String imatge;
 
-    @Column(name = "audio")
+    @Column(name = "audio", nullable = false)
     private String audio;
 
     public Podcast() {
     }
 
-    public Podcast(Usuari usuari, Canal canal, Long id, Integer fil, String titol, String descripcio, String etiquetes, LocalDateTime dataPublicacio, String imatge, String audio) {
+    public Podcast(Usuari usuari, Canal canal, Long id, String titol, String descripcio, String genere, String etiquetes, LocalDateTime dataPublicacio, Integer fil, String imatge, String audio) {
         this.usuari = usuari;
         this.canal = canal;
         this.id = id;
-        this.fil = fil;
         this.titol = titol;
         this.descripcio = descripcio;
+        this.genere = genere;
         this.etiquetes = etiquetes;
         this.dataPublicacio = dataPublicacio;
+        this.fil = fil;
         this.imatge = imatge;
         this.audio = audio;
     }
@@ -86,14 +89,6 @@ public class Podcast {
         this.id = id;
     }
 
-    public Integer getFil() {
-        return fil;
-    }
-
-    public void setFil(Integer fil) {
-        this.fil = fil;
-    }
-
     public String getTitol() {
         return titol;
     }
@@ -110,6 +105,14 @@ public class Podcast {
         this.descripcio = descripcio;
     }
 
+    public String getGenere() {
+        return genere;
+    }
+
+    public void setGenere(String genere) {
+        this.genere = genere;
+    }
+
     public String getEtiquetes() {
         return etiquetes;
     }
@@ -124,6 +127,14 @@ public class Podcast {
 
     public void setDataPublicacio(LocalDateTime dataPublicacio) {
         this.dataPublicacio = dataPublicacio;
+    }
+
+    public Integer getFil() {
+        return fil;
+    }
+
+    public void setFil(Integer fil) {
+        this.fil = fil;
     }
 
     public String getImatge() {
@@ -148,11 +159,12 @@ public class Podcast {
                 "usuari=" + usuari +
                 ", canal=" + canal +
                 ", id=" + id +
-                ", fil=" + fil +
                 ", titol='" + titol + '\'' +
                 ", descripcio='" + descripcio + '\'' +
+                ", genere='" + genere + '\'' +
                 ", etiquetes='" + etiquetes + '\'' +
                 ", dataPublicacio=" + dataPublicacio +
+                ", fil=" + fil +
                 ", imatge='" + imatge + '\'' +
                 ", audio='" + audio + '\'' +
                 '}';

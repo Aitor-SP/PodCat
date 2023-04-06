@@ -1,15 +1,18 @@
 package cat.xtec.ioc.podcat.Service;
 
 import cat.xtec.ioc.podcat.Model.Canal;
+import cat.xtec.ioc.podcat.Model.Podcast;
 import cat.xtec.ioc.podcat.Model.Usuari;
 import cat.xtec.ioc.podcat.Repository.CanalRepository;
-import cat.xtec.ioc.podcat.Repository.UsuariRepository;
+import cat.xtec.ioc.podcat.Repository.PodcastRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
-import javax.persistence.EntityNotFoundException;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -19,9 +22,21 @@ public class CanalService {
     private CanalRepository canalRepository;
 
     @Autowired
-    private UsuariRepository usuariRepository;
+    private PodcastRepository podcastRepository;
 
-    public List<Canal> getAllCanals() {
+    public List<Canal> getCanals() {
+        return canalRepository.findAll().stream()
+                .map(canal -> {
+                    Canal newCanal = new Canal();
+                    newCanal.setId(canal.getId());
+                    newCanal.setTitol(canal.getTitol());
+                    newCanal.setDescripcio(canal.getDescripcio());
+                    newCanal.setImatge(canal.getImatge());
+                    return newCanal;
+                }).collect(Collectors.toList());
+    }
+
+    public List<Canal> getCanalsWithUsuaris() {
         return canalRepository.findAll();
     }
 
@@ -29,59 +44,29 @@ public class CanalService {
         return canalRepository.findById(id);
     }
 
+    public List<Canal> getCanalsByUsuari(Usuari usuari) {
+        return canalRepository.findByUsuariId(usuari.getId());
+    }
+
+
+    public List<Podcast> getPodcastsByCanal(Long canalId) {
+        Canal canal = canalRepository.findById(canalId).orElseThrow(() -> new EntityNotFoundException("Canal no trobat amb aquesta id " + canalId));
+        return podcastRepository.findByCanal(canal);
+    }
+
     public Canal addCanal(Canal canal) {
-
-//        Usuari usuari = usuariRepository.findById(idUsuari)
-//                .orElseThrow(() -> new EntityNotFoundException("Usuari no trobat"));
-//
-//        canal.setUsuari(usuari);
-//        Canal savedCanal = canalRepository.save(canal);
-//
-//        usuari.getCanals().add(savedCanal);
-//
-//        return savedCanal;
-
         return canalRepository.save(canal);
     }
 
-    public Canal updateCanalById(Canal request, Long id) {
-        Canal canal = canalRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Canal no trobat"));
-
+    public Canal updateCanal(Canal request, Long id) {
+        Canal canal = canalRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Canal no trobat"));
         canal.setTitol(request.getTitol());
         canal.setDescripcio(request.getDescripcio());
         canal.setImatge(request.getImatge());
-
         return canalRepository.save(canal);
     }
 
-    public Canal updateCanalAndUsuari(Canal canal, Long id, Long idUsuari) {
-
-        Usuari usuari = usuariRepository.findById(idUsuari)
-                .orElseThrow(() -> new EntityNotFoundException("Usuari no trobat"));
-
-        // Actualitzar l'usuari associat al canal
-        canal.setUsuari(usuari);
-        canalRepository.save(canal);
-
-        // Actualitzar el canal en la llista de canals de l'usuari
-        List<Canal> canals = usuari.getCanals();
-        canals.removeIf(c -> c.getId().equals(canal.getId()));
-        canals.add(canal);
-        usuari.setCanals(canals);
-        usuariRepository.save(usuari);
-
-        return canal;
-    }
-
     public Boolean deleteCanalById(Long id) {
-//        Canal canal = canalRepository.findById(id)
-//                .orElseThrow(() -> new EntityNotFoundException("Canal no trobat"));
-//
-//        Usuari usuari = canal.getUsuari();
-//        usuari.getCanals().remove(canal);
-//
-//        canalRepository.deleteById(id);
         try {
             canalRepository.deleteById(id);
             return true;
