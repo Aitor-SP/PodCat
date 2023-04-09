@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @EnableJpaRepositories
 @Repository
-public interface UsuariRepository extends JpaRepository <Usuari, Long> {
+public interface UsuariRepository extends JpaRepository<Usuari, Long> {
 
     Usuari findByUsernameAndPassword(String username, String password);
 }

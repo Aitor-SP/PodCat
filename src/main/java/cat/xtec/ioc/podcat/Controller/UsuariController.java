@@ -3,9 +3,11 @@ package cat.xtec.ioc.podcat.Controller;
 import cat.xtec.ioc.podcat.Model.Usuari;
 import cat.xtec.ioc.podcat.Service.UsuariService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -17,7 +19,7 @@ public class UsuariController {
     private UsuariService usuariService;
 
     @GetMapping()
-    public ArrayList<Usuari> getAllUsuaris() {
+    public List<Usuari> getAllUsuaris() {
         return this.usuariService.getAllUsuaris();
     }
 
@@ -27,29 +29,29 @@ public class UsuariController {
     }
 
     @PostMapping
-    public Usuari addUsuari(@RequestBody Usuari usuari){
+    public Usuari addUsuari(@RequestBody Usuari usuari) {
         return this.usuariService.addUsuari(usuari);
     }
 
     @PutMapping(path = "/{id}")
-    public Usuari updateFullUsuariById(@RequestBody Usuari request,@PathVariable("id") Long id){
-        return this.usuariService.updateFullUsuariById(request,id);
+    public Usuari updateFullUsuariById(@RequestBody Usuari request, @PathVariable("id") Long id) {
+        return this.usuariService.updateFullUsuariById(request, id);
     }
 
     @PatchMapping(path = "/{id}")
-    public Usuari updateUsuariFieldById(@RequestBody Usuari request,@PathVariable("id") Long id){
-        return this.usuariService.updateUsuariFieldById(request,id);
+    public Usuari updateUsuariFieldById(@RequestBody Usuari request, @PathVariable("id") Long id) {
+        return this.usuariService.updateUsuariFieldById(request, id);
     }
 
     @DeleteMapping(path = "/{id}")
-    public String deleteUsuariById(@PathVariable("id") Long id){
+    public ResponseEntity<String> deleteUsuariById(@PathVariable("id") Long id) {
 
-        boolean okDelete = this.usuariService.deleteUsuariById(id);
+        boolean okDelete = usuariService.deleteUsuariById(id);
 
-        if (okDelete){
-            return "Usuari amb id: "+ id +" ha sigut eliminat!";
+        if (okDelete) {
+            return ResponseEntity.ok("Usuari amb id: " + id + " ha sigut eliminat!");
         } else {
-            return "No es pot eliminar l'usuari. Error.";
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No es pot eliminar l'usuari. Error.");
         }
     }
 }

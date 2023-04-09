@@ -1,13 +1,14 @@
 package cat.xtec.ioc.podcat.Model;
 
 import jakarta.persistence.*;
+
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "canals", catalog = "podcat")
 public class Canal {
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_usuari")
     @NotNull
     private Usuari usuari;

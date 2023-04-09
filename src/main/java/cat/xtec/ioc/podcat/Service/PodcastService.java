@@ -2,15 +2,16 @@ package cat.xtec.ioc.podcat.Service;
 
 import cat.xtec.ioc.podcat.Model.Canal;
 import cat.xtec.ioc.podcat.Model.Podcast;
+import cat.xtec.ioc.podcat.Model.Usuari;
 import cat.xtec.ioc.podcat.Repository.PodcastRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -20,27 +21,22 @@ public class PodcastService {
     private PodcastRepository podcastRepository;
 
     public List<Podcast> getPodcasts() {
-        return podcastRepository.findAll().stream()
-                .map(podcast -> {
-                   Podcast newPodcast = new Podcast();
-                   newPodcast.setId(podcast.getId());
-                   newPodcast.setTitol(podcast.getTitol());
-                   newPodcast.setDescripcio(podcast.getDescripcio());
-                   newPodcast.setGenere(podcast.getGenere());
-                   newPodcast.setEtiquetes(podcast.getEtiquetes());
-                   newPodcast.setDataPublicacio(podcast.getDataPublicacio());
-                   newPodcast.setFil(podcast.getFil());
-                   newPodcast.setImatge(podcast.getImatge());
-                   newPodcast.setAudio(podcast.getAudio());
-                   return newPodcast;
-                }).collect(Collectors.toList());
-    }
-
-    public List<Podcast> getPodcastWithCanalsAndUsuaris() {
         return podcastRepository.findAll();
     }
 
-    public List<String> getAllGeneres() {
+    public Optional<Podcast> getPodcastById(Long id) {
+        return podcastRepository.findById(id);
+    }
+
+    public List<Podcast> getPodcastsByCanal(Canal canal) {
+        return podcastRepository.findByCanalId(canal.getId());
+    }
+
+    public List<Podcast> getPodcastsByUsuari(Usuari usuari) {
+        return podcastRepository.findByUsuariId(usuari.getId());
+    }
+
+    public List<String> getGeneres() {
         return podcastRepository.findByGeneres();
     }
 
@@ -48,20 +44,33 @@ public class PodcastService {
         return podcastRepository.findByDataPublicacio();
     }
 
-    public Optional<Podcast> findById(Long id) {
-        return podcastRepository.findById(id);
-    }
-
-    public List<Podcast> findByCanal(Canal canal) {
-        return podcastRepository.findByCanal(canal);
-    }
-
     public Podcast addPodcast(Podcast podcast) {
         return podcastRepository.save(podcast);
     }
 
-    public Podcast updatePodcast(Podcast request, Long id) {
-        Podcast podcast = podcastRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Podcast no trobat"));
+    public Podcast updateFullPodcastById(Podcast request, Long id) {
+
+        Podcast podcast = podcastRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Podcast no trobat"));
+
+        podcast.setUsuari(request.getUsuari());
+        podcast.setCanal(request.getCanal());
+        podcast.setId(request.getId());
+
+        podcast.setTitol(request.getTitol());
+        podcast.setDescripcio(request.getDescripcio());
+        podcast.setGenere(request.getGenere());
+        podcast.setEtiquetes(request.getEtiquetes());
+        podcast.setDataPublicacio(request.getDataPublicacio());
+        podcast.setFil(request.getFil());
+        podcast.setImatge(request.getImatge());
+        podcast.setAudio(request.getAudio());
+
+        return podcastRepository.save(podcast);
+    }
+
+    public Podcast updateFieldPodcastById(Podcast request, Long id) {
+
+        Podcast podcast = podcastRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Podcast no trobat"));
 
         podcast.setTitol(request.getTitol());
         podcast.setDescripcio(request.getDescripcio());

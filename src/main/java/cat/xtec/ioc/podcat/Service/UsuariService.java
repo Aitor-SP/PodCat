@@ -4,22 +4,28 @@ import cat.xtec.ioc.podcat.Model.Usuari;
 import cat.xtec.ioc.podcat.Repository.UsuariRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class UsuariService {
 
     @Autowired
     private UsuariRepository usuariRepository;
 
-    public ArrayList<Usuari> getAllUsuaris() {
-        return new ArrayList<>(usuariRepository.findAll());
+    public List<Usuari> getAllUsuaris() {
+        return usuariRepository.findAll();
     }
 
     public Optional<Usuari> getUsuariById(Long id) {
         return usuariRepository.findById(id);
+    }
+
+    public Usuari getUserByUsernameAndPassword(String username, String password) {
+        return usuariRepository.findByUsernameAndPassword(username, password);
     }
 
     public Usuari addUsuari(Usuari usuari) {
@@ -60,9 +66,5 @@ public class UsuariService {
         } catch (Exception e) {
             return false;
         }
-    }
-
-    public Usuari getUserByUsernameAndPassword(String username, String password) {
-        return usuariRepository.findByUsernameAndPassword(username, password);
     }
 }

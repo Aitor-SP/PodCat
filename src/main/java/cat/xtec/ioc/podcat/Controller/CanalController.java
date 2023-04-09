@@ -5,9 +5,10 @@ import cat.xtec.ioc.podcat.Model.Podcast;
 import cat.xtec.ioc.podcat.Model.Usuari;
 import cat.xtec.ioc.podcat.Service.CanalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.net.URI;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -24,47 +25,47 @@ public class CanalController {
         return canalService.getCanals();
     }
 
-    @GetMapping(path ="/canalsUsuaris")
-    public List<Canal> getCanalsWithUsuaris() {
-        return canalService.getCanalsWithUsuaris();
+    @GetMapping(path = "/{id}")
+    public Optional<Canal> getCanalById(@PathVariable("id") Long id) {
+        return this.canalService.getCanalById(id);
     }
 
-    @GetMapping(path ="/{id}")
-    public ResponseEntity<Canal> getCanalById(@PathVariable Long id) {
-        Optional<Canal> canal = canalService.getCanalById(id);
-        return canal.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    @GetMapping(path ="/usuari/{id}")
-    public List<Canal> getCanalsByUser(@PathVariable Long id) {
+    @GetMapping(path = "/usuari/{id}")
+    public List<Canal> getCanalsByUsuari(@PathVariable("id") Long id) {
         Usuari usuari = new Usuari();
         usuari.setId(id);
         return canalService.getCanalsByUsuari(usuari);
     }
 
-    @GetMapping(path ="/{id}/podcasts")
-    public List<Podcast> getPodcastsByCanal(@PathVariable Long id) {
+    @GetMapping(path = "/{id}/podcasts")
+    public List<Podcast> getPodcastsByCanal(@PathVariable("id") Long id) {
         return canalService.getPodcastsByCanal(id);
     }
 
-    @PostMapping
-    public ResponseEntity<Canal> addCanal(@RequestBody Canal canal) {
-        Canal addedCanal = canalService.addCanal(canal);
-        return ResponseEntity.created(URI.create("/canals/" + addedCanal.getId())).body(addedCanal);
+    @PostMapping()
+    public Canal addCanal(@RequestBody Canal canal) {
+        return this.canalService.addCanal(canal);
     }
 
-    @PutMapping(path ="/{id}")
-    public ResponseEntity<Canal> updateCanalById(@RequestBody Canal request, @PathVariable Long id) {
-        Canal updatedCanal = canalService.updateCanal(request, id);
-        return ResponseEntity.ok(updatedCanal);
+    @PutMapping(path = "/{id}")
+    public Canal updateFullCanalById(@RequestBody Canal request, @PathVariable("id") Long id) {
+        return this.canalService.updateFullCanalById(request, id);
     }
 
-    @DeleteMapping(path ="/{id}")
-    public ResponseEntity<Void> deleteCanalById(@PathVariable Long id) {
-        if (canalService.deleteCanalById(id)) {
-            return ResponseEntity.noContent().build();
+    @PatchMapping(path = "/{id}")
+    public Canal updateFieldCanalById(@RequestBody Canal request, @PathVariable("id") Long id) {
+        return this.canalService.updateFieldCanalById(request, id);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<String> deleteCanalById(@PathVariable("id") Long id) {
+
+        boolean okDelete = canalService.deleteCanalById(id);
+
+        if (okDelete) {
+            return ResponseEntity.ok("Canal amb id: " + id + " ha sigut eliminat!");
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No es pot eliminar el canal. Error.");
         }
     }
 }

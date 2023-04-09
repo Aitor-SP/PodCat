@@ -43,7 +43,7 @@ public class LoginControllerTest {
         RedirectView redirectView = loginController.login("admin", "admin", (Model) model, (HttpSession) session);
 
         // ASSERT
-        assertEquals("/admin", redirectView.getUrl());
+        assertEquals("/", redirectView.getUrl());
         verify(session).setAttribute("usuari", usuari);
     }
 

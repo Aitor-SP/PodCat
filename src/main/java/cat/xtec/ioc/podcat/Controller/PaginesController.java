@@ -9,21 +9,21 @@ import org.springframework.web.servlet.ModelAndView;
 public class PaginesController {
 
     @RequestMapping("/")
-    public ModelAndView index () {
+    public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index.html");
         return modelAndView;
     }
 
     @RequestMapping("/admin")
-    public ModelAndView admin () {
+    public ModelAndView admin() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin.html");
         return modelAndView;
     }
 
     @RequestMapping("/contacte")
-    public ModelAndView contacte () {
+    public ModelAndView contacte() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("contacte.html");
         return modelAndView;

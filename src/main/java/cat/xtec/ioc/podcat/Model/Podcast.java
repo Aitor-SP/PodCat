@@ -2,6 +2,7 @@ package cat.xtec.ioc.podcat.Model;
 
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -9,11 +10,11 @@ import java.time.LocalDateTime;
 @Table(name = "podcasts", catalog = "podcat")
 public class Podcast {
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_usuari")
     private Usuari usuari;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_canal")
     @NotNull
     private Canal canal;

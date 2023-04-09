@@ -1,6 +1,5 @@
 package cat.xtec.ioc.podcat.Repository;
 
-import cat.xtec.ioc.podcat.Model.Canal;
 import cat.xtec.ioc.podcat.Model.Podcast;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,9 +11,11 @@ import java.util.List;
 
 @EnableJpaRepositories
 @Repository
-public interface PodcastRepository extends JpaRepository<Podcast,Long> {
+public interface PodcastRepository extends JpaRepository<Podcast, Long> {
 
-    List<Podcast> findByCanal(Canal canal);
+    List<Podcast> findByCanalId(Long id);
+
+    List<Podcast> findByUsuariId(Long id);
 
     @Query("SELECT DISTINCT p.genere FROM Podcast p")
     List<String> findByGeneres();
