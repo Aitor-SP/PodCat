@@ -14,28 +14,26 @@
             <div class="col-lg-12 text-center">
                 <h1>Filtre per podcasts</h1>
                 <div class="select-container">
-                    <select name="titol">
-                        <option disabled="" selected="">Selecciona Canals</option>
-                        <option th:each="podcast : ${listaPodcast}"
-                                th:value="${podcast.titol}"
-                                th:text="${podcast.titol}"
+                    <select name="Canal">
+                        <option disabled="" selected>-- Selecciona Canals --</option>
+                        <option th:each="canals : ${listaCanal}"
+                                th:value="${canals.getId()}"
+                                th:text="${canals.getTitol()}"
                         />
                     </select>
-                    <select>
-                        <option disabled="" selected="">Selecciona Gènere</option>
+                    <select name="Genere">
+                        <option disabled="" selected>-- Selecciona Gènere --</option>
                         <option th:each="podcast : ${listaPodcast}"
-                                th:value="${podcast.getGenere()}"
+                                th:value="${podcast.getId()}"
                                 th:text="${podcast.getGenere()}"
                         />
                     </select>
-                    </select>
                     <select name="data">
-                        <option disabled="" selected="">Selecciona Data publicacio</option>
+                        <option disabled="" selected>-- Selecciona Data --</option>
                         <option th:each="podcast : ${listaPodcast}"
-                                th:value="${podcast.getDataPublicacio()}"
+                                th:value="${podcast.getId()}"
                                 th:text="${podcast.getDataPublicacio()}"
                         />
-                    </select>
                     </select>
                     <button type="submit" class="bt-filtre">Filtra</button>
                 </div>
@@ -45,6 +43,12 @@
 
     <!-- Resultats del filtre -->
     <section>
+        <b>Resultado</b>
+        <p th:each="canals : ${listaCanal}"
+           th:text="'nombre: ' + ${canals.getTitol()}" />
+
+
+        <!--
         <div class="row">
             <div class="col-md-4">
                 <div class="card" style="margin-top:10px;">
@@ -102,7 +106,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 </div>
 <br><br><br>

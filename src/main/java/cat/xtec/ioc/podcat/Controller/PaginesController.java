@@ -1,6 +1,10 @@
 package cat.xtec.ioc.podcat.Controller;
 
+import cat.xtec.ioc.podcat.Model.Canal;
+
 import cat.xtec.ioc.podcat.Model.Podcast;
+import cat.xtec.ioc.podcat.Service.CanalService;
+
 import cat.xtec.ioc.podcat.Service.PodcastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +17,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class PaginesController {
+    @Autowired
+    private CanalService canalService;
     @Autowired
     private PodcastService podcastService;
     @RequestMapping("/")
@@ -35,10 +41,14 @@ public class PaginesController {
         modelAndView.setViewName("contacte.html");
         return modelAndView;
     }
+
+
     @RequestMapping("/filtre")
     public String mostrarFiltrePodcasts(Model model) {
         List<Podcast>listaPodcast = podcastService.getPodcasts();
+        List<Canal>listaCanal = canalService.getCanals();
         model.addAttribute("listaPodcast", listaPodcast);
+        model.addAttribute("listaCanal", listaCanal);
         return "filtre";
     }
 }

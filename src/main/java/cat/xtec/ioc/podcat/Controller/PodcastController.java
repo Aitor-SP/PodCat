@@ -3,6 +3,7 @@ package cat.xtec.ioc.podcat.Controller;
 import cat.xtec.ioc.podcat.Model.Canal;
 import cat.xtec.ioc.podcat.Model.Podcast;
 import cat.xtec.ioc.podcat.Model.Usuari;
+import cat.xtec.ioc.podcat.Service.CanalService;
 import cat.xtec.ioc.podcat.Service.PodcastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,6 @@ public class PodcastController {
 
     @Autowired
     private PodcastService podcastService;
-
     @GetMapping
     public List<Podcast> getPodcasts() {
         return podcastService.getPodcasts();
