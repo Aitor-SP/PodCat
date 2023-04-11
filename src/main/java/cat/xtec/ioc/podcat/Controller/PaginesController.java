@@ -41,6 +41,7 @@ public class PaginesController {
         modelAndView.setViewName("contacte.html");
         return modelAndView;
     }
+
     @RequestMapping("/filtre")
     public String mostrarFiltrePodcasts(Model model) {
         List<Podcast>listaPodcast = podcastService.getPodcasts();
