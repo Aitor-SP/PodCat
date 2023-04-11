@@ -59,14 +59,16 @@
 
 
 	/* MODAL */
-	.modalModUsuari{
+	.modalModUsuari,
+	.modalModCanal,
+	.modalModPodcast{
 		position: fixed;
 		top: calc(var(--marge-doble) + var(--marge-doble));
 		left: 0;
 		width: 100%;
 		height: 100vh;
 	}
-	.modUsuari{
+	.modForm{
 		width: 50%;
 		margin: 0 auto;
 		padding: var(--marge);

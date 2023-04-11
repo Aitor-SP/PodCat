@@ -49,7 +49,7 @@
 			<div class="modalFons ocult"></div>
 
 			<div class="modalModUsuari ocult">
-				<div class="modUsuari">
+				<div class="modForm">
 					<h3 class="text-center text-white">Modificar Usuari</h3>
 					<input id="modUsername" type="text" name="username" placeholder="Nom d'usuari" required/>
 					<input id="modNom"  type="text" name="nom" placeholder="Nom" required/>
@@ -58,20 +58,36 @@
 					<input id="modId" type="hidden" name="id" />
 					<br><br>
 					<button type="submit" id="modificarUs" class="button button1">MODIFICA</button>
-					<button type="submit" id="tancarUs" class="button button2">CANCEL·LA</button>
+					<button type="submit" class="cancellar button button2">CANCEL·LA</button>
 				</div>
 			</div>
 
 			<div class="modalModCanal ocult">
-				<div class="modCanal">
+				<div class="modForm">
 					<h3 class="text-center text-white">Modificar Canal</h3>
-					<input id="modcTitol" type="text" name="titol" placeholder="Títol" required/>
-					<input id="modcId" type="hidden" name="id" />
+					<input id="modCaTitol" type="text" name="titol" placeholder="Títol" required/>
+					<input id="modCaDesc" type="text" name="descripcio" placeholder="Descripció" required/>
+					<input id="modCaImatge" type="text" name="imatge" placeholder="Imatge" required/>
+					<input id="modCaId" type="hidden" name="id" />
+					<input id="modCaUs" type="hidden" name="idusuari" />
 					<br><br>
 					<button type="submit" id="modificarCa" class="button button1">MODIFICA</button>
-					<button type="submit" id="tancarCa" class="button button2">CANCEL·LA</button>
+					<button type="submit" class="cancellar button button2">CANCEL·LA</button>
 				</div>
 			</div>
+
+			<div class="modalModPodcast ocult">
+				<div class="modForm">
+					<h3 class="text-center text-white">Modificar Podcast</h3>
+					<input id="modPoTitol" type="text" name="titol" placeholder="Títol" required/>
+					<input id="modPoId" type="hidden" name="id" />
+					<input id="modPoUs" type="hidden" name="idusuari" />
+					<br><br>
+					<button type="submit" id="modificarPo" class="button button1">MODIFICA</button>
+					<button type="submit" class="cancellar button button2">CANCEL·LA</button>
+				</div>
+			</div>
+
 		</section>
     </main>
 

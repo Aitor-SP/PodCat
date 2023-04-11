@@ -28,7 +28,7 @@ function podcasts(){
         if (!response.ok) {
             missatge("error","No s'ha pogut rebre la petició HTTP");
         }else{
-			// console.log(dades);
+			console.log(dades);
 			var n = 1;
 			for(const u in dades){
 				// Primera fila
@@ -67,7 +67,7 @@ function podcasts(){
 				var usTr2 = document.createElement("tr");
 					usTr2.setAttribute("idtr", dades[u].id);
 					var usTdDescT = document.createElement("td");
-						usTdDescT.innerHTML = 'Descripció';
+						usTdDescT.innerHTML = 'Descripció:';
 						usTr2.appendChild(usTdDescT);
 					var usTdDesc = document.createElement("td");
 						usTdDesc.setAttribute("colspan", 3);
@@ -78,11 +78,11 @@ function podcasts(){
 				var usTr3 = document.createElement("tr");
 					usTr3.setAttribute("idtr", dades[u].id);
 				var usTdEtT = document.createElement("td");
-					usTdEtT.innerHTML = 'Etiquetes';
+					usTdEtT.innerHTML = 'Gènere:';
 					usTr3.appendChild(usTdEtT);
 				var usTdEt = document.createElement("td");
 					usTdEt.setAttribute("colspan", 3);
-					usTdEt.innerHTML = dades[u].etiquetes;
+					usTdEt.innerHTML = dades[u].genere+' | '+dades[u].etiquetes;
 					usTr3.appendChild(usTdEt);
 				taula.appendChild(usTr3);
 			}
@@ -92,3 +92,36 @@ function podcasts(){
 		missatge('error', error);
 	});
 }
+
+
+// Modificar Podcast
+function modificarPodcast(id){
+	// console.log("Modificar podcast "+id);
+	fetch('/api/v1/podcasts/'+id)
+    .then(async response => {
+        const isJson = response.headers.get('content-type')?.includes('application/json');
+        const dades = isJson && await response.json();
+        // Check for error response
+        if (!response.ok) {
+			// Control d'errors
+            missatge("error","No s'ha pogut rebre la petició HTTP");
+        }else{
+			modPodcast.classList.remove("ocult");
+			modalFons.classList.remove("ocult");
+			console.log(dades);
+			document.getElementById('modPoId').value = dades.id;
+			document.getElementById('modPoTitol').value = dades.titol;
+		}
+	})
+	.catch((error) => {
+		missatge('error', error);
+	});
+}
+
+// Modificar Podcast / Enviar dades
+modificarPo.onclick = function(){
+	tancarModal();
+
+	// IMPLEMENTAR
+
+};

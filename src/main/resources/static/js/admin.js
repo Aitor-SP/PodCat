@@ -12,16 +12,19 @@ var titol = document.getElementById('titol');
 var par = document.getElementById('paragraf');
 var checkburg = document.getElementsByClassName('checkburg')[0];
 var modalFons = document.getElementsByClassName('modalFons')[0];
+var cancellar = document.getElementsByClassName('cancellar');
 
 // Elements Usuaris
 var modUsuari = document.getElementsByClassName('modalModUsuari')[0];
 var modificarUs = document.getElementById('modificarUs');
-var tancarUs = document.getElementById('tancarUs');
 
 // Elements Canals
 var modCanal = document.getElementsByClassName('modalModCanal')[0];
 var modificarCa = document.getElementById('modificarCa');
-var tancarCa = document.getElementById('tancarCa');
+
+// Elements Podcast
+var modPodcast = document.getElementsByClassName('modalModPodcast')[0];
+var modificarPo = document.getElementById('modificarPo');
 
 // MENÚ 
 for(let i=0; i<menu.length; i++){
@@ -112,6 +115,28 @@ function eliminar(id, tipus){
 			missatge('error', error);
 		});
 	}
+}
+
+
+// Button Cancel·lar
+for(let i=0; i<cancellar.length; i++){
+	cancellar[i].onclick = function(){
+		tancarModal();
+	};
+}
+
+// Tancar modal
+function tancarModal(){
+	if(!modUsuari.classList.contains("ocult")){
+		modUsuari.classList.add("ocult");
+	}
+	if(!modCanal.classList.contains("ocult")){
+		modCanal.classList.add("ocult");
+	}
+	if(!modPodcast.classList.contains("ocult")){
+		modPodcast.classList.add("ocult");
+	}
+	modalFons.classList.add("ocult");
 }
 
 

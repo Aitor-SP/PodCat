@@ -94,8 +94,7 @@ function modificarUsuari(id){
 
 // Modificar Usuari / Enviar dades
 modificarUs.onclick = function(){
-	modUsuari.classList.add("ocult");
-	modalFons.classList.add("ocult");
+	tancarModal();
 	var idMod = document.getElementById('modId').value;
 	// PATCH: Modifiquem l'usuari
 	fetch('/api/v1/usuaris/'+idMod, {
@@ -113,10 +112,11 @@ modificarUs.onclick = function(){
 	.then(async response => {
 		const isJson = response.headers.get('content-type')?.includes('application/json');
 		const dades = isJson && await response.json();
-		// check for error response
+		// Control d'errors
 		if (!response.ok) {
-			// Control d'errors
 			missatge("error","No s'ha pogut establir la petició HTTP");
+		}else if(!dades){ // Si el back-end retorna false
+			missatge("error","No s'han pogut modificar les dades");
 		}else{
 			// console.log(dades);
 			// Actualitzem la fila de l'usuari modificat
@@ -137,9 +137,4 @@ modificarUs.onclick = function(){
 	});
 };
 
-// Tancar modal
-tancarUs.onclick = function(){
-	modUsuari.classList.add("ocult");
-	modalFons.classList.add("ocult");
-};
 

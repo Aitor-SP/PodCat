@@ -25,7 +25,7 @@ function canals(){
         if (!response.ok) {
             missatge("error","No s'ha pogut rebre la petició HTTP");
         }else{
-			// console.log(dades);
+			console.log(dades);
 			var n = 1;
 			for(const u in dades){
 				var usTr = document.createElement("tr");
@@ -59,3 +59,77 @@ function canals(){
 		missatge('error', error);
 	});
 }
+
+
+// Modificar Canal
+function modificarCanal(id){
+	// console.log("Modificar canal "+id);
+	fetch('/api/v1/canals/'+id)
+    .then(async response => {
+        const isJson = response.headers.get('content-type')?.includes('application/json');
+        const dades = isJson && await response.json();
+        // Check for error response
+        if (!response.ok) {
+			// Control d'errors
+            missatge("error","No s'ha pogut rebre la petició HTTP");
+        }else{
+			modCanal.classList.remove("ocult");
+			modalFons.classList.remove("ocult");
+			console.log(dades);
+			document.getElementById('modCaId').value = dades.id;
+			document.getElementById('modCaTitol').value = dades.titol;
+			document.getElementById('modCaDesc').value = dades.descripcio;
+			document.getElementById('modCaImatge').value = dades.imatge;
+			document.getElementById('modCaUs').value = dades.usuari.id;
+		}
+	})
+	.catch((error) => {
+		missatge('error', error);
+	});
+}
+
+// Modificar Canal / Enviar dades
+modificarCa.onclick = function(){
+	tancarModal();
+	var idModCa = document.getElementById('modCaId').value;
+	// PATCH: Modifiquem el canal
+	fetch('/api/v1/canals/'+idModCa, {
+		method: 'PATCH',
+		body: JSON.stringify({
+			titol: document.getElementById('modCaTitol').value,
+			descripcio: document.getElementById('modCaDesc').value,
+			imatge: document.getElementById('modCaImatge').value,
+			mmm: 'mmm',
+			idusuari: document.getElementById('modCaUs').value
+		}),
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8',
+		},
+	})
+	.then(async response => {
+		const isJson = response.headers.get('content-type')?.includes('application/json');
+		const dades = isJson && await response.json();
+		// Control d'errors
+		if(!response.ok) {
+			missatge("error","No s'ha pogut establir la petició HTTP");
+		}else if(!dades){ // Si el back-end retorna false
+			missatge("error","No s'han pogut modificar les dades");
+		}else{
+			console.log(dades);
+			// Actualitzem la fila del canal modificat
+			var trs = document.getElementsByTagName("tr");
+			for(let i=0; i<trs.length; i++){
+				if(idModCa == trs[i].getAttribute('idtr')){
+					trs[i].childNodes[1].innerHTML = dades.titol;
+					trs[i].childNodes[2].innerHTML = dades.descripcio;
+					trs[i].childNodes[3].innerHTML = dades.imatge;
+				}
+			}
+			missatge("missatge", "S'ha modificat el canal");
+		}
+	})
+	.catch((error) => {
+		missatge('error', error);
+	});
+
+};
