@@ -1,4 +1,5 @@
 /*
+// IOC 2022/*
 // IOC 2022 S2
 // DAW Desenvolupament d'Aplicacions Web
 // M12B0 Projecte de desenvolupament d'aplicacions web
@@ -7,33 +8,33 @@
 
 /* Variables */
 :root {
-	/* Colors */
-	--color-text: #e1e1e1;
-	--color-gris-clar: #888888;
-	--color-gris-mig: #666666;
-	--color-gris-fosc: #333333;
-	--color-fons: #202020;
-	--color-primer: #c99500;
-	--color-segon: #c7bb7b;
+    /* Colors */
+    --color-text: #e1e1e1;
+    --color-gris-clar: #888888;
+    --color-gris-mig: #666666;
+    --color-gris-fosc: #333333;
+    --color-fons: #202020;
+    --color-primer: #c99500;
+    --color-segon: #c7bb7b;
     --color-logo:#e1e1e1;
-	/* Marges */
+    /* Marges */
     --marge-quart: 5px;
-	--marge-mig: 10px;
-	--marge: 20px;
-	--marge-doble: 40px;
-	/* Transició */
-	--transicio: 0.4s;
+    --marge-mig: 10px;
+    --marge: 20px;
+    --marge-doble: 40px;
+    /* Transició */
+    --transicio: 0.4s;
 }
 
 
 body{
-	font-family: 'Poppins', sans-serif;
-	font-weight: 300;
-	margin: 0px;
-	padding: 0px;
-	font-size: 14px;
-	color: var(--color-text);
-	background-color: var(--color-fons);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    color: var(--color-text);
+    background-color: var(--color-fons);
 }
 
 nav{
@@ -41,8 +42,8 @@ nav{
 }
 
 .navbar-toggler{
-    color:var(--color-text); 
-    font-size:28px;  
+    color:var(--color-text);
+    font-size:28px;
 }
 
 .navbar-toggler:focus {
@@ -62,7 +63,7 @@ nav{
     gap: 0px;
     margin-top: 65px;
     grid-template-rows: 1fr 1fr auto;
-    grid-template-areas:"main aside" 
+    grid-template-areas:"main aside"
                         "main-2 aside"
                         "footer footer";
 }
@@ -74,7 +75,7 @@ main {
 article {
     margin: 0 auto;
     padding: 20px;
-	color: var(--color-text);
+    color: var(--color-text);
     text-align: center;
 }
 
@@ -107,12 +108,12 @@ article {
     text-align: center;
     padding:20px;
 }
-  
+
 aside {
     grid-area: aside;
     background-color: var(--color-gris-fosc);
 }
-  
+
 footer {
     display: flex;
     grid-area: footer;
@@ -133,24 +134,24 @@ footer > p{
 }
 
 h1, h2, h3, h4, h5, h6{
-	font-weight: 900;
-	letter-spacing: 1px;
+    font-weight: 900;
+    letter-spacing: 1px;
 }
 
 h1{
-	font-size: 30px;
+    font-size: 30px;
 }
 
 h2{
-	font-size: 26px;
+    font-size: 26px;
 }
 
 h3{
-	font-size: 20px;
+    font-size: 20px;
 }
 
 h4{
-	font-size: 18px;
+    font-size: 18px;
 }
 
 /* Estils formulari contacte */
@@ -204,9 +205,42 @@ svg{
     fill:#ffffff;
 }
 
+/* Estils CSS pàgina filter */
+.select-container {
+    text-align: center;
+}
+
+select{
+    font-family: 'Poppins', sans-serif;
+    margin: 8px 8px 8px 0;
+    padding: 8px 10px;
+    color: var(--color-fons);
+    background-color: var(--color-text);
+    letter-spacing: 1px;
+    border: 0;
+    border-radius: 4px;
+    outline: 1px solid var(--color-segon);
+    outline-offset: -1px;
+    cursor: pointer;
+}
+
+.bt-filtre {
+    padding: 8px 22px;
+    color: var(--color-text);
+    background-color: var(--color-primer);
+    letter-spacing: 2px;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#form-filtre{
+    padding:140px 0 40px;
+}
+
 /* Responsive Mobile */
 @media all and (max-width: 768px){
-    .contingut{ 
+    .contingut{
         grid-template-areas: "main" 
                              "main-2"
                              "aside"

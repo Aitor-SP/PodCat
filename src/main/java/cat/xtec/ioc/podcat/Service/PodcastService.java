@@ -19,7 +19,6 @@ public class PodcastService {
 
     @Autowired
     private PodcastRepository podcastRepository;
-
     public List<Podcast> getPodcasts() {
         return podcastRepository.findAll();
     }
