@@ -28,7 +28,7 @@ function podcasts(){
         if (!response.ok) {
             missatge("error","No s'ha pogut rebre la petició HTTP");
         }else{
-			console.log(dades);
+			// console.log(dades);
 			var n = 1;
 			for(const u in dades){
 				// Primera fila
@@ -108,9 +108,14 @@ function modificarPodcast(id){
         }else{
 			modPodcast.classList.remove("ocult");
 			modalFons.classList.remove("ocult");
-			console.log(dades);
+			// console.log(dades);
 			document.getElementById('modPoId').value = dades.id;
 			document.getElementById('modPoTitol').value = dades.titol;
+			document.getElementById('modPoDesc').value = dades.descripcio;
+			document.getElementById('modPoGenere').value = dades.genere;
+			document.getElementById('modPoTags').value = dades.etiquetes;
+			document.getElementById('modPoImatge').value = dades.imatge;
+			document.getElementById('modPoAudio').value = dades.audio;
 		}
 	})
 	.catch((error) => {
@@ -121,7 +126,53 @@ function modificarPodcast(id){
 // Modificar Podcast / Enviar dades
 modificarPo.onclick = function(){
 	tancarModal();
-
-	// IMPLEMENTAR
-
+	var idModPo = document.getElementById('modPoId').value;
+	// PATCH: Modifiquem el canal
+	fetch('/api/v1/podcasts/'+idModPo, {
+		method: 'PATCH',
+		body: JSON.stringify({
+			titol: document.getElementById('modPoTitol').value,
+			descripcio: document.getElementById('modPoDesc').value,
+			genere: document.getElementById('modPoGenere').value,
+			etiquetes: document.getElementById('modPoTags').value,
+			imatge: document.getElementById('modPoImatge').value,
+			audio: document.getElementById('modPoAudio').value
+		}),
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8',
+		},
+	})
+	.then(async response => {
+		const isJson = response.headers.get('content-type')?.includes('application/json');
+		const dades = isJson && await response.json();
+		// Control d'errors
+		if(!response.ok) {
+			missatge("error","No s'ha pogut establir la petició HTTP");
+		}else if(!dades){ // Si el back-end retorna false
+			missatge("error","No s'han pogut modificar les dades");
+		}else{
+			// console.log(dades);
+			// Actualitzem la fila del canal modificat
+			var trs = document.getElementsByTagName("tr");
+			let nump = 0;
+			for(let i=0; i<trs.length; i++){
+				if(idModPo == trs[i].getAttribute('idtr')){
+					if(nump == 0){
+						trs[i].childNodes[1].innerHTML = '<strong>'+dades.titol+'</strong>';
+						trs[i].childNodes[3].innerHTML = dades.audio;
+						trs[i].childNodes[4].innerHTML = dades.imatge;
+					}else if(nump == 1){
+						trs[i].childNodes[1].innerHTML = dades.descripcio;
+					}else if(nump == 2){
+						trs[i].childNodes[1].innerHTML = dades.genere+' | '+dades.etiquetes;
+					}
+					nump++;
+				}
+			}
+			missatge("missatge", "S'ha modificat el podcast");
+		}
+	})
+	.catch((error) => {
+		missatge('error', error);
+	});
 };

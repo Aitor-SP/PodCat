@@ -25,7 +25,7 @@ function canals(){
         if (!response.ok) {
             missatge("error","No s'ha pogut rebre la petició HTTP");
         }else{
-			console.log(dades);
+			// console.log(dades);
 			var n = 1;
 			for(const u in dades){
 				var usTr = document.createElement("tr");
@@ -75,12 +75,12 @@ function modificarCanal(id){
         }else{
 			modCanal.classList.remove("ocult");
 			modalFons.classList.remove("ocult");
-			console.log(dades);
+			// console.log(dades);
 			document.getElementById('modCaId').value = dades.id;
 			document.getElementById('modCaTitol').value = dades.titol;
 			document.getElementById('modCaDesc').value = dades.descripcio;
 			document.getElementById('modCaImatge').value = dades.imatge;
-			document.getElementById('modCaUs').value = dades.usuari.id;
+			// document.getElementById('modCaUs').value = dades.usuari.id;
 		}
 	})
 	.catch((error) => {
@@ -98,9 +98,7 @@ modificarCa.onclick = function(){
 		body: JSON.stringify({
 			titol: document.getElementById('modCaTitol').value,
 			descripcio: document.getElementById('modCaDesc').value,
-			imatge: document.getElementById('modCaImatge').value,
-			mmm: 'mmm',
-			idusuari: document.getElementById('modCaUs').value
+			imatge: document.getElementById('modCaImatge').value
 		}),
 		headers: {
 			'Content-type': 'application/json; charset=UTF-8',
@@ -115,7 +113,7 @@ modificarCa.onclick = function(){
 		}else if(!dades){ // Si el back-end retorna false
 			missatge("error","No s'han pogut modificar les dades");
 		}else{
-			console.log(dades);
+			// console.log(dades);
 			// Actualitzem la fila del canal modificat
 			var trs = document.getElementsByTagName("tr");
 			for(let i=0; i<trs.length; i++){
@@ -131,5 +129,4 @@ modificarCa.onclick = function(){
 	.catch((error) => {
 		missatge('error', error);
 	});
-
 };
