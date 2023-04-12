@@ -14,7 +14,8 @@
             <div class="col-lg-12 text-center">
                 <h1>Filtre per podcasts</h1>
                 <div class="select-container">
-                    <select name="Canal">
+                    <form action="/filtre" th:action="@{/filtre}" method="post">
+                    <select name="Canals">
                         <option disabled="" selected>-- Selecciona Canals --</option>
                         <option th:each="canals : ${listaCanal}"
                                 th:value="${canals.getId()}"
@@ -36,6 +37,7 @@
                         />
                     </select>
                     <button type="submit" class="bt-filtre">Filtra</button>
+                    </form>
                 </div>
             </div>
         </div>
