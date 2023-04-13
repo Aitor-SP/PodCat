@@ -1,4 +1,4 @@
-package cat.xtec.ioc.podcat.Controller;
+package cat.xtec.ioc.podcat.Configuration;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

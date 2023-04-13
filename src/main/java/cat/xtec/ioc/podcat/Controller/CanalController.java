@@ -20,7 +20,7 @@ public class CanalController {
     @Autowired
     private CanalService canalService;
 
-    @GetMapping
+    @GetMapping()
     public List<Canal> getCanals() {
         return canalService.getCanals();
     }

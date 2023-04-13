@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -33,6 +35,16 @@ public class PodcastService {
 
     public List<Podcast> getPodcastsByUsuari(Usuari usuari) {
         return podcastRepository.findByUsuariId(usuari.getId());
+    }
+
+    public Map<String, List<Podcast>> getPodcastsByGenere() {
+        Map<String, List<Podcast>> result = new HashMap<>();
+        List<String> generes = podcastRepository.findByGeneres();
+        for (String genere : generes) {
+            List<Podcast> podcasts = podcastRepository.findByGenere(genere);
+            result.put(genere, podcasts);
+        }
+        return result;
     }
 
     public List<String> getGeneres() {

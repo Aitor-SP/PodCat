@@ -81,6 +81,25 @@ public class UsuariServiceTest {
     }
 
     @Test
+    public void getUserByUsernameAndPasswordTest() {
+
+        // SET UP
+        Usuari usuari = new Usuari();
+        usuari.setUsername("usuari1");
+        usuari.setPassword("12345");
+
+        // WHEN
+        Mockito.when(usuariRepository.findByUsernameAndPassword("usuari1", "12345")).thenReturn(usuari);
+
+        // EXECUTE
+        Usuari result = usuariService.getUserByUsernameAndPassword("usuari1", "12345");
+
+        // ASSERT
+        assertEquals(usuari.getUsername(), result.getUsername());
+        assertEquals(usuari.getPassword(), result.getPassword());
+    }
+
+    @Test
     public void addUsuariTest() {
 
         // SET UP
@@ -177,25 +196,6 @@ public class UsuariServiceTest {
 
         // ASSERT
         assertTrue(result);
-    }
-
-    @Test
-    public void getUserByUsernameAndPasswordTest() {
-
-        // SET UP
-        Usuari usuari = new Usuari();
-        usuari.setUsername("usuari1");
-        usuari.setPassword("12345");
-
-        // WHEN
-        Mockito.when(usuariRepository.findByUsernameAndPassword("usuari1", "12345")).thenReturn(usuari);
-
-        // EXECUTE
-        Usuari result = usuariService.getUserByUsernameAndPassword("usuari1", "12345");
-
-        // ASSERT
-        assertEquals(usuari.getUsername(), result.getUsername());
-        assertEquals(usuari.getPassword(), result.getPassword());
     }
 }
 

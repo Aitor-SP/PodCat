@@ -3,7 +3,6 @@ package cat.xtec.ioc.podcat.Controller;
 import cat.xtec.ioc.podcat.Model.Canal;
 import cat.xtec.ioc.podcat.Model.Podcast;
 import cat.xtec.ioc.podcat.Model.Usuari;
-import cat.xtec.ioc.podcat.Service.CanalService;
 import cat.xtec.ioc.podcat.Service.PodcastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -21,6 +21,7 @@ public class PodcastController {
 
     @Autowired
     private PodcastService podcastService;
+
     @GetMapping
     public List<Podcast> getPodcasts() {
         return podcastService.getPodcasts();
@@ -43,6 +44,12 @@ public class PodcastController {
         Usuari usuari = new Usuari();
         usuari.setId(id);
         return podcastService.getPodcastsByUsuari(usuari);
+    }
+
+    @GetMapping(path ="/genere")
+    public ResponseEntity<Map<String, List<Podcast>>> getPodcastsByGenere() {
+        Map<String, List<Podcast>> podcastsByGenere = podcastService.getPodcastsByGenere();
+        return ResponseEntity.ok(podcastsByGenere);
     }
 
     @GetMapping(path = "/generes")

@@ -21,6 +21,7 @@ public class LoginController {
     public RedirectView login(@RequestParam("username") String username, @RequestParam("password") String password, Model model, HttpSession session) {
 
         Usuari usuari = usuariService.getUserByUsernameAndPassword(username, password);
+
         if (usuari != null) {
             // Determini el rol de l'usuari
             String rol = usuari.getRol();
