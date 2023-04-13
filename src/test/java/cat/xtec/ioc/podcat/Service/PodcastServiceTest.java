@@ -12,10 +12,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.BeanUtils;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -34,7 +31,7 @@ public class PodcastServiceTest {
 
     private Canal canal;
 
-    private Podcast podcast;
+    private Podcast podcast1, podcast2, podcast3;
 
     private List<Canal> canals;
 
@@ -61,15 +58,38 @@ public class PodcastServiceTest {
         canals = new ArrayList<>();
         canals.add(canal);
 
-        podcast = new Podcast();
-        podcast.setId(1L);
-        podcast.setTitol("podcast_test");
-        podcast.setDescripcio("descripcio_test");
-        podcast.setImatge("imatge_test");
-        podcast.setCanal(canal);
+        podcast1 = new Podcast();
+        podcast1.setId(1L);
+        podcast1.setTitol("podcast_test");
+        podcast1.setDescripcio("descripcio_test");
+        podcast1.setImatge("imatge_test");
+        podcast1.setGenere("genere1");
+        podcast1.setCanal(canal);
 
         podcasts = new ArrayList<>();
-        podcasts.add(podcast);
+        podcasts.add(podcast1);
+
+        podcast2 = new Podcast();
+        podcast2.setId(1L);
+        podcast2.setTitol("podcast_test");
+        podcast2.setDescripcio("descripcio_test");
+        podcast2.setImatge("imatge_test");
+        podcast1.setGenere("genere1");
+        podcast2.setCanal(canal);
+
+        podcasts = new ArrayList<>();
+        podcasts.add(podcast2);
+
+        podcast3 = new Podcast();
+        podcast3.setId(1L);
+        podcast3.setTitol("podcast_test");
+        podcast3.setDescripcio("descripcio_test");
+        podcast3.setImatge("imatge_test");
+        podcast1.setGenere("genere2");
+        podcast3.setCanal(canal);
+
+        podcasts = new ArrayList<>();
+        podcasts.add(podcast3);
     }
 
     @Test
@@ -131,6 +151,25 @@ public class PodcastServiceTest {
     }
 
     @Test
+    void getPodcastsByGenereTest() {
+        // SET UP
+        Map<String, List<Podcast>> expected = new HashMap<>();
+        expected.put("genere1", Arrays.asList(podcast1, podcast2));
+        expected.put("genere2", Arrays.asList(podcast3));
+
+        // WHEN
+        when(podcastRepository.findByGeneres()).thenReturn(Arrays.asList("genere1", "genere2"));
+        when(podcastRepository.findByGenere("genere1")).thenReturn(Arrays.asList(podcast1, podcast2));
+        when(podcastRepository.findByGenere("genere2")).thenReturn(Arrays.asList(podcast3));
+
+        // EXECUTE
+        Map<String, List<Podcast>> result = podcastService.getPodcastsByGenere();
+
+        // ASSERT
+        assertEquals(expected, result);
+    }
+
+    @Test
     void getGeneresTest() {
         // SET UP
         List<String> generes = Arrays.asList("Test1", "Test2");
@@ -166,64 +205,64 @@ public class PodcastServiceTest {
 
 
         // WHEN
-        when(podcastRepository.save(podcast)).thenReturn(podcast);
+        when(podcastRepository.save(podcast1)).thenReturn(podcast1);
 
         // EXECUTE
-        Podcast result = podcastService.addPodcast(podcast);
+        Podcast result = podcastService.addPodcast(podcast1);
 
         // ASSERT
-        assertEquals(podcast, result);
+        assertEquals(podcast1, result);
     }
 
     @Test
     void updateFullPodcastByIdTest() {
         // SET UP
         Podcast podcastUpdate = new Podcast();
-        BeanUtils.copyProperties(podcast, podcastUpdate);
+        BeanUtils.copyProperties(podcast1, podcastUpdate);
         podcastUpdate.setTitol("podcast_test_updated");
         podcastUpdate.setDescripcio("descripcio_test_updated");
         podcastUpdate.setImatge("imatge_test_updated");
 
         // WHEN
-        when(podcastRepository.findById(podcast.getId())).thenReturn(Optional.of(podcast));
+        when(podcastRepository.findById(podcast1.getId())).thenReturn(Optional.of(podcast1));
         when(podcastRepository.save(any(Podcast.class))).thenReturn(podcastUpdate);
 
         // EXECUTE
-        Podcast result = podcastService.updateFullPodcastById(podcastUpdate, podcast.getId());
+        Podcast result = podcastService.updateFullPodcastById(podcastUpdate, podcast1.getId());
 
         // ASSERT
-        verify(podcastRepository, times(1)).findById(podcast.getId());
+        verify(podcastRepository, times(1)).findById(podcast1.getId());
         verify(podcastRepository, times(1)).save(any(Podcast.class));
         assertEquals(podcastUpdate.getTitol(), result.getTitol());
         assertEquals(podcastUpdate.getDescripcio(), result.getDescripcio());
         assertEquals(podcastUpdate.getImatge(), result.getImatge());
-        assertEquals(podcast.getCanal(), result.getCanal());
+        assertEquals(podcast1.getCanal(), result.getCanal());
     }
 
     @Test
     void updateFieldPodcastByIdTest() {
         // SET UP
         Podcast podcastUpdate = new Podcast();
-        podcastUpdate.setId(podcast.getId());
+        podcastUpdate.setId(podcast1.getId());
         podcastUpdate.setTitol("podcast_test_updated");
-        podcastUpdate.setDescripcio(podcast.getDescripcio());
-        podcastUpdate.setImatge(podcast.getImatge());
-        podcastUpdate.setCanal(podcast.getCanal());
+        podcastUpdate.setDescripcio(podcast1.getDescripcio());
+        podcastUpdate.setImatge(podcast1.getImatge());
+        podcastUpdate.setCanal(podcast1.getCanal());
 
         // WHEN
-        when(podcastRepository.findById(podcast.getId())).thenReturn(Optional.of(podcast));
+        when(podcastRepository.findById(podcast1.getId())).thenReturn(Optional.of(podcast1));
         when(podcastRepository.save(any(Podcast.class))).thenReturn(podcastUpdate);
 
         // EXECUTE
-        Podcast result = podcastService.updateFieldPodcastById(podcastUpdate, podcast.getId());
+        Podcast result = podcastService.updateFieldPodcastById(podcastUpdate, podcast1.getId());
 
         // ASSERT
-        verify(podcastRepository, times(1)).findById(podcast.getId());
+        verify(podcastRepository, times(1)).findById(podcast1.getId());
         verify(podcastRepository, times(1)).save(any(Podcast.class));
         assertEquals(podcastUpdate.getTitol(), result.getTitol());
-        assertEquals(podcast.getDescripcio(), result.getDescripcio());
-        assertEquals(podcast.getImatge(), result.getImatge());
-        assertEquals(podcast.getCanal().getId(), result.getCanal().getId());
+        assertEquals(podcast1.getDescripcio(), result.getDescripcio());
+        assertEquals(podcast1.getImatge(), result.getImatge());
+        assertEquals(podcast1.getCanal().getId(), result.getCanal().getId());
     }
 
     @Test
