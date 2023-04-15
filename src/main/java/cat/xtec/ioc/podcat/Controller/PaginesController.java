@@ -45,6 +45,8 @@ public class PaginesController {
         return modelAndView;
     }
 
+
+
     @RequestMapping("/filtre")
     public String mostrarFiltrePodcasts(Model model) {
         List<Podcast>listaPodcast = podcastService.getPodcasts();
@@ -52,5 +54,14 @@ public class PaginesController {
         model.addAttribute("listaPodcast", listaPodcast);
         model.addAttribute("listaCanal", listaCanal);
         return "filtre";
+    }
+
+    @RequestMapping("/podcast")
+    public String viewCanalPodcast(Model model) {
+        List<Canal>listaCanal = canalService.getCanals();
+        List<Podcast>listaPodcast = podcastService.getPodcasts();
+        model.addAttribute("listaCanal", listaCanal);
+        model.addAttribute("listaPodcast", listaPodcast);
+        return "podcast";
     }
 }

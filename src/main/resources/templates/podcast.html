@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="cat">
+
+<script type="text/javascript" src="/js/reproductor-02.js"></script>
+<script type="text/javascript" src="/js/lottie.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/reproductor-02.css">
+<link rel="stylesheet" type="text/css" href="/css/podcast.css">
+
+<div th:replace="fragments :: head"></div>
+
+
+<body>
+
+<div th:include="fragments :: nav"></div>
+
+<!-- Contingut Main -->
+<div class="contingut">
+    <main>
+        <section>
+            <audio id="audio"></audio>
+            <div id="content">
+                <div id="reproductor">
+                    <div id="play">
+                        <div id="contenidor-animacio"></div>
+                    </div>
+                    <div id="timeline"></div>
+                    <div id="time-counter">
+                        <span id="current-time">00:00:00</span>
+                        <span id="total-time">00:00:00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <main class="main-2">
+        <h3>El Podcast definitiu sobre la vida, l'univers i tot plegat</h3>
+    </main>
+
+    <div th:replace="fragments :: footer"></div>
+
+</div>
+
+<div th:include="fragments :: scripts"></div>
+
+</body>
+</html>
+
+
