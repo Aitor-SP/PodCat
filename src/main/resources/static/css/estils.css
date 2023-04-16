@@ -241,7 +241,7 @@ select{
 /* Responsive Mobile */
 @media all and (max-width: 768px){
     .contingut{
-        grid-template-areas: "main" 
+        grid-template-areas: "main"
                              "main-2"
                              "aside"
                              "footer";

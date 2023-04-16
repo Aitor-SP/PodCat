@@ -2,7 +2,7 @@
     display: flex;
     height: 500px;
     align-items: end;
-    margin:20px;
+    margin:20px 0 0 20px;
     background-image: url("../images/akira.jpg");
     background-size: cover;
     background-position: center;

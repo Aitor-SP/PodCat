@@ -1,1 +1,68 @@
+/* CSS Menú lateral Aside */
+.nomCanals {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    margin:20px 0 0;
+}
+
+.canals-list{
+    position:relative;
+}
+
+.titol-heading{
+    color: #fff;
+    text-transform: uppercase;
+    margin:20px 0 0 42px;
+}
+
+.titol-list{
+    position: relative;
+    list-style: none;
+    top:-10px;
+    left:-20px;
+}
+
+.titol-list-item {
+    display: block;
+    padding: 2rem;
+    min-height: 5rem;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    position:relative;
+}
+
+.image-canal img {
+    display: block;
+    float: left;
+    width:150px;
+    margin: 0;
+}
+
+.titol-canal{
+    margin-left:160px;
+    color:#fff;
+    font-size:16px;
+}
+
+
+/* Responsive Mobile */
+@media all and (max-width: 768px){
+    #content{
+        margin:0;
+    }
+
+    .titol-heading{
+        margin-left: 13px;
+    }
+
+    .titol-list{
+        left:-50px;
+    }
+
+}
+
+
+
 
