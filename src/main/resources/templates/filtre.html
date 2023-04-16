@@ -13,6 +13,43 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>Filtre per podcasts</h1>
+                <div class="form-group">
+                    <form th:action="@{/filtre}">
+                        <label>Canal:</label><br>
+                        <input type="text" name="keyword" id="keyword" th:value="${keyword}" placeholder="Escriu el Canal a buscar" />
+                        <br><br>
+                        <!--  <label>Genere:</label><br>
+                        <input type="text" name="keyword" id="" th:value="${}" placeholder="Escriu el Gènere" />
+                         <br><br>
+                         <label>Data:</label><br>
+                         <input type="text" name="keyword" id="" th:value="${}" placeholder="Escriu la Data" />
+                         <br><br>-->
+                         <button type="submit" class="bt-filtre">Filtra</button>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </section>
+
+     <!-- Resultats del filtre -->
+    <section>
+        <table class="table">
+            <tr th:each="podcast : ${listaCanal}">
+                <td class="text-white" th:text="${podcast.titol}"></td>
+                <td class="text-white" th:text="${podcast.descripcio}"></td>
+                <td class="text-white" th:text="${podcast.imatge}"></td>
+                <td class="text-white" th:text="${podcast.id}"></td>
+            </tr>
+        </table>
+    </section>
+</div>
+
+<!-- Filtre per Podcasts
+<div class="container">
+    <section id="form-filtre">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1>Filtre per podcasts</h1>
                 <div class="select-container">
                     <form action="/filtre" th:action="@{/filtre}" method="post">
                     <select name="Canals">
@@ -43,11 +80,7 @@
         </div>
     </section>
 
-    <!-- Resultats del filtre -->
-    <section>
-        <b>Resultado</b>
-        <p th:each="canals : ${listaCanal}"
-           th:text="'nombre: ' + ${canals.getTitol()}" />
+  -->
 
 
         <!--

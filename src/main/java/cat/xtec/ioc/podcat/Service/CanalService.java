@@ -70,6 +70,13 @@ public class CanalService {
         return canalRepository.save(canal);
     }
 
+    public List<Canal> listAll(String keyword){
+        if(keyword !=null){
+            return canalRepository.search(keyword);
+        }else
+            return (List<Canal>)canalRepository.findAll();
+    }
+
     public Boolean deleteCanalById(Long id) {
         try {
             canalRepository.deleteById(id);

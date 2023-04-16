@@ -7,6 +7,7 @@ import cat.xtec.ioc.podcat.Service.CanalService;
 
 import cat.xtec.ioc.podcat.Service.PodcastService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,17 +46,6 @@ public class PaginesController {
         return modelAndView;
     }
 
-
-
-    @RequestMapping("/filtre")
-    public String mostrarFiltrePodcasts(Model model) {
-        List<Podcast>listaPodcast = podcastService.getPodcasts();
-        List<Canal>listaCanal = canalService.getCanals();
-        model.addAttribute("listaPodcast", listaPodcast);
-        model.addAttribute("listaCanal", listaCanal);
-        return "filtre";
-    }
-
     @RequestMapping("/podcast")
     public String viewCanalPodcast(Model model) {
         List<Canal>listaCanal = canalService.getCanals();
@@ -64,4 +54,23 @@ public class PaginesController {
         model.addAttribute("listaPodcast", listaPodcast);
         return "podcast";
     }
+
+    @RequestMapping("/filtre")
+    public String mostrarFiltrePodcasts(Model model, @Param("keyword")String keyword) {
+        List<Canal>listaCanal=canalService.listAll(keyword);
+        model.addAttribute("listaCanal",listaCanal);
+        model.addAttribute("keyword",keyword);
+        return "filtre";
+    }
+
+    /*
+    @RequestMapping("/filtre")
+    public String mostrarFiltrePodcasts(Model model) {
+        List<Podcast>listaPodcast = podcastService.getPodcasts();
+        List<Canal>listaCanal = canalService.getCanals();
+        model.addAttribute("listaPodcast", listaPodcast);
+        model.addAttribute("listaCanal", listaCanal);
+        return "filtre";
+    }
+*/
 }
