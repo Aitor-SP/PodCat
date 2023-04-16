@@ -12,7 +12,6 @@
   <name>PodCat Maven Webapp</name>
   <url>https://maven.apache.org</url>
   <dependencies>
-
     <!-- Spring -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -147,6 +146,13 @@
     </dependency>
     <!-- Junit Test -->
 
+    <!-- Upload Files -->
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.5</version>
+    </dependency>
+    <!-- Upload Files -->
   </dependencies>
   <build>
     <finalName>PodCat</finalName>
