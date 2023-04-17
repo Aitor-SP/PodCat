@@ -133,7 +133,7 @@
 		display: none;
 	}
 
-	/* MENÚ DESPLEGABLE */
+	/* MENÚ */
 	#menuAdmin ul {
         list-style-type: none;
         margin: 0;
@@ -187,7 +187,7 @@
 	.actiu{
 		background-color: var(--color-gris-mig);
 	}
-	/* FI MENÚ DESPLEGABLE */
+	/* FI MENÚ */
 	
 	
 	
@@ -323,10 +323,6 @@
 		flex-flow: column;
 	}
 
-	.ocultMobil {
-		display: none;
-	}
-
 	/* POPUP */
 	.popup {
 		position: fixed;
@@ -336,24 +332,28 @@
 		right: 20px;
 	}
 	
-	/* MENÚ DESPLEGABLE */
-	#menuAdmin {
-		position: absolute;
-		z-index: 11;
-		width: 100%;
-		min-height: 0;
-	}
-	#menuAdmin ul {
-		display: inline;
-		width: 100%;
+	/* MENÚ */
+    #menuAdmin {
+        min-height: auto;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		flex: 0;
+		order: 1;
     }
     #menuAdmin li {
-		display: inline;
+        /* display: inline-block; */
+		width: auto;
 		border-bottom: 0;
     }
-	#menuAdmin ul li a,
-	#menuAdmin ul li p {
-		display: inline;
+	#menuAdmin ul .ocultMobil{
+		display: none;
 	}
-	/* FI Menú desplegable */
+	/*
+    #menuAdmin li a,
+	#menuAdmin li p {
+        display: inline-block;
+    }
+	*/
+	/* FI Menú */
 }
