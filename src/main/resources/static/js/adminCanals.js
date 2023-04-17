@@ -11,6 +11,15 @@ Recursos
 
 
 // CANALS
+
+// Botó veure podcasts d'un canal
+function podcastsCanal(id){
+	taula.innerHTML = "";
+	titol.innerHTML = "";
+	par.innerHTML = "";
+	podcasts(id);
+}
+
 function canals(){
 	var usTr = document.createElement("tr");
 	usTr.innerHTML = "<th></th><th>Títol</th><th>Descripció</th><th>Imatge</th><th>Usuari</th><th></th><th></th>";
@@ -34,7 +43,7 @@ function canals(){
 						usTdId.innerHTML = n++ +".";
 						usTr.appendChild(usTdId);
 					var usTdTitol = document.createElement("td");
-                        usTdTitol.innerHTML = dades[u].titol;
+                        usTdTitol.innerHTML = "<button class='button button2' onclick='podcastsCanal("+dades[u].id+")'>"+dades[u].titol+'</a>';
 						usTr.appendChild(usTdTitol);
 					var usTdDesc = document.createElement("td");
                         usTdDesc.innerHTML = dades[u].descripcio;

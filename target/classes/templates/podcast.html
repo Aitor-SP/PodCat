@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="cat">
+
+
+<link rel="stylesheet" type="text/css" href="/css/reproductor-02.css">
+<link rel="stylesheet" type="text/css" href="/css/podcast.css">
+
+<div th:replace="fragments :: head"></div>
+
+
+<body>
+
+<div th:include="fragments :: nav"></div>
+
+<!-- Contingut Main -->
+<div class="contingut">
+    <main>
+        <section>
+            <audio id="audio"></audio>
+            <div id="content">
+                <div id="reproductor">
+                    <div id="play">
+                        <div id="contenidor-animacio"></div>
+                    </div>
+                    <div id="timeline"></div>
+                    <div id="time-counter">
+                        <span id="current-time">00:00:00</span>
+                        <span id="total-time">00:00:00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <main class="main-2">
+        <h3>El Podcast definitiu sobre la vida, l'univers i tot plegat</h3>
+    </main>
+
+    <aside style="background: #202020;">
+        <div class="nom_canals">
+            <div class="canals-list">
+                <h3 class="titol-heading">Nom del canal</h3>
+                <ul class="titol-list">
+                    <li class="list-item">
+                        <a class="titol-list-item" href="">
+                            <span class="image-canal">
+                                <img src="/images/podcast.jpg">
+                            </span>
+                            <div class="titol-canal">
+                                10-10-2023
+                                <br>
+                                Mandonguilles
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a class="titol-list-item" id="horafosca" href="">
+                            <span class="image-canal">
+                                <img src="/images/podcast.jpg">
+                            </span>
+                            <div class="titol-canal">
+                                23-04-2023
+                                <br>
+                                Hora fosca
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a class="titol-list-item" href="">
+                            <span class="image-canal">
+                                <img src="/images/podcast.jpg">
+                            </span>
+                            <div class="titol-canal">
+                                07-08-2023
+                                <br>
+                                Sounds Punk
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-item">
+                        <a class="titol-list-item" href="">
+                            <span class="image-canal">
+                                <img src="/images/podcast.jpg">
+                            </span>
+                            <div class="titol-canal">
+                                01-11-2022
+                                <br>
+                                kamehameha
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+
+    <div th:replace="fragments :: footer"></div>
+
+</div>
+<script type="text/javascript" src="/js/reproductor-02.js"></script>
+<script type="text/javascript" src="/js/lottie.js"></script>
+<script type="text/javascript" src="/js/podcast.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+<div th:include="fragments :: scripts"></div>
+
+</body>
+</html>
+
+

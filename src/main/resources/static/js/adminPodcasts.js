@@ -14,13 +14,37 @@ Recursos
 
 
 // PODCASTS
-function podcasts(){
+function podcasts(id){
 	var usTr = document.createElement("tr");
 	usTr.innerHTML = "<th></th><th>Títol</th><th>Canal</th><th>Arxiu</th><th>Imatge</th><th>Data de publicació</th><th></th><th></th>";
 	taula.appendChild(usTr);
+
+	let urlFetch = '/api/v1/podcasts';
+	if(id){
+		// GET Canals / Agafem la info del canal
+		fetch('/api/v1/canals/'+id)
+		.then(async response => {
+			const isJson = response.headers.get('content-type')?.includes('application/json');
+			const dades = isJson && await response.json();
+			// Check for error response
+			if (!response.ok) {
+				missatge("error","No s'ha pogut rebre la petició HTTP");
+			}else{
+				// console.log(dades);
+				titol.innerHTML = "CANAL > "+dades.titol;
+				par.innerHTML = "<em>Tots els podcasts del canal "+dades.titol+"</em><br>"+dades.descripcio;
+			}
+		})
+		.catch((error) => {
+			missatge('error', error);
+		});
+
+		urlFetch = '/api/v1/canals/'+id+'/podcasts';
+	}
+	// console.log(urlFetch);
 	
 	// GET Podcasts
-	fetch('/api/v1/podcasts')
+	fetch(urlFetch)
     .then(async response => {
         const isJson = response.headers.get('content-type')?.includes('application/json');
         const dades = isJson && await response.json();
