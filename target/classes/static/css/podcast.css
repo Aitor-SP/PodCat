@@ -14,7 +14,7 @@
 .titol-heading{
     color: #fff;
     text-transform: uppercase;
-    margin:20px 0 0 42px;
+    margin: 0px 0 0 42px;
 }
 
 .titol-list{
@@ -54,11 +54,11 @@
     }
 
     .titol-heading{
-        margin-left: 13px;
+        margin: 0;
     }
 
     .titol-list{
-        left:-50px;
+        left:-63px;
     }
 
 }
