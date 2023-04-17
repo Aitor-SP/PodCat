@@ -15,7 +15,7 @@ window.onload = function() {
         renderer: 'svg',
         loop: false,
         autoplay: false,
-        path: 'json/toPause.json'
+        path: '/json/toPause.json'
     })
 
     audio.setAttribute("src", srcAudio);
