@@ -43,7 +43,7 @@ function canals(){
 						usTdId.innerHTML = n++ +".";
 						usTr.appendChild(usTdId);
 					var usTdTitol = document.createElement("td");
-                        usTdTitol.innerHTML = "<button class='button button2' onclick='podcastsCanal("+dades[u].id+")'>"+dades[u].titol+'</a>';
+                        usTdTitol.innerHTML = "<button class='button button3' onclick='podcastsCanal("+dades[u].id+")'>"+dades[u].titol+'</a>';
 						usTr.appendChild(usTdTitol);
 					var usTdDesc = document.createElement("td");
                         usTdDesc.innerHTML = dades[u].descripcio;

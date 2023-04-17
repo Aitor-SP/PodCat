@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ca">
+<div th:replace="fragments :: head"></div>
+
+<body>
+    <div th:include="fragments :: nav"></div>
+
+    <!-- Contingut Main -->
+    <div class="contingut">
+        <main>
+           <section>
+                <article>
+
+                    <h1>Canal</h1>
+                    
+                    <h2>Podcasts</h2>
+
+                </article>
+            </section>
+        </main>
+        
+        <aside>
+            <h3>PERFIL D'USUARI</h2>
+            <p>
+                <span th:text="${session.usuari.username}"></span>
+            <p>
+            </p>
+                <span th:text="${session.usuari.nom}"></span>
+                <span th:text="${session.usuari.cognom}"></span>
+            <p>
+            </p>
+                <span th:text="${session.usuari.email}"></span>
+            </p>
+        </aside>
+
+        <div th:replace="fragments :: footer"></div>
+    </div>
+    
+
+    <div th:include="fragments :: scripts"></div>
+
+</body>
+</html>
+

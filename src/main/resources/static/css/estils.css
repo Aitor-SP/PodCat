@@ -111,6 +111,7 @@ article {
 
 aside {
     grid-area: aside;
+    padding: var(--marge);
     background-color: var(--color-gris-fosc);
 }
 
@@ -153,6 +154,21 @@ h3{
 h4{
     font-size: 18px;
 }
+
+/* BUTTON */
+button{
+    transition: var(--transicio);
+}
+button:hover{
+    background-color: var(--color-gris-clar);
+    animation: colorButton 1s linear;
+}
+    @keyframes colorButton {
+        0%   { background: var(--color-gris-fosc); }
+        5%  { background: var(--color-gris-clar); }
+        20% { background: var(--color-segon); }
+        100% { background: var(--color-gris-clar); }
+    }
 
 /* Estils formulari contacte */
 #contacte-form{

@@ -10,7 +10,7 @@ var menu = document.getElementsByClassName('menu');
 var taula = document.getElementById('taula');
 var titol = document.getElementById('titol');
 var par = document.getElementById('paragraf');
-var checkburg = document.getElementsByClassName('checkburg')[0];
+// var checkburg = document.getElementsByClassName('checkburg')[0];
 var modalFons = document.getElementsByClassName('modalFons')[0];
 var cancellar = document.getElementsByClassName('cancellar');
 
@@ -30,7 +30,7 @@ var modificarPo = document.getElementById('modificarPo');
 for(let i=0; i<menu.length; i++){
 	menu[i].addEventListener('click', function(e){
 		taula.innerHTML = "";
-		checkburg.checked = false;
+		// checkburg.checked = false;
 		
 		// Menú actiu
 		for(let j=0; j<menu.length; j++){

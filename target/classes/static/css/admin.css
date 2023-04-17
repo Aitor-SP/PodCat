@@ -187,10 +187,6 @@
 	.actiu{
 		background-color: var(--color-gris-mig);
 	}
-	
-	/* Hamburguesa */
-	.hamburguesa { display: none; }
-	.checkburg { display: none; }
 	/* FI MENÚ DESPLEGABLE */
 	
 	
@@ -225,6 +221,13 @@
 			color: var(--color-text);
 			background-color: var(--color-gris-clar);
 		}
+	.button3{
+		text-align: left;
+		letter-spacing: 0;
+		font-weight: 700;
+		color: var(--color-fons);
+		background-color: var(--color-text);
+	}
 		
 		
 	/* FORMULARIS */
@@ -320,6 +323,10 @@
 		flex-flow: column;
 	}
 
+	.ocultMobil {
+		display: none;
+	}
+
 	/* POPUP */
 	.popup {
 		position: fixed;
@@ -333,33 +340,20 @@
 	#menuAdmin {
 		position: absolute;
 		z-index: 11;
-		width: 220px;
-		left: -220px;
-		transition: 0.7s;
+		width: 100%;
+		min-height: 0;
 	}
-	
-	.hamburguesa {
-		z-index: 10;
-		position: absolute;
+	#menuAdmin ul {
 		display: inline;
-		top: 20px;
-		right: 0;
-		padding: var(--marge);
-		text-align: right;
-		cursor: pointer;
-		transition: all var(--transicio) ease;
-			color: var(--color-gris-fosc);
-			font-family: Times New Roman;
-			font-size: 70px;
-			font-weight: bold;
-	}
-	
-	.checkburg:checked ~ #menuAdmin {
-		left: 0;
-	}
-	.checkburg:checked ~ .hamburguesa {
-		min-width: 100%;
-		min-height: calc(100% - var(--marge-doble));
+		width: 100%;
+    }
+    #menuAdmin li {
+		display: inline;
+		border-bottom: 0;
+    }
+	#menuAdmin ul li a,
+	#menuAdmin ul li p {
+		display: inline;
 	}
 	/* FI Menú desplegable */
 }

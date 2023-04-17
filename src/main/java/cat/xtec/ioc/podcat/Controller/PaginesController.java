@@ -55,6 +55,11 @@ public class PaginesController {
         return "podcast";
     }
 
+    @RequestMapping("/perfil")
+    public String perfil(Model model) {
+        return "perfil";
+    }
+
     @RequestMapping("/filtre")
     public String mostrarFiltrePodcasts(Model model, @Param("keyword")String keyword) {
         List<Canal>listaCanal=canalService.listAll(keyword);
