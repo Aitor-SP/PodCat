@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="cat">
 
-
 <link rel="stylesheet" type="text/css" href="/css/reproductor-02.css">
 <link rel="stylesheet" type="text/css" href="/css/podcast.css">
 
 <div th:replace="fragments :: head"></div>
 
-
 <body>
 
 <div th:include="fragments :: nav"></div>
 
-<!-- Contingut Main -->
+<!-- Contingut Main del reproductor multimedia -->
 <div class="contingut">
     <main>
         <section>
@@ -32,10 +30,41 @@
         </section>
     </main>
 
-    <main class="main-2">
-        <h3>El Podcast definitiu sobre la vida, l'univers i tot plegat</h3>
-    </main>
+        <div class="container">
+        <section class="seccio-descripcio">
+            <div class="titol-descripcio">
+                <h3>El Podcast definitiu sobre la vida, l'univers i tot plegat</h3>
+                <h4 style="font-weight: normal; font-size:16px;">10-10-2023</h4>
+            </div>
+            <article style="text-align:justify ;">
+                es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de
+                relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica
+                a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro
+                de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en
+                documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la
+                creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con
+                software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+                <br><br>
+                es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de
+                relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica
+                a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro
+                de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en
+                documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la
+                creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con
+                software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+            </article>
+            <ul class="tags">
+                <li>Etiqueta 1</li>
+                <li>Etiqueta 2</li>
+                <li>Etiqueta 3</li>
+                <li>Etiqueta 4</li>
+                <li>Etiqueta 5</li>
+                <li>Etiqueta 6</li>
+            </ul>
+        </section>
+        </div>
 
+    <!-- llista de canals menú Aside -->
     <aside style="background: #202020;">
         <div class="nom_canals">
             <div class="canals-list">
@@ -97,10 +126,13 @@
     <div th:replace="fragments :: footer"></div>
 
 </div>
+
+<!-- scripts reproductor multimedia -->
 <script type="text/javascript" src="/js/reproductor-02.js"></script>
 <script type="text/javascript" src="/js/lottie.js"></script>
 <script type="text/javascript" src="/js/podcast.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
 <div th:include="fragments :: scripts"></div>
 
 </body>
