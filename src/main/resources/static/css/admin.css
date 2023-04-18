@@ -222,13 +222,16 @@
 			background-color: var(--color-gris-clar);
 		}
 	.button3{
+		padding: 0;
 		text-align: left;
 		letter-spacing: 0;
 		font-weight: 700;
 		color: var(--color-fons);
 		background-color: var(--color-text);
 	}
-		
+		.button3:hover{
+			color: var(--color-primer);
+		}
 		
 	/* FORMULARIS */
 	form{

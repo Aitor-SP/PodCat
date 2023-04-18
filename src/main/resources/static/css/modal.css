@@ -38,7 +38,7 @@
 }
 
 /* Estils Formularis Acces, Registre, Contacte */
-.btn-entrar, .btn-registre, .btn-entrar-form{
+.btn-entrar, .btn-registre, .btn-entrar-form, .btn-mini{
     padding: 8px 22px;
     min-width: 180px;
     letter-spacing: 3px;
@@ -47,7 +47,15 @@
     cursor: pointer;
     background-color:#c99500;
     text-transform: uppercase;
-    transition: 0.4s; 
+    transition: 0.4s;
+}
+.btn-mini{
+    display: inline;
+    padding: 4px;
+    min-width: auto;
+    aspect-ratio: 1 / 1;
+    letter-spacing: 0;
+    font-size: 12px;
 }
 
 .formulari-entrar, 

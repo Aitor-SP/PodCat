@@ -127,7 +127,7 @@ modificarCa.onclick = function(){
 			var trs = document.getElementsByTagName("tr");
 			for(let i=0; i<trs.length; i++){
 				if(idModCa == trs[i].getAttribute('idtr')){
-					trs[i].childNodes[1].innerHTML = dades.titol;
+					trs[i].childNodes[1].innerHTML = "<button class='button button3' onclick='podcastsCanal("+dades.id+")'>"+dades.titol+'</a>';
 					trs[i].childNodes[2].innerHTML = dades.descripcio;
 					trs[i].childNodes[3].innerHTML = dades.imatge;
 				}

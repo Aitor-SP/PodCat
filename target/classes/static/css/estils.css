@@ -175,7 +175,7 @@ h4{
     }
     .efecteMenu li a:hover,
     .efecteMenu li button:hover {
-        color: var(--color-gris-fosc);
+        color: var(--color-fons) !important;
         background-color: var(--color-segon);
     }
 

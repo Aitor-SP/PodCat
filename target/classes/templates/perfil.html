@@ -20,7 +20,14 @@
         </main>
         
         <aside>
-            <h3>PERFIL D'USUARI</h2>
+            <h3>PERFIL D'USUARI
+                <span class="form-group text-center">
+                    <button type="submit" class="btn-mini efecteButton"
+                        data-bs-toggle="modal" data-bs-target="#modalModUsuari">
+                        <i class='fas fa-user-edit'></i>
+                    </button>
+                </span>
+            </h3>
             <p>
                 <span th:text="${session.usuari.username}"></span>
             <p>
@@ -31,11 +38,85 @@
             </p>
                 <span th:text="${session.usuari.email}"></span>
             </p>
+            <p>
+                <!-- Boto Modal -->
+                <button type="submit" class="btn-entrar efecteButton"
+                    data-bs-toggle="modal" data-bs-target="#modalNouCanal">
+                    +CREAR NOU CANAL
+                </button>
+            </p>
         </aside>
 
         <div th:replace="fragments :: footer"></div>
     </div>
-    
+
+    <!-- Formulari MODIFICAR USUARI -->
+    <div class="modal fade" id="modalModUsuari" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="title-formulari">
+                    <img src="images/logoPodCat00blanc.svg" width="35"/>
+                    <h1>PodCat</h1>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" alt="Tancar finestra"></button>
+                    <div class="formulari-entrar">
+                        <h3 class="text-center text-white">Modifica les dades d'usuari</h3>
+                        <br>
+                        <form action="/modUsuari" method="post">
+                            <div class="input-group form-group">
+                                <input th:value="${session.usuari.username}"
+                                    type="text" class="form-control" placeholder="Nom d'usuari" name="usuari" required />
+                            </div>
+                            <div class="input-group form-group">
+                                <input th:value="${session.usuari.nom}"
+                                    type="text" class="form-control" placeholder="Nom" name="nom" required />
+                                <input th:value="${session.usuari.cognom}"
+                                    type="text" class="form-control" placeholder="Cognom" name="cognom" required />
+                            </div>
+                            <div class="input-group form-group">
+                                <input th:value="${session.usuari.email}"
+                                    type="text" class="form-control" placeholder="Correu electrònic" name="email" required />
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn-entrar efecteButton">MODIFICA</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulari CREAR NOU CANAL -->
+    <div class="modal fade" id="modalNouCanal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="title-formulari">
+                    <img src="images/logoPodCat00blanc.svg" width="35"/>
+                    <h1>PodCat</h1>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" alt="Tancar finestra"></button>
+                    <div class="formulari-entrar">
+                        <h3 class="text-center text-white">Crea un nou CANAL</h3>
+                        <br>
+                        <form action="/nouCanal" method="post">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Títol" name="titol" required/>
+                            </div>
+                            <div class="input-group form-group">
+                                <textarea class="form-control" placeholder="Descripció" name="descripcio" required></textarea>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn-entrar efecteButton">CREA</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div th:include="fragments :: scripts"></div>
 
