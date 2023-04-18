@@ -49,10 +49,10 @@ function usuaris(){
 						usTdEmail.innerHTML = dades[u].email;
 						usTr.appendChild(usTdEmail);
 					var usTdEdit = document.createElement("td");
-						usTdEdit.innerHTML = "<button class='button button1' onclick='modificarUsuari("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
+						usTdEdit.innerHTML = "<button class='button button1 efecteButton' onclick='modificarUsuari("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
 						usTr.appendChild(usTdEdit);
 					var usTdDelete = document.createElement("td");
-						usTdDelete.innerHTML = "<button class='button button1' onclick='eliminar("+dades[u].id+",\"usuari\")'><i class='fa fa-trash'></i></button>";
+						usTdDelete.innerHTML = "<button class='button button1 efecteButton' onclick='eliminar("+dades[u].id+",\"usuari\")'><i class='fa fa-trash'></i></button>";
 						usTr.appendChild(usTdDelete);
 				taula.appendChild(usTr);
 			}

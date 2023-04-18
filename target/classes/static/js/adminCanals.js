@@ -55,10 +55,10 @@ function canals(){
                         usTdUsuari.innerHTML = dades[u].usuari.username;
 						usTr.appendChild(usTdUsuari);
 					var usTdEdit = document.createElement("td");
-						usTdEdit.innerHTML = "<button class='button button1' onclick='modificarCanal("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
+						usTdEdit.innerHTML = "<button class='button button1 efecteButton' onclick='modificarCanal("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
 						usTr.appendChild(usTdEdit);
 					var usTdDelete = document.createElement("td");
-						usTdDelete.innerHTML = "<button class='button button1' onclick='eliminar("+dades[u].id+",\"canal\")'><i class='fa fa-trash'></i></button>";
+						usTdDelete.innerHTML = "<button class='button button1 efecteButton' onclick='eliminar("+dades[u].id+",\"canal\")'><i class='fa fa-trash'></i></button>";
 						usTr.appendChild(usTdDelete);
 				taula.appendChild(usTr);
 			}

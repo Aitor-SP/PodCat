@@ -80,11 +80,11 @@ function podcasts(id){
 						usTr.appendChild(usTdDataPub);
 					var usTdEdit = document.createElement("td");
 						usTdEdit.setAttribute("rowspan", 3);
-						usTdEdit.innerHTML = "<button class='button button1' onclick='modificarPodcast("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
+						usTdEdit.innerHTML = "<button class='button button1 efecteButton' onclick='modificarPodcast("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
 						usTr.appendChild(usTdEdit);
 					var usTdDelete = document.createElement("td");
 						usTdDelete.setAttribute("rowspan", 3);
-						usTdDelete.innerHTML = "<button class='button button1' onclick='eliminar("+dades[u].id+",\"podcast\")'><i class='fa fa-trash'></i></button>";
+						usTdDelete.innerHTML = "<button class='button button1 efecteButton' onclick='eliminar("+dades[u].id+",\"podcast\")'><i class='fa fa-trash'></i></button>";
 						usTr.appendChild(usTdDelete);
 				taula.appendChild(usTr);
 				// Segona fila

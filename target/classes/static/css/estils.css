@@ -155,20 +155,48 @@ h4{
     font-size: 18px;
 }
 
-/* BUTTON */
-button{
-    transition: var(--transicio);
-}
-button:hover{
-    background-color: var(--color-gris-clar);
-    animation: colorButton 1s linear;
-}
-    @keyframes colorButton {
-        0%   { background: var(--color-gris-fosc); }
-        5%  { background: var(--color-gris-clar); }
-        20% { background: var(--color-segon); }
-        100% { background: var(--color-gris-clar); }
+
+/* EFECTES */
+    /* Efecte logo */
+    .efecteLogo img,
+    .efecteLogo div {
+        transition: var(--transicio);
     }
+    .efecteLogo:hover img,
+    .efecteLogo:hover div {
+        filter: brightness(0.8) blur(1px) sepia(100%) hue-rotate(20deg);
+    }
+
+    /* Efecte menú */
+    .efecteMenu li a,
+    .efecteMenu li button {
+        border-radius: var(--marge-mig);
+        transition: var(--transicio);
+    }
+    .efecteMenu li a:hover,
+    .efecteMenu li button:hover {
+        color: var(--color-gris-fosc);
+        background-color: var(--color-segon);
+    }
+
+    /* Efecte buttons */
+    .efecteButton{
+        transition: var(--transicio);
+    }
+    .efecteButton:hover{
+        background-color: var(--color-gris-clar);
+        animation: efecteAnimacio 1s linear;
+    }
+        @keyframes efecteAnimacio {
+            0%   { background: var(--color-gris-fosc); }
+            5%  { background: var(--color-gris-clar); }
+            20% { background: var(--color-segon); }
+            100% { background: var(--color-gris-clar); }
+        }
+        .efecteButton:active{
+            background-color: var(--color-gris-fosc);
+        }
+/* Fi Efectes */
 
 /* Estils formulari contacte */
 #contacte-form{
