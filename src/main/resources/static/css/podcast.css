@@ -47,8 +47,7 @@
 
 /* CSS seccio descripcio del PodCast */
 .titol-descripcio{
-    margin-left:20px;
-    margin-top:20px;
+    margin: 30px 0 0 20px;
 }
 
 .tags li{
@@ -67,7 +66,7 @@
 /* Responsive Mobile */
 @media all and (max-width: 768px){
     #content{
-        margin:0;
+        margin:20px;
     }
 
     .titol-heading{
@@ -79,7 +78,7 @@
     }
 
     .seccio-descripcio{
-        margin-top:-130px;
+        margin-top:-140px;
     }
 }
 
