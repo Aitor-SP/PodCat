@@ -11,9 +11,32 @@
            <section>
                 <article>
 
+                    <!--
                     <h1>Canal</h1>
-                    
                     <h2>Podcasts</h2>
+                    -->
+
+                    <div th:each="c: ${llistaCanals}">
+                        <h3 th:text="${c.titol}"></h3>
+                        <p th:text="${c.descripcio}"></p>
+                    </div>
+
+                    <!-- Variables modUsuari -->
+                    <div th:if="${uUsername}">
+                        <span th:text="${uUsername}"></span>
+                        <br>
+                        <span th:text="${uNom}"></span>
+                        <span th:text="${uCognom}"></span>
+                        <br>
+                        <span th:text="${uEmail}"></span>
+                    </div>
+
+                    <!-- Variables nouCanal -->
+                    <div th:if="${iTitol}">
+                        <span th:text="${iTitol}"></span>
+                        <br>
+                        <span th:text="${iDesc}"></span>
+                    </div>
 
                 </article>
             </section>
@@ -47,7 +70,7 @@
             </p>
         </aside>
 
-        <div th:replace="fragments :: footer"></div>
+        <div th:replace="~{fragments :: footer}"></div>
     </div>
 
     <!-- Formulari MODIFICAR USUARI -->
@@ -66,7 +89,7 @@
                         <form action="/modUsuari" method="post">
                             <div class="input-group form-group">
                                 <input th:value="${session.usuari.username}"
-                                    type="text" class="form-control" placeholder="Nom d'usuari" name="usuari" required />
+                                    type="text" class="form-control" placeholder="Nom d'usuari" name="username" required />
                             </div>
                             <div class="input-group form-group">
                                 <input th:value="${session.usuari.nom}"

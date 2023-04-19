@@ -4,8 +4,8 @@ import cat.xtec.ioc.podcat.Model.Canal;
 
 import cat.xtec.ioc.podcat.Model.Podcast;
 import cat.xtec.ioc.podcat.Service.CanalService;
-
 import cat.xtec.ioc.podcat.Service.PodcastService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -53,11 +53,6 @@ public class PaginesController {
         model.addAttribute("listaCanal", listaCanal);
         model.addAttribute("listaPodcast", listaPodcast);
         return "podcast";
-    }
-
-    @RequestMapping("perfil")
-    public String perfil(Model model) {
-        return "perfil";
     }
 
     @RequestMapping("filtre")
