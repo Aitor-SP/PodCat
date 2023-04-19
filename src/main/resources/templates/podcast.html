@@ -4,11 +4,11 @@
 <link rel="stylesheet" type="text/css" href="/css/reproductor-02.css">
 <link rel="stylesheet" type="text/css" href="/css/podcast.css">
 
-<div th:replace="fragments :: head"></div>
+<div th:replace="~{fragments :: head}"></div>
 
 <body>
 
-<div th:include="fragments :: nav"></div>
+<div th:insert="~{fragments :: nav}"></div>
 
 <!-- Contingut Main del reproductor multimedia -->
 <div class="contingut">
@@ -123,7 +123,7 @@
         </div>
     </aside>
 
-    <div th:replace="fragments :: footer"></div>
+    <div th:replace="~{fragments :: footer}"></div>
 
 </div>
 
@@ -133,7 +133,7 @@
 <script type="text/javascript" src="/js/podcast.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
 
-<div th:include="fragments :: scripts"></div>
+<div th:insert="~{fragments :: scripts}"></div>
 
 </body>
 </html>

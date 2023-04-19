@@ -10,10 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -34,21 +32,21 @@ public class PaginesController {
         return modelAndView;
     }
 
-    @RequestMapping("/admin")
+    @RequestMapping("admin")
     public ModelAndView admin() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin.html");
         return modelAndView;
     }
 
-    @RequestMapping("/contacte")
+    @RequestMapping("contacte")
     public ModelAndView contacte() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("contacte.html");
         return modelAndView;
     }
 
-    @RequestMapping("/podcast")
+    @RequestMapping("podcast")
     public String viewCanalPodcast(Model model) {
         List<Canal>listaCanal = canalService.getCanals();
         List<Podcast>listaPodcast = podcastService.getPodcasts();
@@ -57,12 +55,12 @@ public class PaginesController {
         return "podcast";
     }
 
-    @RequestMapping("/perfil")
+    @RequestMapping("perfil")
     public String perfil(Model model) {
         return "perfil";
     }
 
-    @RequestMapping("/filtre")
+    @RequestMapping("filtre")
     public String mostrarFiltrePodcasts(Model model, @Param("keyword")String keyword) {
         List<Canal>listaCanal=canalService.listAll(keyword);
         model.addAttribute("listaCanal",listaCanal);
@@ -80,16 +78,4 @@ public class PaginesController {
         return "filtre";
     }
     */
-
-    // Nou Canal
-    @PostMapping("/nouCanal")
-    public RedirectView nouCanal() {
-        return new RedirectView("/perfil");
-    }
-
-    // Modificar usuari
-    @PostMapping("/modUsuari")
-    public RedirectView modUsuari() {
-        return new RedirectView("/perfil");
-    }
 }

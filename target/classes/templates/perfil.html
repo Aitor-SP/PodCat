@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ca">
-<div th:replace="fragments :: head"></div>
+<div th:replace="~{fragments :: head}"></div>
 
 <body>
-    <div th:include="fragments :: nav"></div>
+    <div th:insert="~{fragments :: nav}"></div>
 
     <!-- Contingut Main -->
     <div class="contingut">
@@ -118,7 +118,7 @@
         </div>
     </div>
 
-    <div th:include="fragments :: scripts"></div>
+    <div th:insert="~{fragments :: scripts}"></div>
 
 </body>
 </html>

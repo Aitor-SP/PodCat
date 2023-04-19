@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ca">
-<div th:replace="fragmentsAdmin :: head"></div>
+<div th:replace="~{fragmentsAdmin :: head}"></div>
 	
 <body>
 	
-	<div th:replace="fragments :: nav"></div>
+	<div th:replace="~{fragments :: nav}"></div>
 
 
     <!-- Contingut Main -->
     <main>
 		
-		<div th:replace="fragmentsAdmin :: nav"></div>
+		<div th:replace="~{fragmentsAdmin :: nav}"></div>
 		
 		<section>
 
@@ -92,7 +92,7 @@
 		</section>
     </main>
 
-	<div th:include="fragmentsAdmin :: scripts"></div>
+	<div th:insert="~{fragmentsAdmin :: scripts}"></div>
 
 </body>
 </html>
