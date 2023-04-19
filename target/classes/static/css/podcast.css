@@ -79,12 +79,10 @@
     }
 
     .seccio-descripcio{
-        position:relative;
-        top:-280px;
+
+        margin-top:-130px;
     }
-    .canals-list{
-        top:-230px;
-    }
+
 }
 
 

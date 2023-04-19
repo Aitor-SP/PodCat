@@ -36,10 +36,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="podcast: ${listaCanal}">
-                <td th:text="${podcast.titol}"></td>
-                <td th:text="${podcast.descripcio}"></td>
-                <td th:text="${podcast.imatge}"></td>
+            <tr th:each="canal: ${listaCanal}">
+                <td th:text="${canal.titol}"></td>
+                <td th:text="${canal.descripcio}"></td>
+                <td th:text="${canal.imatge}"></td>
             </tr>
             </tbody>
         </table>
