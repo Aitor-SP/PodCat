@@ -77,21 +77,17 @@
     .titol-list{
         left:-50px;
     }
+
     .seccio-descripcio{
         position:relative;
         top:-280px;
-
     }
     .canals-list{
         top:-230px;
     }
 }
 
-@media all and (max-width: 800px){
 
-
-
-}
 
 
 
