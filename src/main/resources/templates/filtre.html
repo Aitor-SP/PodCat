@@ -33,13 +33,15 @@
                 <th>Canal</th>
                 <th>Descripcio</th>
                 <th>Imatge</th>
+                <th>Gènere</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="canal: ${listaCanal}">
-                <td th:text="${canal.titol}"></td>
-                <td th:text="${canal.descripcio}"></td>
-                <td th:text="${canal.imatge}"></td>
+            <tr th:each="podcast: ${listPodcast}">
+                <td th:text="${podcast.canal.titol}"></td>
+                <td th:text="${podcast.canal.descripcio}"></td>
+                <td th:text="${podcast.canal.imatge}"></td>
+                <td th:text="${podcast.genere}"></td>
             </tr>
             </tbody>
         </table>

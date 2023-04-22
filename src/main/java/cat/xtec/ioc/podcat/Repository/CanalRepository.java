@@ -15,6 +15,5 @@ public interface CanalRepository extends JpaRepository<Canal, Long> {
     List<Canal> findByUsuariId(Long id);
 
     @Query(value = "SELECT * FROM canals WHERE titol LIKE %?1%", nativeQuery = true)
-    public List<Canal>search(String keyword);
-    public Canal findByTitol(String titol);
+    List<Canal>search(String keyword);
 }

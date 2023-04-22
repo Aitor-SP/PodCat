@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -56,21 +57,22 @@ public class PaginesController {
     }
 
     @RequestMapping("filtre")
-    public String mostrarFiltrePodcasts(Model model, @Param("keyword")String keyword) {
-        List<Canal>listaCanal=canalService.listAll(keyword);
-        model.addAttribute("listaCanal",listaCanal);
-        model.addAttribute("keyword",keyword);
+    public String filtre(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
+        String keywordCanal = null;
+        String keywordGenere = null;
+        if (keyword != null) {
+            String[] keywords = keyword.split(" ");
+            if (keywords.length > 0) {
+                keywordCanal = keywords[0];
+            }
+            if (keywords.length > 1) {
+                keywordGenere = keywords[1];
+            }
+        }
+        List<Podcast> listPodcast = podcastService.listAll(keywordCanal, keywordGenere);
+        model.addAttribute("listPodcast", listPodcast);
+        model.addAttribute("keywordCanal", keywordCanal);
+        model.addAttribute("keywordGenere", keywordGenere);
         return "filtre";
     }
-
-    /*
-    @RequestMapping("/filtre")
-    public String mostrarFiltrePodcasts(Model model) {
-        List<Podcast>listaPodcast = podcastService.getPodcasts();
-        List<Canal>listaCanal = canalService.getCanals();
-        model.addAttribute("listaPodcast", listaPodcast);
-        model.addAttribute("listaCanal", listaCanal);
-        return "filtre";
-    }
-    */
 }

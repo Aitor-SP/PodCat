@@ -67,7 +67,6 @@ public class CanalController {
         return "filtre";
     }
 
-
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteCanalById(@PathVariable("id") Long id) {
 
