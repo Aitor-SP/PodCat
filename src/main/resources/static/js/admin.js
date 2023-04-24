@@ -91,21 +91,35 @@ function eliminar(id, tipus){
 		var url = '/api/v1/podcasts/'+id;
 		var mok = "S'ha eliminat el podcast correctament";
 	}
-
+	
 	if(confirm("Estàs segur que vols eliminar aquest "+tipus+"?")){
 		fetch(url, { method: 'DELETE' })
 		.then(async response => {
-			const isJson = response.headers.get('content-type')?.includes('application/json');
-			const dades = isJson && await response.json();
+		//	const isJson = response.headers.get('content-type')?.includes('application/json');
+		//	const dades = isJson && await response.json();
+			console.log("________");
+			console.log(response);
+			console.log("________");
+			console.log(response.text());
+			console.log(response.status);
+			console.log(response.statusText);
+			console.log("________");
+			console.log(response.body);
+			console.log(response.message);
+			console.log(response.errors);
+
+		//	console.log(dades);
+
 			if (!response.ok) {
 				// Control d'errors
 				missatge('error', "No s'ha pogut fer la petició HTTP");
 			}else{
 				// Eliminem la fila de la taula de l'element que eliminem
 				var trs = document.getElementsByTagName("tr");
-				for(let i=0; i<trs.length; i++){
+				for(let i=1; i<trs.length; i++){
 					if(id == trs[i].getAttribute('idtr')){
 						trs[i].remove();
+						i--;
 					}
 				}
 				missatge("missatge", mok);

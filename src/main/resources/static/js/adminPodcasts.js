@@ -14,13 +14,13 @@ Recursos
 
 
 // PODCASTS
-function podcasts(id){
+function podcasts(tipus, id){
 	var usTr = document.createElement("tr");
 	usTr.innerHTML = "<th></th><th>Títol</th><th>Canal</th><th>Arxiu</th><th>Imatge</th><th>Data de publicació</th><th></th><th></th>";
 	taula.appendChild(usTr);
 
 	let urlFetch = '/api/v1/podcasts';
-	if(id){
+	if(tipus == 'canal'){
 		// GET Canals / Agafem la info del canal
 		fetch('/api/v1/canals/'+id)
 		.then(async response => {
@@ -32,14 +32,34 @@ function podcasts(id){
 			}else{
 				// console.log(dades);
 				titol.innerHTML = "CANAL > "+dades.titol;
-				par.innerHTML = "<em>Tots els podcasts del canal "+dades.titol+"</em><br>"+dades.descripcio;
+				par.innerHTML = "<em>Tots els podcasts del canal <span class='strong'>"+dades.titol+"</span></em><br>"+dades.descripcio;
 			}
 		})
 		.catch((error) => {
 			missatge('error', error);
 		});
-
 		urlFetch = '/api/v1/canals/'+id+'/podcasts';
+
+		
+	}else if(tipus == 'usuari'){
+		// GET Usuaris / Agafem la info de l'usuari
+		fetch('/api/v1/usuaris/'+id)
+		.then(async response => {
+			const isJson = response.headers.get('content-type')?.includes('application/json');
+			const dades = isJson && await response.json();
+			// Check for error response
+			if (!response.ok) {
+				missatge("error","No s'ha pogut rebre la petició HTTP");
+			}else{
+				// console.log(dades);
+				titol.innerHTML = "USUARI > "+dades.username+" > PODCASTS";
+				par.innerHTML = "<em>Tots els podcasts de l'usuari <span class='strong'>"+dades.username+"<span></em>";
+			}
+		})
+		.catch((error) => {
+			missatge('error', error);
+		});
+		urlFetch = '/api/v1/podcasts/usuari/'+id;
 	}
 	// console.log(urlFetch);
 	
@@ -53,62 +73,71 @@ function podcasts(id){
             missatge("error","No s'ha pogut rebre la petició HTTP");
         }else{
 			// console.log(dades);
-			var n = 1;
-			for(const u in dades){
-				// Primera fila
+			if(!dades.length){
 				var usTr = document.createElement("tr");
-					usTr.setAttribute("idtr", dades[u].id);
-					var usTdId = document.createElement("td");
-						usTdId.setAttribute("rowspan", 3);
-						usTdId.innerHTML = n++ +".";
-						usTr.appendChild(usTdId);
-					var usTdTitol = document.createElement("td");
-						usTdTitol.setAttribute("rowspan", 3);
-                        usTdTitol.innerHTML = '<strong>'+dades[u].titol+'</strong>';
-						usTr.appendChild(usTdTitol);
-					var usTdCanal = document.createElement("td");
-                        usTdCanal.innerHTML = dades[u].canal.titol;
-						usTr.appendChild(usTdCanal);
-                    var usTdAudio = document.createElement("td");
-                        usTdAudio.innerHTML = dades[u].audio;
-						usTr.appendChild(usTdAudio);
-					var usTdImatge = document.createElement("td");
-                        usTdImatge.innerHTML = dades[u].imatge;
-						usTr.appendChild(usTdImatge);
-                    var usTdDataPub = document.createElement("td");
-                        usTdDataPub.innerHTML = dades[u].dataPublicacio;
-						usTr.appendChild(usTdDataPub);
-					var usTdEdit = document.createElement("td");
-						usTdEdit.setAttribute("rowspan", 3);
-						usTdEdit.innerHTML = "<button class='button button1 efecteButton' onclick='modificarPodcast("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
-						usTr.appendChild(usTdEdit);
-					var usTdDelete = document.createElement("td");
-						usTdDelete.setAttribute("rowspan", 3);
-						usTdDelete.innerHTML = "<button class='button button1 efecteButton' onclick='eliminar("+dades[u].id+",\"podcast\")'><i class='fa fa-trash'></i></button>";
-						usTr.appendChild(usTdDelete);
+				var usTdId = document.createElement("td");
+					usTdId.setAttribute("colspan", 8);
+					usTdId.innerHTML = "No hi ha podcasts";
+					usTr.appendChild(usTdId);
 				taula.appendChild(usTr);
-				// Segona fila
-				var usTr2 = document.createElement("tr");
-					usTr2.setAttribute("idtr", dades[u].id);
-					var usTdDescT = document.createElement("td");
-						usTdDescT.innerHTML = 'Descripció:';
-						usTr2.appendChild(usTdDescT);
-					var usTdDesc = document.createElement("td");
-						usTdDesc.setAttribute("colspan", 3);
-                        usTdDesc.innerHTML = dades[u].descripcio;
-						usTr2.appendChild(usTdDesc);
-				taula.appendChild(usTr2);
-				// Tercera fila
-				var usTr3 = document.createElement("tr");
-					usTr3.setAttribute("idtr", dades[u].id);
-				var usTdEtT = document.createElement("td");
-					usTdEtT.innerHTML = 'Gènere:';
-					usTr3.appendChild(usTdEtT);
-				var usTdEt = document.createElement("td");
-					usTdEt.setAttribute("colspan", 3);
-					usTdEt.innerHTML = dades[u].genere+' | '+dades[u].etiquetes;
-					usTr3.appendChild(usTdEt);
-				taula.appendChild(usTr3);
+			}else{
+				var n = 1;
+				for(const u in dades){
+					// Primera fila
+					var usTr = document.createElement("tr");
+						usTr.setAttribute("idtr", dades[u].id);
+						var usTdId = document.createElement("td");
+							usTdId.setAttribute("rowspan", 3);
+							usTdId.innerHTML = n++ +".";
+							usTr.appendChild(usTdId);
+						var usTdTitol = document.createElement("td");
+							usTdTitol.setAttribute("rowspan", 3);
+							usTdTitol.innerHTML = "<span class='strong'>"+dades[u].titol+'</span>';
+							usTr.appendChild(usTdTitol);
+						var usTdCanal = document.createElement("td");
+							usTdCanal.innerHTML = dades[u].canal.titol;
+							usTr.appendChild(usTdCanal);
+						var usTdAudio = document.createElement("td");
+							usTdAudio.innerHTML = dades[u].audio;
+							usTr.appendChild(usTdAudio);
+						var usTdImatge = document.createElement("td");
+							usTdImatge.innerHTML = dades[u].imatge;
+							usTr.appendChild(usTdImatge);
+						var usTdDataPub = document.createElement("td");
+							usTdDataPub.innerHTML = dades[u].dataPublicacio;
+							usTr.appendChild(usTdDataPub);
+						var usTdEdit = document.createElement("td");
+							usTdEdit.setAttribute("rowspan", 3);
+							usTdEdit.innerHTML = "<button class='button button1 efecteButton' onclick='modificarPodcast("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
+							usTr.appendChild(usTdEdit);
+						var usTdDelete = document.createElement("td");
+							usTdDelete.setAttribute("rowspan", 3);
+							usTdDelete.innerHTML = "<button class='button button1 efecteButton' onclick='eliminar("+dades[u].id+",\"podcast\")'><i class='fa fa-trash'></i></button>";
+							usTr.appendChild(usTdDelete);
+					taula.appendChild(usTr);
+					// Segona fila
+					var usTr2 = document.createElement("tr");
+						usTr2.setAttribute("idtr", dades[u].id);
+						var usTdDescT = document.createElement("td");
+							usTdDescT.innerHTML = 'Descripció:';
+							usTr2.appendChild(usTdDescT);
+						var usTdDesc = document.createElement("td");
+							usTdDesc.setAttribute("colspan", 3);
+							usTdDesc.innerHTML = dades[u].descripcio;
+							usTr2.appendChild(usTdDesc);
+					taula.appendChild(usTr2);
+					// Tercera fila
+					var usTr3 = document.createElement("tr");
+						usTr3.setAttribute("idtr", dades[u].id);
+					var usTdEtT = document.createElement("td");
+						usTdEtT.innerHTML = 'Gènere:';
+						usTr3.appendChild(usTdEtT);
+					var usTdEt = document.createElement("td");
+						usTdEt.setAttribute("colspan", 3);
+						usTdEt.innerHTML = dades[u].genere+' | '+dades[u].etiquetes;
+						usTr3.appendChild(usTdEt);
+					taula.appendChild(usTr3);
+				}
 			}
 		}
 	})
@@ -182,7 +211,7 @@ modificarPo.onclick = function(){
 			for(let i=0; i<trs.length; i++){
 				if(idModPo == trs[i].getAttribute('idtr')){
 					if(nump == 0){
-						trs[i].childNodes[1].innerHTML = '<strong>'+dades.titol+'</strong>';
+						trs[i].childNodes[1].innerHTML = "<span class='strong'>"+dades.titol+'</span>';
 						trs[i].childNodes[3].innerHTML = dades.audio;
 						trs[i].childNodes[4].innerHTML = dades.imatge;
 					}else if(nump == 1){

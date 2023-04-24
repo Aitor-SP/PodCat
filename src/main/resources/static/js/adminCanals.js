@@ -17,16 +17,38 @@ function podcastsCanal(id){
 	taula.innerHTML = "";
 	titol.innerHTML = "";
 	par.innerHTML = "";
-	podcasts(id);
+	podcasts('canal',id);
 }
 
-function canals(){
+function canals(tipus, id){
 	var usTr = document.createElement("tr");
 	usTr.innerHTML = "<th></th><th>Títol</th><th>Descripció</th><th>Imatge</th><th>Usuari</th><th></th><th></th>";
 	taula.appendChild(usTr);
 
+	let urlFetch = '/api/v1/canals';
+	if(tipus == 'usuari'){
+		// GET Usuaris / Agafem la info de l'usuari
+		fetch('/api/v1/usuaris/'+id)
+		.then(async response => {
+			const isJson = response.headers.get('content-type')?.includes('application/json');
+			const dades = isJson && await response.json();
+			// Check for error response
+			if (!response.ok) {
+				missatge("error","No s'ha pogut rebre la petició HTTP");
+			}else{
+				// console.log(dades);
+				titol.innerHTML = "USUARI > "+dades.username+" > CANALS";
+				par.innerHTML = "<em>Tots els canals de l'usuari <span class='strong'>"+dades.username+"<span></em>";
+			}
+		})
+		.catch((error) => {
+			missatge('error', error);
+		});
+		urlFetch = '/api/v1/canals/usuari/'+id;
+	}
+
 	// GET Canals
-	fetch('/api/v1/canals')
+	fetch(urlFetch)
     .then(async response => {
         const isJson = response.headers.get('content-type')?.includes('application/json');
         const dades = isJson && await response.json();
@@ -35,32 +57,41 @@ function canals(){
             missatge("error","No s'ha pogut rebre la petició HTTP");
         }else{
 			// console.log(dades);
-			var n = 1;
-			for(const u in dades){
+			if(!dades.length){
 				var usTr = document.createElement("tr");
-					usTr.setAttribute("idtr", dades[u].id);
-					var usTdId = document.createElement("td");
-						usTdId.innerHTML = n++ +".";
-						usTr.appendChild(usTdId);
-					var usTdTitol = document.createElement("td");
-                        usTdTitol.innerHTML = "<button class='button button3' onclick='podcastsCanal("+dades[u].id+")'>"+dades[u].titol+'</a>';
-						usTr.appendChild(usTdTitol);
-					var usTdDesc = document.createElement("td");
-                        usTdDesc.innerHTML = dades[u].descripcio;
-						usTr.appendChild(usTdDesc);
-					var usTdImatge = document.createElement("td");
-                        usTdImatge.innerHTML = dades[u].imatge;
-						usTr.appendChild(usTdImatge);
-					var usTdUsuari = document.createElement("td");
-                        usTdUsuari.innerHTML = dades[u].usuari.username;
-						usTr.appendChild(usTdUsuari);
-					var usTdEdit = document.createElement("td");
-						usTdEdit.innerHTML = "<button class='button button1 efecteButton' onclick='modificarCanal("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
-						usTr.appendChild(usTdEdit);
-					var usTdDelete = document.createElement("td");
-						usTdDelete.innerHTML = "<button class='button button1 efecteButton' onclick='eliminar("+dades[u].id+",\"canal\")'><i class='fa fa-trash'></i></button>";
-						usTr.appendChild(usTdDelete);
+				var usTdId = document.createElement("td");
+					usTdId.setAttribute("colspan", 7);
+					usTdId.innerHTML = "No hi ha canals";
+					usTr.appendChild(usTdId);
 				taula.appendChild(usTr);
+			}else{
+				var n = 1;
+				for(const u in dades){
+					var usTr = document.createElement("tr");
+						usTr.setAttribute("idtr", dades[u].id);
+						var usTdId = document.createElement("td");
+							usTdId.innerHTML = n++ +".";
+							usTr.appendChild(usTdId);
+						var usTdTitol = document.createElement("td");
+							usTdTitol.innerHTML = "<button class='button button3' onclick='podcastsCanal("+dades[u].id+")'>"+dades[u].titol+'</button>';
+							usTr.appendChild(usTdTitol);
+						var usTdDesc = document.createElement("td");
+							usTdDesc.innerHTML = dades[u].descripcio;
+							usTr.appendChild(usTdDesc);
+						var usTdImatge = document.createElement("td");
+							usTdImatge.innerHTML = dades[u].imatge;
+							usTr.appendChild(usTdImatge);
+						var usTdUsuari = document.createElement("td");
+							usTdUsuari.innerHTML = dades[u].usuari.username;
+							usTr.appendChild(usTdUsuari);
+						var usTdEdit = document.createElement("td");
+							usTdEdit.innerHTML = "<button class='button button1 efecteButton' onclick='modificarCanal("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
+							usTr.appendChild(usTdEdit);
+						var usTdDelete = document.createElement("td");
+							usTdDelete.innerHTML = "<button class='button button1 efecteButton' onclick='eliminar("+dades[u].id+",\"canal\")'><i class='fa fa-trash'></i></button>";
+							usTr.appendChild(usTdDelete);
+					taula.appendChild(usTr);
+				}
 			}
 		}
 	})
@@ -127,7 +158,7 @@ modificarCa.onclick = function(){
 			var trs = document.getElementsByTagName("tr");
 			for(let i=0; i<trs.length; i++){
 				if(idModCa == trs[i].getAttribute('idtr')){
-					trs[i].childNodes[1].innerHTML = "<button class='button button3' onclick='podcastsCanal("+dades.id+")'>"+dades.titol+'</a>';
+					trs[i].childNodes[1].innerHTML = "<button class='button button3' onclick='podcastsCanal("+dades.id+")'>"+dades.titol+'</button>';
 					trs[i].childNodes[2].innerHTML = dades.descripcio;
 					trs[i].childNodes[3].innerHTML = dades.imatge;
 				}

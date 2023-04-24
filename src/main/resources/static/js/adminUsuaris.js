@@ -11,9 +11,28 @@ Recursos
 
 
 // USUARIS
+
+// Veure podcasts d'un usuari
+function podcastsUsuari(id){
+	taula.innerHTML = "";
+	titol.innerHTML = "";
+	par.innerHTML = "";
+	podcasts('usuari',id);
+}
+
+// Veure canals d'un usuari
+function canalsUsuari(id){
+	taula.innerHTML = "";
+	titol.innerHTML = "";
+	par.innerHTML = "";
+	canals('usuari',id);
+}
+
+
+// Llistar USURAIS
 function usuaris(){
 	var usTr = document.createElement("tr");
-	usTr.innerHTML = "<th></th><th>Usuari</th><th>Rol</th><th>Nom</th><th>Cognom</th><th>Email</th><th></th><th></th>";
+	usTr.innerHTML = "<th></th><th>Usuari</th><th>Rol</th><th>Nom</th><th>Cognom</th><th>Email</th><th></th><th></th><th></th><th></th>";
 	taula.appendChild(usTr);
 	
 	// GET Usuaris
@@ -34,7 +53,7 @@ function usuaris(){
 						usTdId.innerHTML = n++ +".";
 						usTr.appendChild(usTdId);
 					var usTdUsername = document.createElement("td");
-						usTdUsername.innerHTML = dades[u].username;
+						usTdUsername.innerHTML = "<span class='strong'>"+dades[u].username+"</span>";
 						usTr.appendChild(usTdUsername);
 					var usTdRol = document.createElement("td");
 						usTdRol.innerHTML = dades[u].rol;
@@ -48,6 +67,12 @@ function usuaris(){
 					var usTdEmail = document.createElement("td");
 						usTdEmail.innerHTML = dades[u].email;
 						usTr.appendChild(usTdEmail);
+					var usTdCanals = document.createElement("td");
+						usTdCanals.innerHTML = "<button class='button button2' onclick='podcastsUsuari("+dades[u].id+")'>Podcasts</button>";
+						usTr.appendChild(usTdCanals);
+					var usTdPodcasts = document.createElement("td");
+						usTdPodcasts.innerHTML = "<button class='button button2' onclick='canalsUsuari("+dades[u].id+")'>Canals</button>";
+						usTr.appendChild(usTdPodcasts);
 					var usTdEdit = document.createElement("td");
 						usTdEdit.innerHTML = "<button class='button button1 efecteButton' onclick='modificarUsuari("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
 						usTr.appendChild(usTdEdit);
@@ -123,7 +148,7 @@ modificarUs.onclick = function(){
 			var trs = document.getElementsByTagName("tr");
 			for(let i=0; i<trs.length; i++){
 				if(idMod == trs[i].getAttribute('idtr')){
-					trs[i].childNodes[1].innerHTML = dades.username;
+					trs[i].childNodes[1].innerHTML = "<span class='strong'>"+dades.username+'</span>';
 					trs[i].childNodes[3].innerHTML = dades.nom;
 					trs[i].childNodes[4].innerHTML = dades.cognom;
 					trs[i].childNodes[5].innerHTML = dades.email;
