@@ -3,10 +3,13 @@ package cat.xtec.ioc.podcat.Controller;
 import cat.xtec.ioc.podcat.Model.Canal;
 
 import cat.xtec.ioc.podcat.Model.Podcast;
+import cat.xtec.ioc.podcat.Repository.PodcastRepository;
 import cat.xtec.ioc.podcat.Service.CanalService;
 import cat.xtec.ioc.podcat.Service.PodcastService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,6 +58,7 @@ public class PaginesController {
         model.addAttribute("listaPodcast", listaPodcast);
         return "podcast";
     }
+
 
     @RequestMapping("filtre")
     public String filtre(Model model, @Param("keyword") String keyword) {

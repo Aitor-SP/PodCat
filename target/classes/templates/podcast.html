@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cat">
+<html lang="cat" xmlns:th="http://www.thymeleaf.org">
 
 <link rel="stylesheet" type="text/css" href="/css/reproductor-02.css">
 <link rel="stylesheet" type="text/css" href="/css/podcast.css">
@@ -30,7 +30,7 @@
         </section>
     </main>
 
-        <div class="container">
+    <div class="container">
         <section class="seccio-descripcio">
             <div class="titol-descripcio">
                 <h3>El Podcast definitiu sobre la vida, l'univers i tot plegat</h3>
@@ -38,7 +38,8 @@
             </div>
             <article style="text-align:justify ;">
                 es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de
-                relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica
+                relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se
+                dedica
                 a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro
                 de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en
                 documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la
@@ -46,7 +47,8 @@
                 software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
                 <br><br>
                 es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de
-                relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica
+                relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se
+                dedica
                 a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro
                 de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en
                 documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la
@@ -62,63 +64,20 @@
                 <li>Etiqueta 6</li>
             </ul>
         </section>
-        </div>
+    </div>
 
     <!-- llista de canals menú Aside -->
-    <aside style="background: #202020;">
-        <div class="nom_canals">
-            <div class="canals-list">
-                <h3 class="titol-heading">Nom del canal</h3>
-                <ul class="titol-list">
-                    <li class="list-item">
-                        <a class="titol-list-item" href="">
-                            <span class="image-canal">
-                                <img src="/images/podcast.jpg">
-                            </span>
-                            <div class="titol-canal">
-                                10-10-2023
-                                <br>
-                                Mandonguilles
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list-item">
-                        <a class="titol-list-item" id="horafosca" href="">
-                            <span class="image-canal">
-                                <img src="/images/podcast.jpg">
-                            </span>
-                            <div class="titol-canal">
-                                23-04-2023
-                                <br>
-                                Hora fosca
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list-item">
-                        <a class="titol-list-item" href="">
-                            <span class="image-canal">
-                                <img src="/images/podcast.jpg">
-                            </span>
-                            <div class="titol-canal">
-                                07-08-2023
-                                <br>
-                                Sounds Punk
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list-item">
-                        <a class="titol-list-item" href="">
-                            <span class="image-canal">
-                                <img src="/images/podcast.jpg">
-                            </span>
-                            <div class="titol-canal">
-                                01-11-2022
-                                <br>
-                                kamehameha
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+    <aside style="background-color: #202020;">
+        <div class="container-aside">
+            <h3 class="titol-head-aside">Nom del canal</h3>
+            <div class="noticia" th:each="podcast: ${listaPodcast}">
+                <img class="esquerra" width="150" th:src="@{images/podcast.jpg}">
+                <div class="noticia-dreta">
+                    <p th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></p>
+                    <br>
+                    <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p th:text="${podcast.titol}"></p></a>
+                </div>
+                <div class="reset"></div>
             </div>
         </div>
     </aside>
