@@ -57,22 +57,10 @@ public class PaginesController {
     }
 
     @RequestMapping("filtre")
-    public String filtre(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
-        String keywordCanal = null;
-        String keywordGenere = null;
-        if (keyword != null) {
-            String[] keywords = keyword.split(" ");
-            if (keywords.length > 0) {
-                keywordCanal = keywords[0];
-            }
-            if (keywords.length > 1) {
-                keywordGenere = keywords[1];
-            }
-        }
-        List<Podcast> listPodcast = podcastService.listAll(keywordCanal, keywordGenere);
+    public String filtre(Model model, @Param("keyword") String keyword) {
+        List<Podcast> listPodcast = podcastService.listAll(keyword);
         model.addAttribute("listPodcast", listPodcast);
-        model.addAttribute("keywordCanal", keywordCanal);
-        model.addAttribute("keywordGenere", keywordGenere);
+        model.addAttribute("keyword", keyword);
         return "filtre";
     }
 }

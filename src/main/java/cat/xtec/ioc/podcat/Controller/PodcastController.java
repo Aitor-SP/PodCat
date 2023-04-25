@@ -5,10 +5,8 @@ import cat.xtec.ioc.podcat.Model.Podcast;
 import cat.xtec.ioc.podcat.Model.Usuari;
 import cat.xtec.ioc.podcat.Service.PodcastService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -89,25 +87,5 @@ public class PodcastController {
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No es pot eliminar el podcast. Error.");
         }
-    }
-
-    @RequestMapping("filtre")
-    public String filtre(Model model, @RequestParam(name = "keyword", required = false) String keyword) {
-        String keywordCanal = null;
-        String keywordGenere = null;
-        if (keyword != null) {
-            String[] keywords = keyword.split(" ");
-            if (keywords.length > 0) {
-                keywordCanal = keywords[0];
-            }
-            if (keywords.length > 1) {
-                keywordGenere = keywords[1];
-            }
-        }
-        List<Podcast> listPodcast = podcastService.listAll(keywordCanal, keywordGenere);
-        model.addAttribute("listPodcast", listPodcast);
-        model.addAttribute("keywordCanal", keywordCanal);
-        model.addAttribute("keywordGenere", keywordGenere);
-        return "filtre";
     }
 }

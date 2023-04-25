@@ -28,12 +28,9 @@ public interface PodcastRepository extends JpaRepository<Podcast, Long> {
     List<Podcast> findByGenere(@Param("genere") String genere);
 
     // Filtre.html
-    @Query("SELECT p FROM Podcast p JOIN p.canal c WHERE c.titol LIKE %?1% OR p.titol LIKE %?1%")
+    @Query("SELECT p FROM Podcast p JOIN p.canal c WHERE LOWER(c.titol) LIKE %?1% OR LOWER(p.titol) LIKE %?1%")
     List<Podcast> searchByCanalTitol(String keyword);
 
-    @Query("SELECT p FROM Podcast p WHERE p.genere LIKE %:keywordGenere%")
-    List<Podcast> searchByPodcastGenere(@Param("keywordGenere") String keywordGenere);
-
-    @Query("SELECT p FROM Podcast p JOIN p.canal c WHERE c.titol LIKE %?1% AND p.genere LIKE %?2%")
-    List<Podcast> searchByCanalTitolAndPodcastGenere(String keywordCanal, String keywordGenere);
+    @Query("SELECT p FROM Podcast p WHERE LOWER(p.genere) LIKE %?1%")
+    List<Podcast> searchByPodcastGenere(String keyword);
 }

@@ -112,16 +112,4 @@ public class PodcastService {
             return (List<Podcast>) podcastRepository.findAll();
         }
     }
-
-    public List<Podcast> listAll(String keywordCanal, String keywordGenere) {
-        if (keywordCanal != null && keywordGenere != null) {
-            return podcastRepository.searchByCanalTitolAndPodcastGenere(keywordCanal, keywordGenere);
-        } else if (keywordCanal != null) {
-            return podcastRepository.searchByCanalTitol(keywordCanal);
-        } else if (keywordGenere != null) {
-            return podcastRepository.searchByPodcastGenere(keywordGenere);
-        } else {
-            return podcastRepository.findAll();
-        }
-    }
 }
