@@ -1,5 +1,5 @@
 .container-aside{
-    margin-left: 5px;
+    margin-left: 35px;
 }
 
 .titol-head-aside{
@@ -62,7 +62,11 @@ section.seccio-descripcio{
     }
 
     section.seccio-descripcio {
-        margin-top: -115px;
+        margin-top: -100px;
+    }
+
+    .container-aside{
+        margin-left: 5px;
     }
 }
 
