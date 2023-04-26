@@ -77,6 +77,7 @@
                     <p th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></p>
                     <br>
                     <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p th:text="${podcast.titol}"></p></a>
+                    <!--<a th:href="@{'/podcast/listadopodcast/' + ${podcast.id}}">ver detalles</a>-->
                 </div>
                 <div class="reset"></div>
             </div>
