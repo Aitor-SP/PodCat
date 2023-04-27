@@ -35,7 +35,6 @@ public class CanalService {
         return canalRepository.findByUsuariId(usuari.getId());
     }
 
-
     public List<Podcast> getPodcastsByCanal(Long id) {
         Canal canal = canalRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Canal no trobat amb aquesta id " + id));
         return podcastRepository.findByCanalId(canal.getId());

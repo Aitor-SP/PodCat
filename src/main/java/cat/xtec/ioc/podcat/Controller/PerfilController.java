@@ -1,7 +1,11 @@
 package cat.xtec.ioc.podcat.Controller;
 
 import cat.xtec.ioc.podcat.Model.Canal;
+import cat.xtec.ioc.podcat.Model.Podcast;
+import cat.xtec.ioc.podcat.Model.Usuari;
 import cat.xtec.ioc.podcat.Service.CanalService;
+import cat.xtec.ioc.podcat.Service.PodcastService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -19,13 +23,18 @@ public class PerfilController {
 
     @Autowired
     private CanalService canalService;
+
+    @Autowired
+    private PodcastService podcastService;
     
     // Pàgina de perfil
     @RequestMapping("perfil")
-    public String perfil(Model model, @Param("keyword") String keyword) {
-        List<Canal>listsCanals = canalService.listAll(keyword);
-        // List<Canal>listsCanals = canalService.getCanalsByUsuari(usuari.getId());
+    public String perfil(Model model, @Param("keyword") String keyword, HttpSession session) {
+        Usuari usuari = (Usuari) session.getAttribute("usuari");
+        List<Canal> listsCanals = canalService.getCanalsByUsuari(usuari);
+        List<Podcast> listsPodcasts = podcastService.getPodcastsByUsuari(usuari);
         model.addAttribute("llistaCanals", listsCanals);
+        model.addAttribute("llistaPodcasts", listsPodcasts);
         model.addAttribute("keyword", keyword);
         return "perfil";
     }

@@ -26,18 +26,19 @@ public class LoginController {
             // Determini el rol de l'usuari
             String rol = usuari.getRol();
 
-            // Agrega l'usuari a la sessió HTTP
-            session.setAttribute("usuari", usuari);
-
             // Redirigeix a l'usuari a la pàgina corresponent segons el seu rol
             if ("admin".equals(rol)) {
                 // Agrega l'atribut a la sessió HTTP
                 model.addAttribute("usuari", usuari);
-                return new RedirectView("/");
+                // Agrega l'usuari a la sessió HTTP
+                session.setAttribute("usuari", usuari);
+                return new RedirectView("/admin");
             } else if ("usuari".equals(rol)) {
                 // Agrega l'atribut a la sessió HTTP
                 model.addAttribute("usuari", usuari);
-                return new RedirectView("/");
+                // Agrega l'usuari a la sessió HTTP
+                session.setAttribute("usuari", usuari);
+                return new RedirectView("/perfil");
             } else {
                 // Si el rol és desconegut, mostra un missatge d'error
                 model.addAttribute("error", "Rol desconegut");
