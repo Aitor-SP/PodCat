@@ -56,12 +56,7 @@
                     software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
                 </article>
                 <ul class="tags">
-                    <li>Etiqueta 1</li>
-                    <li>Etiqueta 2</li>
-                    <li>Etiqueta 3</li>
-                    <li>Etiqueta 4</li>
-                    <li>Etiqueta 5</li>
-                    <li>Etiqueta 6</li>
+                    <li th:each="podcast: ${listaPodcast}" th:text="${podcast.getGenere()}" ></li>
                 </ul>
             </section>
         </div>
