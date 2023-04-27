@@ -62,6 +62,20 @@ public class PerfilController {
         return modelAndView;
     }
 
+    // Eliminar Canal
+    @PostMapping("eliminaCanal")
+    public ModelAndView eliminaCanal(   @RequestParam("eliminaIDcanal") Long eliminaIDcanal,
+                                        @RequestParam("eliminaNomCanal") String eliminaNomCanal,
+                                        Model model) {
+        // Eliminem el Canal
+        canalService.deleteCanalById(eliminaIDcanal);
+        // Creem el model posterior
+        ModelAndView modelAndView = new ModelAndView();
+        model.addAttribute("eCanal", eliminaNomCanal);
+        modelAndView.setViewName("perfil");
+        return modelAndView;
+    }
+
     // Modificar usuari
     @PostMapping("modUsuari")
     public ModelAndView modUsuari(  @RequestParam("username") String username,

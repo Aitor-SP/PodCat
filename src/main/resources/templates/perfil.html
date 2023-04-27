@@ -10,40 +10,61 @@
         <main>
            <section>
                 <article>
-                    <!-- Llista de CANALS-->
+
+
+                    <!-- Llista de CANALS
                     <div th:if="${#lists.isEmpty(llistaCanals)}">
                         <p>No hi ha cap canal</p>
                     </div>
-                    
+                    -->
+
                     <div th:unless="${#lists.isEmpty(llistaCanals)}">
                         <div th:each="c: ${llistaCanals}">
                             <h3 th:text="${c.titol}"></h3>
                             <p th:text="${c.descripcio}"></p>
+                            <!--
+                            <div th:if="${#lists.isEmpty(llistaPodcasts)}">
+                                
+                                <p>Encara no hi ha cap podcast</p>
+                                    <form action="eliminaCanal" method="post"
+                                        onsubmit="return confirm('Estàs segur que vols eliminar aquest canal?');">
+                                        <input type="hidden" name="eliminaIDcanal" th:attr="value=${c.id}" />
+                                        <input type="hidden" name="eliminaNomCanal" th:attr="value=${c.titol}" />
+                                        <button type="submit" class="btn-entrar efecteButton">
+                                            <i class="fas fa-times"></i> Elimina el canal
+                                        </button>
+                                    </form>
+                            </div>
+                            -->
 
                             <!-- Llista de PODCASTS -->
-                            <!-- FALTA QUE SIGUIN ELS DEL CANAL -->
-                            <div th:if="${#lists.isEmpty(llistaPodcasts)}">
-                                <p>Encara no hi ha cap podcast</p>
-                            </div>
-                            <div th:unless="${#lists.isEmpty(llistaPodcasts)}">
-                                <div class='caixa00podcasts' th:if="${llistaPodcasts}">
-
-                                    <div th:if="${c.id == p.canal.id}"
-                                        th:each="p: ${llistaPodcasts}"
-                                        class='caixa00' style="background-image: url('images/podcast.jpg');">
-                                        <div>
-                                            <div class='caixa00canal' th:text="${p.dataPublicacio}"></div>
-                                            <div class='caixa00titol' th:text="${p.titol}"></div>
-                                        </div>
+                            <div class='caixa00podcasts' th:if="${llistaPodcasts}">
+                                <div th:if="${c.id == p.canal.id}"
+                                    th:each="p: ${llistaPodcasts}"
+                                    class='caixa00' style="background-image: url('images/podcast.jpg');">
+                                    <div>
+                                        <div class='caixa00canal' th:text="${p.dataPublicacio}"></div>
+                                        <div class='caixa00titol' th:text="${p.titol}"></div>
                                     </div>
-
-                                    <button class='caixa00 caixa00m efecteButton'>
-                                        <span class='caixa00mes'>+</span><br>
-                                        <span class='caixa00titol'>Afegir podcast</span>
-                                    </button>
-
                                 </div>
+                                <button class='caixa00 caixa00m efecteButton'
+                                    data-bs-toggle="modal" data-bs-target="#modalNouPodcast">
+                                    <span class='caixa00mes'>+</span><br>
+                                    <span class='caixa00titol'>Afegir podcast</span>
+                                </button>
+
+                                <form action="eliminaCanal" method="post"
+                                    onsubmit="return confirm('Estàs segur que vols eliminar aquest canal?');">
+                                    <input type="hidden" name="eliminaIDcanal" th:attr="value=${c.id}" />
+                                    <input type="hidden" name="eliminaNomCanal" th:attr="value=${c.titol}" />
+                                    <button type="submit" class="caixa00 caixa00m efecteButton">
+                                        <span class='caixa00mes'>&#10006;</span><br>
+                                        <span class='caixa00titol'>Elimina el canal</span>
+                                    </button>
+                                </form>
                             </div>
+
+                            <hr/>
 
                         </div>
 
@@ -52,10 +73,20 @@
 
 
 
-                    <!-- Variables nouCanal -->
+                    <!-- Nou CANAL -->
                     <div th:if="${iTitol}">
                         <h1>Has creat el nou canal: <span th:text="${iTitol}"></span></h1>
                         <p th:text="${iDesc}"></p>
+                        <p>
+                            <form action="perfil">
+                                <button class="btn-registre efecteButton">< Torna al perfil</button>
+                            </form>
+                        </p>
+                    </div>
+
+                    <!-- Eliminar CANAL -->
+                    <div th:if="${eCanal}">
+                        <h1>S'ha eliminat el canal: <span th:text="${eCanal}"></span></h1>
                         <p>
                             <form action="perfil">
                                 <button class="btn-registre efecteButton">< Torna al perfil</button>
@@ -79,6 +110,7 @@
             </section>
         </main>
         
+
         <aside>
             <h3>PERFIL D'USUARI
                 <span class="form-group text-center">
@@ -170,6 +202,36 @@
                             </div>
                             <div class="form-group text-center">
                                 <button type="submit" class="btn-entrar efecteButton">CREA</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulari NOU PODCAST -->
+    <div class="modal fade" id="modalNouPodcast" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="title-formulari">
+                    <img src="images/logoPodCat00blanc.svg" width="35"/>
+                    <h1>PodCat</h1>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" alt="Tancar finestra"></button>
+                    <div class="formulari-entrar">
+                        <h3 class="text-center text-white">Afegeix un nou PODCAST</h3>
+                        <br>
+                        <form action="/nouPodcast" method="post">
+                            <div class="input-group form-group">
+                                <input type="text" class="form-control" placeholder="Títol" name="titol" required/>
+                            </div>
+                            <div class="input-group form-group">
+                                <textarea class="form-control" placeholder="Descripció" name="descripcio" required></textarea>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn-entrar efecteButton">AFEGEIX</button>
                             </div>
                         </form>
                     </div>
