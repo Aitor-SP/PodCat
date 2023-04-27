@@ -16,6 +16,15 @@ div.info img.esquerra{
     margin-right: 15px;
 }
 
+.esquerra{
+    width: 200px;
+    height: 120px;
+    background-color: #336699;
+    border-radius: 4px;
+    background-size: cover;
+    background-position: center;
+}
+
 .info-dreta{
     float: left;
     font-size: 16px;
@@ -34,7 +43,7 @@ div.reset{
 }
 
 section.seccio-descripcio{
-    margin-top: -60px;
+    margin-top: -150px;
     padding-right: 180px;
 }
 
