@@ -16,8 +16,7 @@
                 <br>
                 <div class="form-group" >
                     <form th:action="@{/filtre}">
-                        <label>Canal:</label>
-                        <input type="text" name="keyword" id="keyword" th:value="${keyword}" placeholder="Escriu el Canal a buscar" />
+                        <input type="text" name="keyword" id="keyword" th:value="${keyword}" placeholder="Escriu el podcast a buscar" />
                         <button type="submit" class="bt-filtre efecteButton">Filtra</button>
                     </form>
                 </div>
@@ -30,18 +29,20 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Canal</th>
+                <th>Podcast</th>
                 <th>Descripcio</th>
-                <th>Imatge</th>
                 <th>Gènere</th>
+                <th>Imatge</th>
+                <th>Canal</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="podcast: ${listPodcast}">
-                <td th:text="${podcast.canal.titol}"></td>
-                <td th:text="${podcast.canal.descripcio}"></td>
-                <td th:text="${podcast.canal.imatge}"></td>
+                <td th:text="${podcast.titol}"></td>
+                <td th:text="${podcast.descripcio}"></td>
                 <td th:text="${podcast.genere}"></td>
+                <td th:text="${podcast.imatge}"></td>
+                <td th:text="${podcast.canal.titol}"></td>
             </tr>
             </tbody>
         </table>
