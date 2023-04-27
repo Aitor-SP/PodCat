@@ -1,5 +1,5 @@
 window.onload = function() {
-    let srcAudio = 'audios/keneda.mp3'
+    let srcAudio = '/audios/keneda.mp3'
     let playing = false;
 
     let audio = document.getElementById("audio");

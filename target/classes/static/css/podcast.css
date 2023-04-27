@@ -1,3 +1,7 @@
+#container{
+    margin: 20px 20px 0 20px;
+}
+
 .container-aside{
     margin-left: 35px;
 }
@@ -16,23 +20,17 @@ div.noticia img.esquerra{
     margin-right: 15px;
 }
 
-.imatge{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-}
-
 .noticia-dreta{
     float: left;
     font-size: 16px;
 }
 
 .noticia-dreta a{
-    color:#c99500;
+    color: #c99500;
 }
 
 .noticia-dreta a:hover{
-    color:#c99500;
+    color: #c99500;
 }
 
 div.reset{
@@ -40,12 +38,21 @@ div.reset{
 }
 
 section.seccio-descripcio{
-    margin-top: -85px;
+    margin-top: -60px;
 }
 
 /* CSS seccio descripcio del PodCast */
 .titol-descripcio{
     margin-left: 20px;
+}
+
+.titol-descripcio h4{
+    font-size:16px;
+    font-weight: normal;
+}
+
+section.seccio-descripcio article{
+    text-align:justify ;
 }
 
 .tags{
@@ -64,17 +71,18 @@ section.seccio-descripcio{
 /* Responsive Mobile */
 @media all and (max-width: 768px){
     #content{
-        margin: 20px;
+        margin:20px;
     }
 
     section.seccio-descripcio {
-        margin-top: -100px;
+        margin-top: -90px;
     }
 
     .container-aside{
         margin-left: 5px;
     }
 }
+
 
 
 

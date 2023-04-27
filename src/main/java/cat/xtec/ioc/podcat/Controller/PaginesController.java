@@ -60,7 +60,6 @@ public class PaginesController {
         return "podcast";
     }
 
-
     @RequestMapping("filtre")
     public String filtre(Model model, @Param("keyword") String keyword) {
         List<Podcast> listPodcast = podcastService.listAll(keyword);
@@ -71,7 +70,9 @@ public class PaginesController {
     @GetMapping("/podcast/{id}")
     public String buscaPodcastById(@PathVariable("id")Long id, Model model){
         Podcast p = podcastRepository.getOne(id);
+        List<Podcast>listPodcast = podcastService.getPodcasts();
+        model.addAttribute("listPodcast", listPodcast);
         model.addAttribute("podcast",p);
-        return "detallpodcast";
+        return "descpodcast";
     }
 }
