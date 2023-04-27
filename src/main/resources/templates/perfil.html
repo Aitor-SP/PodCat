@@ -41,7 +41,14 @@
                             <div class='caixa00podcasts' th:if="${llistaPodcasts}">
                                 <div th:if="${c.id == p.canal.id}"
                                     th:each="p: ${llistaPodcasts}"
-                                    class='caixa00' style="background-image: url('images/podcast.jpg');">
+                                    class='caixa00'
+                                    th:attr="style='background-image: url(\'images/'+${p.imatge}+'\');'">
+                                    <!--
+                                    th:attr="style=background-image: url('images/${c.id}');"
+                                    style='background-image: url(\'images/podcast.jpg\');'
+                                    style="background-image: url('images/podcast.jpg');"
+                                -->
+                                    
                                     <div>
                                         <div class='caixa00canal' th:text="${p.dataPublicacio}"></div>
                                         <div class='caixa00titol' th:text="${p.titol}"></div>

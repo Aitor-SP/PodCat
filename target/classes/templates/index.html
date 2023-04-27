@@ -18,7 +18,12 @@
             <h3>Els millors audios de Podcast</h3>
         </main>
         
-        <div th:replace="~{fragments :: aside}"></div>
+        <aside>
+            <form action="filtre" method="post">
+                <input type="text" class="controls" name="keyword" id="keyword" th:value="${keyword}" placeholder="Cerca un podcast" />
+                <button type="submit" class="bt-filtre efecteButton">Cerca</button>
+            </form>
+        </aside>
 
         <div th:replace="~{fragments :: footer}"></div>
     </div>

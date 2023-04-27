@@ -340,10 +340,6 @@ select{
         transform: scale(1.05);
         filter: brightness(1.25);
     }
-    .caixa00:hover .caixa00titol,
-    .caixa00:hover .caixa00mes{
-        color: var(--color-primer);
-    }
     .caixa00:active .caixa00titol,
     .caixa00:active .caixa00mes{
         color: var(--color-fons);
