@@ -39,12 +39,7 @@
                     <article th:text="${podcast.descripcio}"></article>
                 </div>
                 <ul class="tags">
-                    <li>Etiqueta 1</li>
-                    <li>Etiqueta 2</li>
-                    <li>Etiqueta 3</li>
-                    <li>Etiqueta 4</li>
-                    <li>Etiqueta 5</li>
-                    <li>Etiqueta 6</li>
+                    <li th:each="podcast: ${listPodcast}" th:text="${podcast.getGenere()}"></li>
                 </ul>
             </section>
         </div>
@@ -57,7 +52,7 @@
                     <img class="esquerra" th:src="@{'/images/'+${podcast.imatge}}">
                     <div class="info-dreta">
                         <p th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></p>
-                        <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p th:text="${podcast.titol}"></p></a>
+                        <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p th:text="${podcast.canal.titol}"></p></a>
                     </div>
                     <div class="reset"></div>
                 </div>
