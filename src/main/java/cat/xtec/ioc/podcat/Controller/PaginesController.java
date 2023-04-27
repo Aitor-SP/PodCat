@@ -67,6 +67,7 @@ public class PaginesController {
         model.addAttribute("keyword", keyword);
         return "filtre";
     }
+
     @GetMapping("/podcast/{id}")
     public String buscaPodcastById(@PathVariable("id")Long id, Model model){
         Podcast p = podcastRepository.getOne(id);
