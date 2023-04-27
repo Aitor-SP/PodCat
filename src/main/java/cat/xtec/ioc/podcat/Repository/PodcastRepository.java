@@ -1,8 +1,6 @@
 package cat.xtec.ioc.podcat.Repository;
 
-import cat.xtec.ioc.podcat.Model.Canal;
 import cat.xtec.ioc.podcat.Model.Podcast;
-import cat.xtec.ioc.podcat.Model.Usuari;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -30,9 +28,6 @@ public interface PodcastRepository extends JpaRepository<Podcast, Long> {
     List<Podcast> findByGenere(@Param("genere") String genere);
 
     // Filtre.html
-    @Query("SELECT p FROM Podcast p JOIN p.canal c WHERE LOWER(c.titol) LIKE %?1% OR LOWER(p.titol) LIKE %?1%")
+    @Query("SELECT DISTINCT p FROM Podcast p JOIN p.canal c WHERE c.titol LIKE %?1% OR p.genere LIKE %?1%")
     List<Podcast> searchByCanalTitol(String keyword);
-
-    @Query("SELECT p FROM Podcast p WHERE LOWER(p.genere) LIKE %?1%")
-    List<Podcast> searchByPodcastGenere(String keyword);
 }
