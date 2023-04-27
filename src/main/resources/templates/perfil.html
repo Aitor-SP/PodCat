@@ -10,19 +10,60 @@
         <main>
            <section>
                 <article>
+                    <!-- Llista de CANALS-->
+                    <div th:if="${#lists.isEmpty(llistaCanals)}">
+                        <p>No hi ha cap canal</p>
+                    </div>
+                    
+                    <div th:unless="${#lists.isEmpty(llistaCanals)}">
+                        <div th:each="c: ${llistaCanals}">
+                            <h3 th:text="${c.titol}"></h3>
+                            <p th:text="${c.descripcio}"></p>
+
+                            <!-- Llista de PODCASTS -->
+                            <!-- FALTA QUE SIGUIN ELS DEL CANAL -->
+                            <div th:if="${#lists.isEmpty(llistaPodcasts)}">
+                                <p>Encara no hi ha cap podcast</p>
+                            </div>
+                            <div th:unless="${#lists.isEmpty(llistaPodcasts)}">
+                                <div class='caixa00podcasts' th:if="${llistaPodcasts}">
+
+                                    <div th:if="${c.id == p.canal.id}"
+                                        th:each="p: ${llistaPodcasts}"
+                                        class='caixa00' style="background-image: url('images/podcast.jpg');">
+                                        <div>
+                                            <div class='caixa00canal' th:text="${p.dataPublicacio}"></div>
+                                            <div class='caixa00titol' th:text="${p.titol}"></div>
+                                        </div>
+                                    </div>
+
+                                    <button class='caixa00 caixa00m efecteButton'>
+                                        <span class='caixa00mes'>+</span><br>
+                                        <span class='caixa00titol'>Afegir podcast</span>
+                                    </button>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
 
 
-                    <h1>Canal</h1>
-                    <div th:each="c: ${llistaCanals}">
-                        <h3 th:text="${c.titol}"></h3>
-                        <p th:text="${c.descripcio}"></p>
+
+                    <!-- Variables nouCanal -->
+                    <div th:if="${iTitol}">
+                        <h1>Has creat el nou canal: <span th:text="${iTitol}"></span></h1>
+                        <p th:text="${iDesc}"></p>
+                        <p>
+                            <form action="perfil">
+                                <button class="btn-registre efecteButton">< Torna al perfil</button>
+                            </form>
+                        </p>
                     </div>
 
-                    <h2>Podcasts</h2>
-                    <div th:each="p: ${llistaPodcasts}">
-                        <h3 th:text="${p.titol}"></h3>
-                        <p th:text="${p.descripcio}"></p>
-                    </div>
+
 
                     <!-- Variables modUsuari -->
                     <div th:if="${uUsername}">
@@ -32,13 +73,6 @@
                         <span th:text="${uCognom}"></span>
                         <br>
                         <span th:text="${uEmail}"></span>
-                    </div>
-
-                    <!-- Variables nouCanal -->
-                    <div th:if="${iTitol}">
-                        <span th:text="${iTitol}"></span>
-                        <br>
-                        <span th:text="${iDesc}"></span>
                     </div>
 
                 </article>

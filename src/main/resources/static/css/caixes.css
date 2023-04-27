@@ -1,5 +1,4 @@
 /* PODCASTS CAIXES */
-
 .caixa00podcasts {
 	display: flex;
 	justify-content: space-between;
@@ -7,14 +6,13 @@
 	margin-bottom: var(--marge-mig);
 }
 
-
-
-/* CAIXA 00 */
+/* CAIXA PODCAST */
 .caixa00 {
 	display: flex;
 	align-items: flex-end;
 	margin-bottom: auto;
 	aspect-ratio: 5 / 2;
+	max-height: 100px;
 	flex: 1 0 20%;
 	margin: var(--marge-mig);
 	padding: var(--marge-mig);
@@ -63,6 +61,7 @@
 
 .caixa3_2{
 	aspect-ratio: 3 / 2;
+	max-height: 120px;
 }
 
 
