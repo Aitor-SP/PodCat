@@ -11,14 +11,17 @@
            <section>
                 <article>
 
-                    <!--
-                    <h1>Canal</h1>
-                    <h2>Podcasts</h2>
-                    -->
 
+                    <h1>Canal</h1>
                     <div th:each="c: ${llistaCanals}">
                         <h3 th:text="${c.titol}"></h3>
                         <p th:text="${c.descripcio}"></p>
+                    </div>
+
+                    <h2>Podcasts</h2>
+                    <div th:each="p: ${llistaPodcasts}">
+                        <h3 th:text="${p.titol}"></h3>
+                        <p th:text="${p.descripcio}"></p>
                     </div>
 
                     <!-- Variables modUsuari -->
