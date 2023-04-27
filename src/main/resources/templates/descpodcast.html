@@ -35,7 +35,9 @@
                     <h3 th:text="${podcast.titol}"></h3>
                     <h4 th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></h4>
                 </div>
-                <article th:text="${podcast.descripcio}"></article>
+                <div class="info-descripcio">
+                    <article th:text="${podcast.descripcio}"></article>
+                </div>
                 <ul class="tags">
                     <li>Etiqueta 1</li>
                     <li>Etiqueta 2</li>
@@ -51,10 +53,10 @@
         <aside style="background-color: #202020;">
             <div class="container-aside">
                 <h3 class="titol-head-aside">Nom del canal</h3>
-                <div class="noticia" th:each="podcast: ${listPodcast}">
+                <div class="info" th:each="podcast: ${listPodcast}">
                     <!-- th:src="@{'/images/'+${podcast.imatge}}">-->
                     <img class="esquerra img-fluid" width="150" src="/images/podcast.jpg">
-                    <div class="noticia-dreta">
+                    <div class="info-dreta">
                         <p th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></p>
                         <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p th:text="${podcast.titol}"></p></a>
                     </div>
