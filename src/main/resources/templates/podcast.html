@@ -71,8 +71,7 @@
             <div class="container-aside">
                 <h3 class="titol-head-aside">Nom del canal</h3>
                 <div class="info" th:each="podcast: ${listaPodcast}">
-                    <!-- th:src="@{'/images/'+${podcast.imatge}}"> -->
-                    <img class="esquerra" width="150" src="/images/podcast.jpg">
+                    <img class="esquerra" th:src="@{'/images/'+${podcast.imatge}}">
                     <div class="info-dreta">
                         <p th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></p>
                         <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p th:text="${podcast.titol}"></p></a>

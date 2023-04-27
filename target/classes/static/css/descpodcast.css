@@ -6,26 +6,26 @@
     margin-bottom: 15px;
 }
 
-div.noticia{
+div.info{
     color: #fff;
     padding: 0 20px 15px 0;
 }
 
-div.noticia img.esquerra{
+div.info img.esquerra{
     float: left;
     margin-right: 15px;
 }
 
-.noticia-dreta{
+.info-dreta{
     float: left;
     font-size: 16px;
 }
 
-.noticia-dreta a{
+.info-dreta a{
     color:#c99500;
 }
 
-.noticia-dreta a:hover{
+.info-dreta a:hover{
     color:#c99500;
 }
 
@@ -35,6 +35,7 @@ div.reset{
 
 section.seccio-descripcio{
     margin-top: -60px;
+    padding-right: 180px;
 }
 
 /* CSS seccio descripcio del PodCast */
@@ -72,10 +73,28 @@ section.seccio-descripcio article{
 
     section.seccio-descripcio {
         margin-top: 10px;
+        padding: 0;
     }
 
-    .container-aside{
+    .container-aside {
         margin-left: 5px;
     }
 }
+
+@media all and (max-width: 768px){
+    #content{
+        margin: 20px;
+    }
+
+    section.seccio-descripcio {
+        margin-top: 10px;
+        padding: 0;
+    }
+
+    .container-aside {
+        margin-left: 5px;
+    }
+}
+
+
 
