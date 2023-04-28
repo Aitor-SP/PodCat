@@ -46,7 +46,7 @@ div.reset{
 }
 
 section.seccio-descripcio{
-    margin-top: -150px;
+    margin-top: -400px;
 }
 
 /* CSS seccio descripcio del PodCast */
@@ -83,7 +83,7 @@ section.seccio-descripcio article{
     }
 
     section.seccio-descripcio {
-        margin-top: -90px;
+        margin-top: 0;
     }
 
     .container-aside{
