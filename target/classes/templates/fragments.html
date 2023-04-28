@@ -178,6 +178,15 @@
     
 </aside>
 
+<div th:fragment="filtre">
+    <form class="form-inline" style="float:right;" action="filtre" method="post">
+        <div class="form-group mx-sm-2">
+            <input type="text" name="keyword" id="keyword" class="controls" placeholder="Cerca un podcast">
+        </div>
+        <button type="submit" class="bt-filtre efecteButton">Cerca</button>
+    </form>
+</div>
+
 
 
 <footer th:fragment="footer">

@@ -19,7 +19,7 @@
                     -->
 
                     <div th:unless="${#lists.isEmpty(llistaCanals)}">
-                        <div th:each="c: ${llistaCanals}">
+                        <div class="text-left" th:each="c: ${llistaCanals}">
                             <h3 th:text="${c.titol}"></h3>
                             <p th:text="${c.descripcio}"></p>
                             <!--
@@ -47,7 +47,7 @@
                                     th:attr="style='background-image: linear-gradient(#11111100, #111111), url(\'images/'+${p.imatge}+'\');',
                                         href='podcast/'+${p.id}+''">
                                     <div>
-                                        <div class='caixa00text' th:text="${p.dataPublicacio}"></div>
+                                        <div class='caixa00text' th:text="*{#temporals.format(p.dataPublicacio, 'dd/MM/yyyy')}"></div>
                                         <div class='caixa00titol' th:text="${p.titol}"></div>
                                     </div>
                                 </a>
