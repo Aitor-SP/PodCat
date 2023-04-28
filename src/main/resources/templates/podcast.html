@@ -4,7 +4,6 @@
 <link rel="stylesheet" type="text/css" href="/css/reproductor.css">
 <link rel="stylesheet" type="text/css" href="/css/podcast.css">
 
-
 <div th:replace="~{fragments :: head}"></div>
 
 <body>
@@ -68,8 +67,8 @@
                 <div class="info" th:each="podcast: ${listaPodcast}">
                     <img class="esquerra" th:src="@{'/images/'+${podcast.imatge}}">
                     <div class="info-dreta">
+                        <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p style="font-weight:bold;" th:text="${podcast.canal.titol}"></p></a>
                         <p th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></p>
-                        <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p th:text="${podcast.canal.titol}"></p></a>
                     </div>
                     <div class="reset"></div>
                 </div>
