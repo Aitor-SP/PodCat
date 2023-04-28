@@ -5,6 +5,7 @@ import cat.xtec.ioc.podcat.Model.Podcast;
 import cat.xtec.ioc.podcat.Model.Usuari;
 import cat.xtec.ioc.podcat.Service.CanalService;
 import cat.xtec.ioc.podcat.Service.PodcastService;
+import cat.xtec.ioc.podcat.Service.UsuariService;
 import cat.xtec.ioc.podcat.Repository.CanalRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class PerfilController {
     private PodcastService podcastService;
 
     @Autowired
+    private UsuariService usuariService;
+
+    @Autowired
     private CanalRepository canalRepository;
     
     // Pàgina de perfil
@@ -50,7 +54,7 @@ public class PerfilController {
                                     Model model, HttpSession session) {
         Usuari usuari = (Usuari) session.getAttribute("usuari");
         Canal canal = new Canal();
-        canal.setUsuari(usuari); // (!) Falta agafar la variable usuari o el username de la sessió
+        canal.setUsuari(usuari);
         canal.setTitol(titol);
         canal.setDescripcio(descripcio);
         canalRepository.save(canal);
@@ -82,12 +86,20 @@ public class PerfilController {
                                     @RequestParam("nom") String nom,
                                     @RequestParam("cognom") String cognom,
                                     @RequestParam("email") String email,
-                                    Model model) {
+                                    Model model, HttpSession session) {
+        Usuari nouUsuari = new Usuari();
+        nouUsuari.setUsername(username);
+        nouUsuari.setNom(nom);
+        nouUsuari.setCognom(cognom);
+        nouUsuari.setEmail(email);
+        
+        Usuari usuari = (Usuari) session.getAttribute("id");
+
+        // Modifiquem l'usuari
+    //  usuariService.updateFullUsuariById(Usuari request, Long id);
+        usuariService.updateFullUsuariById(nouUsuari, usuari.getId());
+        // Creem el model posterior
         ModelAndView modelAndView = new ModelAndView();
-        model.addAttribute("uUsername", username);
-        model.addAttribute("uNom", nom);
-        model.addAttribute("uCognom", cognom);
-        model.addAttribute("uEmail", email);
         modelAndView.setViewName("perfil");
         return modelAndView;
     }

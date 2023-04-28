@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="cat" xmlns:th="http://www.thymeleaf.org">
+<title>[[${podcast.canal.titol}]]</title>
 
 <div th:replace="~{fragments :: head}"></div>
 
@@ -51,8 +52,8 @@
                 <div class="info" th:each="podcast: ${listPodcast}">
                     <img class="esquerra" th:src="@{'/images/'+${podcast.imatge}}">
                     <div class="info-dreta">
+                        <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p style="font-weight:bold;" th:text="${podcast.canal.titol}"></p></a>
                         <p th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></p>
-                        <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p th:text="${podcast.canal.titol}"></p></a>
                     </div>
                     <div class="reset"></div>
                 </div>

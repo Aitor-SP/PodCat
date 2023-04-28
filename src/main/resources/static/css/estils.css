@@ -69,7 +69,7 @@ nav{
     display: grid;
     gap: 0px;
     margin-top: 65px;
-    grid-template-rows: 1fr 1fr auto;
+    /* grid-template-rows: 1fr 1fr auto; */
     grid-template-areas:"main   aside"
                         "main-2 aside"
                         "footer footer";
@@ -120,6 +120,12 @@ aside {
     grid-area: aside;
     padding: var(--marge);
     background-color: var(--color-gris-fosc);
+}
+
+/* PERFIL */
+.perfilBtn button{
+    width: 100%;
+    margin-bottom: var(--marge-mig);
 }
 
 footer {
@@ -384,6 +390,10 @@ select{
                              "footer";
     }
 
+    .contingut_perfil{
+        margin-top: 170px;
+    }
+
     .portada{
         height: 34vh;
     }
@@ -407,6 +417,38 @@ select{
 
     #contacte-form h3{
         font-size: 16px;
+    }
+
+    /* PERFIL */
+	.perfil {
+		z-index: 1010;
+		position: fixed;
+		display: inline;
+		top: 65px;
+		left: 0;
+		width: 100%;
+        height: 100px;
+		padding: var(--marge);
+		transition: var(--transicio);
+        box-shadow: 0px 0px 25px #000000;
+        line-height: 10px;
+    }
+    .perfil p{
+        display: inline;
+        padding-right: var(--marge-mig);
+    }
+    .perfilBtn{
+        position: relative;
+        float: right;
+        top: -48px;
+        width: 180px;
+    }
+    .perfilBtn button{
+        height: 34px;
+    }
+
+    .ocultMobil{
+        display: none;
     }
 }
 

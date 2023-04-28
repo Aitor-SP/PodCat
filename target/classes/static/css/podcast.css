@@ -33,7 +33,7 @@ div.info img.esquerra{
     font-size: 16px;
 }
 
-.info-dreta a{
+.info-dreta a, p{
     color: #c99500;
 }
 
