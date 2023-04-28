@@ -38,37 +38,36 @@
                             -->
 
                             <!-- Llista de PODCASTS -->
+                            <!-- onclick="location.href='podcast/1';" -->
+                            <!-- th:attr="onclick=\'location.href=\'podcast/'+${p.id}+'\';" -->
                             <div class='caixa00podcasts' th:if="${llistaPodcasts}">
-                                <div th:if="${c.id == p.canal.id}"
+                                <a class='caixa00 caixa00p'
+                                    th:if="${c.id == p.canal.id}"
                                     th:each="p: ${llistaPodcasts}"
-                                    class='caixa00'
-                                    th:attr="style='background-image: url(\'images/'+${p.imatge}+'\');'">
-                                    <!--
-                                    th:attr="style=background-image: url('images/${c.id}');"
-                                    style='background-image: url(\'images/podcast.jpg\');'
-                                    style="background-image: url('images/podcast.jpg');"
-                                -->
-                                    
+                                    th:attr="style='background-image: linear-gradient(#11111100, #111111), url(\'images/'+${p.imatge}+'\');',
+                                        href='podcast/'+${p.id}+''">
                                     <div>
-                                        <div class='caixa00canal' th:text="${p.dataPublicacio}"></div>
+                                        <div class='caixa00text' th:text="${p.dataPublicacio}"></div>
                                         <div class='caixa00titol' th:text="${p.titol}"></div>
                                     </div>
+                                </a>
+                                <div class='caixa00 caixa00m'>
+                                    <div class="caixa00m2">
+                                        <button class='caixa00button efecteButton'
+                                            data-bs-toggle="modal" data-bs-target="#modalNouPodcast">
+                                            &#x271A; Afegir podcast
+                                        </button>
+                                    </div>
+                                    <form action="eliminaCanal" method="post"
+                                        class="caixa00m2"
+                                        onsubmit="return confirm('Estàs segur que vols eliminar aquest canal?');">
+                                        <input type="hidden" name="eliminaIDcanal" th:attr="value=${c.id}" />
+                                        <input type="hidden" name="eliminaNomCanal" th:attr="value=${c.titol}" />
+                                        <button type="submit" class="caixa00button efecteButton">
+                                            &#10006; Eliminar el canal
+                                        </button>
+                                    </form>
                                 </div>
-                                <button class='caixa00 caixa00m efecteButton'
-                                    data-bs-toggle="modal" data-bs-target="#modalNouPodcast">
-                                    <span class='caixa00mes'>+</span><br>
-                                    <span class='caixa00titol'>Afegir podcast</span>
-                                </button>
-
-                                <form action="eliminaCanal" method="post"
-                                    onsubmit="return confirm('Estàs segur que vols eliminar aquest canal?');">
-                                    <input type="hidden" name="eliminaIDcanal" th:attr="value=${c.id}" />
-                                    <input type="hidden" name="eliminaNomCanal" th:attr="value=${c.titol}" />
-                                    <button type="submit" class="caixa00 caixa00m efecteButton">
-                                        <span class='caixa00mes'>&#10006;</span><br>
-                                        <span class='caixa00titol'>Elimina el canal</span>
-                                    </button>
-                                </form>
                             </div>
 
                             <hr/>

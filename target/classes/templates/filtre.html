@@ -24,7 +24,24 @@
         </div>
     </section>
 
-    <!-- Resultats del filtre -->
+    <!-- Resultats del filtre: caixes -->
+    <section>
+        <div class='caixa00podcasts'>
+            <a class='caixa00 caixa00p'
+                th:each="p: ${listPodcast}"
+                th:attr="style='background-image: linear-gradient(#11111100, #111111), url(\'images/'+${p.imatge}+'\');',
+                    href='podcast/'+${p.id}+''">
+                <div>
+                    <!-- <div class='caixa00text' th:text="${p.dataPublicacio}"></div> -->
+                    <div class='caixa00text' th:text="${p.canal.titol}"></div>
+                    <div class='caixa00text' th:text="${p.descripcio}"></div>
+                    <div class='caixa00titol' th:text="${p.titol}"></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Resultats del filtre: taula -->
     <section>
         <table class="table">
             <thead>
