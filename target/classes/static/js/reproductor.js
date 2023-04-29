@@ -1,5 +1,6 @@
 window.onload = function() {
-    let srcAudio = "/audios/keneda.mp3";
+    let capturaAudio=document.getElementById("audio").innerHTML;
+    let srcAudio = "/audios/"+ capturaAudio;
     let playing = false;
     let audio = document.getElementById("audio");
     let contenidorAnimacio = document.getElementById("contenidor-animacio");

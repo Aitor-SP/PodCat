@@ -11,7 +11,7 @@
 <div class="contingut">
         <!-- Contingut del reproductor multimedia -->
         <section>
-            <audio id="audio"></audio>
+            <audio id="audio" style="display:none;" th:text="${podcast.audio}"></audio>
             <div id="content" th:attr="style='background-image: url(\'/images/'+${podcast.imatge}+'\');'">
                 <div id="reproductor">
                     <div id="play">
