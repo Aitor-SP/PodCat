@@ -86,7 +86,7 @@ public class PerfilController {
                                     @RequestParam("nom") String nom,
                                     @RequestParam("cognom") String cognom,
                                     @RequestParam("email") String email,
-                                    HttpSession session) {
+                                    HttpSession session, Model model) {
         // Obtenim l'usuari de la sessió
         Usuari usuari = (Usuari) session.getAttribute("usuari");
 
@@ -103,6 +103,7 @@ public class PerfilController {
 
         // Pàgina amb avis d'actualització
         ModelAndView modelAndView = new ModelAndView();
+        model.addAttribute("modUsername", username);
         modelAndView.setViewName("perfil");
         return modelAndView;
 

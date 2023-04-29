@@ -99,8 +99,13 @@
 
 
                     <!-- Variables modUsuari -->
-                    <div th:if="${uUsername}">
+                    <div th:if="${modUsername}">
                         <h2>Has modificat les dades de perfil</h2>
+                        <p>
+                            <form action="perfil">
+                                <button class="btn-registre efecteButton">< Torna al perfil</button>
+                            </form>
+                        </p>
                     </div>
 
                 </article>

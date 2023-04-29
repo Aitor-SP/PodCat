@@ -30,7 +30,7 @@ div.info img.esquerra{
     font-size: 16px;
 }
 
-.info-dreta a{
+.info-dreta a, p{
     color:#c99500;
 }
 
@@ -43,7 +43,7 @@ div.reset{
 }
 
 section.seccio-descripcio{
-    margin-top: -150px;
+    margin-top: -420px;
     padding-right: 180px;
 }
 
@@ -58,7 +58,7 @@ section.seccio-descripcio{
 }
 
 section.seccio-descripcio article{
-    text-align:justify ;
+    text-align:justify;
 }
 
 .tags{
