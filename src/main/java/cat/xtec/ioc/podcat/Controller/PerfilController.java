@@ -86,21 +86,27 @@ public class PerfilController {
                                     @RequestParam("nom") String nom,
                                     @RequestParam("cognom") String cognom,
                                     @RequestParam("email") String email,
-                                    Model model, HttpSession session) {
-        Usuari nouUsuari = new Usuari();
-        nouUsuari.setUsername(username);
-        nouUsuari.setNom(nom);
-        nouUsuari.setCognom(cognom);
-        nouUsuari.setEmail(email);
-        
-        Usuari usuari = (Usuari) session.getAttribute("id");
+                                    HttpSession session) {
+        // Obtenim l'usuari de la sessió
+        Usuari usuari = (Usuari) session.getAttribute("usuari");
+
+        usuari.setUsername(username);
+        usuari.setNom(nom);
+        usuari.setCognom(cognom);
+        usuari.setEmail(email);
 
         // Modifiquem l'usuari
-    //  usuariService.updateFullUsuariById(Usuari request, Long id);
-        usuariService.updateFullUsuariById(nouUsuari, usuari.getId());
-        // Creem el model posterior
+        usuariService.updateUsuariFieldById(usuari, usuari.getId());
+
+        // Set sessió usuari actualitzat
+        session.setAttribute("usuari", usuari);
+
+        // Pàgina amb avis d'actualització
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("perfil");
         return modelAndView;
+
+        // Redirect /perfil
+        // return new ModelAndView("redirect:/perfil");
     }
 }
