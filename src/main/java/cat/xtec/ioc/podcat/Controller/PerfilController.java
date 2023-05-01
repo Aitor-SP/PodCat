@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -81,8 +82,8 @@ public class PerfilController {
                                         @RequestParam("descripcio") String descripcio,
                                         @RequestParam("genere") String genere,
                                         @RequestParam("etiquetes") String etiquetes,
-                                        @RequestParam("imatge") String imatge,
-                                        @RequestParam("audio") String audio,
+                                        @RequestParam("imatge") MultipartFile imatge,
+                                        @RequestParam("audio") MultipartFile audio,
                                         Model model, HttpSession session){
 
         Usuari usuari = (Usuari) session.getAttribute("usuari");
