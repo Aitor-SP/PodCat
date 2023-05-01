@@ -3,6 +3,8 @@ package cat.xtec.ioc.podcat.Controller;
 import cat.xtec.ioc.podcat.Model.Canal;
 import cat.xtec.ioc.podcat.Model.Podcast;
 import cat.xtec.ioc.podcat.Model.Usuari;
+import cat.xtec.ioc.podcat.Repository.PodcastRepository;
+import cat.xtec.ioc.podcat.Service.AudioService;
 import cat.xtec.ioc.podcat.Service.CanalService;
 import cat.xtec.ioc.podcat.Service.PodcastService;
 import cat.xtec.ioc.podcat.Service.UsuariService;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +37,12 @@ public class PerfilController {
 
     @Autowired
     private CanalRepository canalRepository;
+
+    @Autowired
+    private PodcastRepository podcastRepository;
+
+    @Autowired
+    private AudioService audioService;
     
     // Pàgina de perfil
     @RequestMapping("perfil")
@@ -64,6 +73,44 @@ public class PerfilController {
         model.addAttribute("iDesc", descripcio);
         modelAndView.setViewName("perfil");
         return modelAndView;
+    }
+
+    // Nou Podcast
+    @PostMapping("nouPodcast")
+    public ModelAndView nouPodcast (    @RequestParam("titol") String titol,
+                                        @RequestParam("descripcio") String descripcio,
+                                        @RequestParam("genere") String genere,
+                                        @RequestParam("etiquetes") String etiquetes,
+                                        @RequestParam("imatge") String imatge,
+                                        @RequestParam("audio") String audio,
+                                        Model model, HttpSession session){
+
+        Usuari usuari = (Usuari) session.getAttribute("usuari");
+        Canal canal = (Canal) session.getAttribute("canal");
+        Podcast podcast = new Podcast();
+
+        audioService.uploadAudio(podcast, audio);
+
+        podcast.setUsuari(usuari);
+        podcast.setCanal(canal);
+        podcast.setTitol(titol);
+        podcast.setDescripcio(descripcio);
+        podcast.setGenere(genere);
+        podcast.setEtiquetes(etiquetes);
+        podcast.setImatge(imatge);
+        podcast.setAudio(audio);
+        podcastRepository.save(podcast);
+
+        ModelAndView modelAndView = new ModelAndView();
+        model.addAttribute("titol", titol);
+        model.addAttribute("descripcio", descripcio);
+        model.addAttribute("genere", genere);
+        model.addAttribute("etiquetes", etiquetes);
+        model.addAttribute("imatge", imatge);
+        model.addAttribute("audio", audio);
+        modelAndView.setViewName("perfil");
+        return modelAndView;
+
     }
 
     // Eliminar Canal
@@ -109,5 +156,6 @@ public class PerfilController {
 
         // Redirect /perfil
         // return new ModelAndView("redirect:/perfil");
+
     }
 }
