@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -84,23 +85,20 @@ public class PerfilController {
                                         @RequestParam("etiquetes") String etiquetes,
                                         @RequestParam("imatge") MultipartFile imatge,
                                         @RequestParam("audio") MultipartFile audio,
-                                        Model model, HttpSession session){
+                                        Model model, HttpSession session) throws IOException {
 
         Usuari usuari = (Usuari) session.getAttribute("usuari");
         Canal canal = (Canal) session.getAttribute("canal");
         Podcast podcast = new Podcast();
-
-        audioService.uploadAudio(podcast, audio);
-
         podcast.setUsuari(usuari);
         podcast.setCanal(canal);
         podcast.setTitol(titol);
         podcast.setDescripcio(descripcio);
         podcast.setGenere(genere);
         podcast.setEtiquetes(etiquetes);
-        podcast.setImatge(imatge);
-        podcast.setAudio(audio);
-        podcastRepository.save(podcast);
+        podcast.setImatge("imatge.jpg");
+        //podcast.setAudio(audio);
+        audioService.uploadAudio(podcast, audio);
 
         ModelAndView modelAndView = new ModelAndView();
         model.addAttribute("titol", titol);
