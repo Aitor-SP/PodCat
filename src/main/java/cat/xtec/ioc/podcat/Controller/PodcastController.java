@@ -62,6 +62,11 @@ public class PodcastController {
         return this.podcastService.getDataPublicacio();
     }
 
+    @GetMapping(path = "/{id}/etiquetes")
+    public List<String> getEtiquetasByPodcastId(@PathVariable("id") Long id) {
+        return this.podcastService.getEtiquetesById(id);
+    }
+
     @PostMapping
     public Podcast addPodcast(@RequestBody Podcast podcast) {
         return this.podcastService.addPodcast(podcast);

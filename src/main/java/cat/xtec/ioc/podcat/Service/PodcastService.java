@@ -10,10 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional
@@ -54,6 +51,14 @@ public class PodcastService {
 
     public List<LocalDateTime> getDataPublicacio() {
         return podcastRepository.findByDataPublicacio();
+    }
+
+    public List<String> getEtiquetesById(Long id) {
+        Podcast podcast = podcastRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Podcast no trobat"));
+
+        String etiquetes = podcast.getEtiquetes();
+
+        return Arrays.asList(etiquetes.split("\\s*,\\s*"));
     }
 
     public Podcast addPodcast(Podcast podcast) {
