@@ -83,14 +83,7 @@ public class PodcastController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<String> deletePodcastById(@PathVariable("id") Long id) {
-
-        boolean okDelete = podcastService.deletePodcastById(id);
-
-        if (okDelete) {
-            return ResponseEntity.ok("Podcast amb id: " + id + " ha sigut eliminat!");
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No es pot eliminar el podcast. Error.");
-        }
+    public boolean deletePodcastById(@PathVariable("id") Long id) {
+        return podcastService.deletePodcastById(id);
     }
 }

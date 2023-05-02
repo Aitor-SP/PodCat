@@ -68,14 +68,7 @@ public class CanalController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<String> deleteCanalById(@PathVariable("id") Long id) {
-
-        boolean okDelete = canalService.deleteCanalById(id);
-
-        if (okDelete) {
-            return ResponseEntity.ok("Canal amb id: " + id + " ha sigut eliminat!");
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No es pot eliminar el canal. Error.");
-        }
+    public boolean deleteCanalById(@PathVariable("id") Long id) {
+        return canalService.deleteCanalById(id);
     }
 }
