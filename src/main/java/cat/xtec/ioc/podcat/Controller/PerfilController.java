@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/")
@@ -103,7 +104,8 @@ public class PerfilController {
                                         Model model, HttpSession session) throws IOException {
 
         Usuari usuari = (Usuari) session.getAttribute("usuari");
-        Canal canal = (Canal) session.getAttribute("canal");
+        Optional<Canal> canalSelecionat = canalService.getCanalById(idCanal);
+        Canal canal = canalSelecionat.get();
         Podcast podcast = new Podcast();
         podcast.setUsuari(usuari);
         podcast.setCanal(canal);
@@ -112,7 +114,8 @@ public class PerfilController {
         podcast.setGenere(genere);
         podcast.setEtiquetes(etiquetes);
         podcast.setImatge("imatge.jpg");
-        //podcast.setAudio(audio);
+        //podcast.setAudio("audio.mp3");
+        //podcastRepository.save(podcast);
         audioService.uploadAudio(podcast, audio);
 
         ModelAndView modelAndView = new ModelAndView();
