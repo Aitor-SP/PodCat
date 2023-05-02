@@ -2,71 +2,71 @@
 <html lang="cat" xmlns:th="http://www.thymeleaf.org">
 <title>[[${podcast.canal.titol}]]</title>
 
-    <div th:replace="~{fragments :: head}"></div>
+<div th:replace="~{fragments :: head}"></div>
 
 <body>
 
-    <div th:insert="~{fragments :: nav}"></div>
+<div th:insert="~{fragments :: nav}"></div>
 
 <div class="contingut">
-        <!-- Contingut del reproductor multimedia -->
-        <section>
-            <audio id="audio" style="display:none;" th:text="${podcast.audio}"></audio>
-            <div id="content" th:attr="style='background-image: url(\'/images/'+${podcast.imatge}+'\');'">
-                <div id="reproductor">
-                    <div id="play">
-                        <div id="contenidor-animacio"></div>
-                    </div>
-                    <div id="timeline"></div>
-                    <div id="time-counter">
-                        <span id="current-time">00:00:00</span>
-                        <span id="total-time">00:00:00</span>
-                    </div>
+    <!-- Contingut del reproductor multimedia -->
+    <section>
+        <audio id="audio" style="display:none;" th:text="${podcast.audio}"></audio>
+        <div id="content" th:attr="style='background-image: url(\'/images/'+${podcast.imatge}+'\');'">
+            <div id="reproductor">
+                <div id="play">
+                    <div id="contenidor-animacio"></div>
+                </div>
+                <div id="timeline"></div>
+                <div id="time-counter">
+                    <span id="current-time">00:00:00</span>
+                    <span id="total-time">00:00:00</span>
                 </div>
             </div>
-        </section>
-
-        <!-- Contingut descripcio del Podcast -->
-        <div class="container">
-            <section class="seccio-descripcio">
-                <div class="titol-descripcio">
-                    <h3 th:text="${podcast.titol}"></h3>
-                    <h4 th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></h4>
-                </div>
-                <div class="info-descripcio">
-                    <article th:text="${podcast.descripcio}"></article>
-                </div>
-                <ul class="tags">
-                    <li th:text="${podcast.getGenere()}"></li>
-                    <li th:text="${podcast.getEtiquetes()}"></li>
-                </ul>
-            </section>
         </div>
+    </section>
 
-        <!-- llista de canals menú Aside -->
-        <aside style="background-color: #202020;">
-            <div class="container-aside">
-                <h3 class="titol-head-aside">Nom del canal</h3>
-                <div class="info" th:each="podcast: ${listPodcast}">
-                    <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}"><img class="esquerra" th:src="@{'/images/'+${podcast.imatge}}"></a>
-                    <div class="info-dreta">
-                        <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p style="font-weight:bold;" th:text="${podcast.canal.titol}"></p></a>
-                        <p th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></p>
-                    </div>
-                    <div class="reset"></div>
+    <!-- Contingut descripcio del Podcast -->
+
+    <section class="seccio-descripcion">
+        <div class="titol-descripcio">
+            <h3 th:text="${podcast.titol}"></h3>
+            <h4 th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></h4>
+        </div>
+        <div class="info-descripcio">
+            <article th:text="${podcast.descripcio}"></article>
+        </div>
+        <ul class="tags">
+            <li th:text="${podcast.getGenere()}"></li>
+            <li th:text="${podcast.getEtiquetes()}"></li>
+        </ul>
+    </section>
+
+
+    <!-- llista de canals menú Aside -->
+    <aside style="background-color: #202020;">
+        <div class="container-aside">
+            <h3 class="titol-head-aside">Nom del canal</h3>
+            <div class="info" th:each="podcast: ${listPodcast}">
+                <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}"><img class="esquerra" th:src="@{'/images/'+${podcast.imatge}}"></a>
+                <div class="info-dreta">
+                    <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p style="font-weight:bold;" th:text="${podcast.canal.titol}"></p></a>
+                    <p th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></p>
                 </div>
+                <div class="reset"></div>
             </div>
-        </aside>
+        </div>
+    </aside>
 
-        <div th:replace="~{fragments :: footer}"></div>
+    <div th:replace="~{fragments :: footer}"></div>
 
 </div>
 
-        <div th:insert="~{fragments :: scripts}"></div>
-        <!-- scripts reproductor multimedia -->
-        <script type="text/javascript" src="/js/reproductor.js"></script>
-        <script type="text/javascript" src="/js/lottie.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+<div th:insert="~{fragments :: scripts}"></div>
+<!-- scripts reproductor multimedia -->
+<script type="text/javascript" src="/js/reproductor.js"></script>
+<script type="text/javascript" src="/js/lottie.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
 
 </body>
 </html>
