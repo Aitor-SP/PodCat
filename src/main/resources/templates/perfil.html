@@ -50,10 +50,12 @@
                                 </a>
                                 <div class='caixa00 caixa00m'>
                                     <div class="caixa00m2">
-                                        <button class='caixa00button efecteButton'
-                                            data-bs-toggle="modal" data-bs-target="#modalNouPodcast">
-                                            &#x271A; Afegir podcast
-                                        </button>
+                                        <form action="formPodcast" method="post">
+                                            <input type="hidden" name="idCanal" th:attr="value=${c.id}" />
+                                            <button type="submit" class='caixa00button efecteButton'>
+                                                &#x271A; Afegir podcast
+                                            </button>
+                                        </form>
                                     </div>
                                     <form action="eliminaCanal" method="post"
                                         class="caixa00m2"
@@ -75,6 +77,39 @@
                     
 
 
+
+                    <!-- Formulari nou PODCAST -->
+                    <div th:if="${idCanal}">
+                        <h1>Afegeix un nou PODCAST</h1>
+                        <div class="formulari-entrar">
+                            <form action="/nouPodcast" method="post" enctype="multipart/form-data">
+                                <div class="input-group form-group">
+                                    <input type="text" class="form-control" placeholder="Títol" name="titol" required/>
+                                </div>
+                                <div class="input-group form-group">
+                                    <textarea class="form-control" placeholder="Descripció" name="descripcio" required></textarea>
+                                </div>
+                                <div class="input-group form-group">
+                                    <input type="text" class="form-control" placeholder="Gènere" name="genere" required/>
+                                </div>
+                                <div class="input-group form-group">
+                                    <input type="text" class="form-control" placeholder="Etiquetes: separades per comes" name="etiquetes" required/>
+                                </div>
+                                <p>Imatge</p>
+                                <div class="input-group form-group">
+                                    <input type="file" class="form-control" name="imatge"/>
+                                </div>
+                                <p>Arxiu d'àudio</p>
+                                <div class="input-group form-group">
+                                    <input type="file" class="form-control" name="audio"/>
+                                </div>
+                                <div class="form-group text-center">
+                                    <input type="hidden" name="idCanal" th:attr="value=${idCanal}" />
+                                    <button type="submit" class="btn-entrar efecteButton">AFEGEIX</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
                     <!-- Nou CANAL -->
                     <div th:if="${iTitol}">
@@ -202,50 +237,6 @@
                             </div>
                             <div class="form-group text-center">
                                 <button type="submit" class="btn-entrar efecteButton">CREA</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Formulari NOU PODCAST -->
-    <div class="modal fade" id="modalNouPodcast" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-center">
-            <div class="modal-content">
-                <div class="title-formulari">
-                    <img src="images/logoPodCat00blanc.svg" width="35"/>
-                    <h1>PodCat</h1>
-                </div>
-                <div class="modal-body">
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" alt="Tancar finestra"></button>
-                    <div class="formulari-entrar">
-                        <h3 class="text-center text-white">Afegeix un nou PODCAST</h3>
-                        <br>
-                        <form action="/nouPodcast" method="post" enctype="multipart/form-data">
-                            <div class="input-group form-group">
-                                <input type="text" class="form-control" placeholder="Títol" name="titol" required/>
-                            </div>
-                            <div class="input-group form-group">
-                                <textarea class="form-control" placeholder="Descripció" name="descripcio" required></textarea>
-                            </div>
-                            <div class="input-group form-group">
-                                <input type="text" class="form-control" placeholder="Gènere" name="genere" required/>
-                            </div>
-                            <div class="input-group form-group">
-                                <input type="text" class="form-control" placeholder="Etiquetes: separades per comes" name="etiquetes" required/>
-                            </div>
-                            <p>Imatge</p>
-                            <div class="input-group form-group">
-                                <input type="file" class="form-control" name="imatge"/>
-                            </div>
-                            <p>Arxiu d'àudio</p>
-                            <div class="input-group form-group">
-                                <input type="file" class="form-control" name="audio"/>
-                            </div>
-                            <div class="form-group text-center">
-                                <button type="submit" class="btn-entrar efecteButton">AFEGEIX</button>
                             </div>
                         </form>
                     </div>

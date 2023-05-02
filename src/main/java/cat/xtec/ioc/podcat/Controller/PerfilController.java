@@ -77,6 +77,20 @@ public class PerfilController {
         return modelAndView;
     }
 
+
+    // Formulari Nou Podcast
+    @PostMapping("formPodcast")
+    public ModelAndView formPodcast(@RequestParam("idCanal") Long idCanal,
+                                    Model model, HttpSession session) {
+    //    Canal canal = canalService.getCanalById(idCanal);
+
+        ModelAndView modelAndView = new ModelAndView();
+        model.addAttribute("idCanal", idCanal);
+    //    model.addAttribute("nomCanal", canal.getTitol());
+        modelAndView.setViewName("perfil");
+        return modelAndView;
+    }
+
     // Nou Podcast
     @PostMapping("nouPodcast")
     public ModelAndView nouPodcast (    @RequestParam("titol") String titol,
@@ -85,6 +99,7 @@ public class PerfilController {
                                         @RequestParam("etiquetes") String etiquetes,
                                         @RequestParam("imatge") MultipartFile imatge,
                                         @RequestParam("audio") MultipartFile audio,
+                                        @RequestParam("idCanal") Long idCanal,
                                         Model model, HttpSession session) throws IOException {
 
         Usuari usuari = (Usuari) session.getAttribute("usuari");

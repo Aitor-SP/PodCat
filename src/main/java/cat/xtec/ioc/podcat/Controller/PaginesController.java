@@ -71,7 +71,8 @@ public class PaginesController {
     @GetMapping("/podcast/{id}")
     public String buscaPodcastById(@PathVariable("id")Long id, Model model){
         Podcast p = podcastRepository.getOne(id);
-        List<Podcast>listPodcast = podcastService.getPodcasts();
+        // List<Podcast>listPodcast = podcastService.getPodcasts();
+        List<Podcast> listPodcast = podcastService.getPodcastsByCanal(p.getCanal());
         model.addAttribute("listPodcast", listPodcast);
         model.addAttribute("podcast",p);
         return "descpodcast";
