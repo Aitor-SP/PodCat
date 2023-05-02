@@ -37,7 +37,7 @@
                     <article th:text="${podcast.descripcio}"></article>
                 </div>
                 <ul class="tags">
-                    <li th:each="podcast: ${listPodcast}" th:text="${podcast.getGenere()}"></li>
+                    <li th:text="${podcast.getGenere()}"></li>
                 </ul>
             </section>
         </div>
