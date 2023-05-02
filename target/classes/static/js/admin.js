@@ -84,45 +84,41 @@ function eliminar(id, tipus){
 	if(tipus == 'usuari'){
 		var url = '/api/v1/usuaris/'+id;
 		var mok = "S'ha eliminat l'usuari correctament";
+		var mal = "No s'ha pogut eliminar l'usuari<br>perquè té un o més canals associats";
 	}else if(tipus == 'canal'){
 		var url = '/api/v1/canals/'+id;
 		var mok = "S'ha eliminat el canal correctament";
+		var mal = "No s'ha pogut eliminar el canal<br>perquè té un o més podcasts associats";
 	}else if(tipus == 'podcast'){
 		var url = '/api/v1/podcasts/'+id;
 		var mok = "S'ha eliminat el podcast correctament";
+		var mal = "No s'ha pogut eliminar el podcast<br>per un error desconegut";
 	}
 	
 	if(confirm("Estàs segur que vols eliminar aquest "+tipus+"?")){
 		fetch(url, { method: 'DELETE' })
 		.then(async response => {
-		//	const isJson = response.headers.get('content-type')?.includes('application/json');
-		//	const dades = isJson && await response.json();
-			console.log("________");
-			console.log(response);
-			console.log("________");
-			console.log(response.text());
-			console.log(response.status);
-			console.log(response.statusText);
-			console.log("________");
-			console.log(response.body);
-			console.log(response.message);
-			console.log(response.errors);
-
-		//	console.log(dades);
+			const isJson = response.headers.get('content-type')?.includes('application/json');
+			const correcte = isJson && await response.json();
+			console.log(correcte);
 
 			if (!response.ok) {
 				// Control d'errors
 				missatge('error', "No s'ha pogut fer la petició HTTP");
 			}else{
-				// Eliminem la fila de la taula de l'element que eliminem
-				var trs = document.getElementsByTagName("tr");
-				for(let i=1; i<trs.length; i++){
-					if(id == trs[i].getAttribute('idtr')){
-						trs[i].remove();
-						i--;
+				if(correcte){
+					// Eliminem la fila de la taula de l'element que eliminem
+					var trs = document.getElementsByTagName("tr");
+					for(let i=1; i<trs.length; i++){
+						if(id == trs[i].getAttribute('idtr')){
+							trs[i].remove();
+							i--;
+						}
 					}
+					missatge("missatge", mok);
+				}else{
+					missatge("alerta", mal);
 				}
-				missatge("missatge", mok);
 			}
 		})
 		.catch(error => {

@@ -22,7 +22,7 @@ function podcastsCanal(id){
 
 function canals(tipus, id){
 	var usTr = document.createElement("tr");
-	usTr.innerHTML = "<th></th><th>Títol</th><th>Descripció</th><th>Imatge</th><th>Usuari</th><th></th><th></th>";
+	usTr.innerHTML = "<th></th><th>Títol</th><th>Descripció</th><th>Imatge</th><th>Usuari</th><th></th><th></th><th></th>";
 	taula.appendChild(usTr);
 
 	let urlFetch = '/api/v1/canals';
@@ -60,7 +60,7 @@ function canals(tipus, id){
 			if(!dades.length){
 				var usTr = document.createElement("tr");
 				var usTdId = document.createElement("td");
-					usTdId.setAttribute("colspan", 7);
+					usTdId.setAttribute("colspan", 8);
 					usTdId.innerHTML = "No hi ha canals";
 					usTr.appendChild(usTdId);
 				taula.appendChild(usTr);
@@ -73,7 +73,7 @@ function canals(tipus, id){
 							usTdId.innerHTML = n++ +".";
 							usTr.appendChild(usTdId);
 						var usTdTitol = document.createElement("td");
-							usTdTitol.innerHTML = "<button class='button button3' onclick='podcastsCanal("+dades[u].id+")'>"+dades[u].titol+'</button>';
+							usTdTitol.innerHTML = "<span class='strong'>"+dades[u].titol+'</span>';
 							usTr.appendChild(usTdTitol);
 						var usTdDesc = document.createElement("td");
 							usTdDesc.innerHTML = dades[u].descripcio;
@@ -84,6 +84,9 @@ function canals(tipus, id){
 						var usTdUsuari = document.createElement("td");
 							usTdUsuari.innerHTML = dades[u].usuari.username;
 							usTr.appendChild(usTdUsuari);
+						var usTdCanals = document.createElement("td");
+							usTdCanals.innerHTML = "<button class='button button2' onclick='podcastsCanal("+dades[u].id+")'>Podcasts</button>";
+							usTr.appendChild(usTdCanals);
 						var usTdEdit = document.createElement("td");
 							usTdEdit.innerHTML = "<button class='button button1 efecteButton' onclick='modificarCanal("+dades[u].id+")'><i class='fas fa-user-edit'></i></button>";
 							usTr.appendChild(usTdEdit);
@@ -158,7 +161,7 @@ modificarCa.onclick = function(){
 			var trs = document.getElementsByTagName("tr");
 			for(let i=0; i<trs.length; i++){
 				if(idModCa == trs[i].getAttribute('idtr')){
-					trs[i].childNodes[1].innerHTML = "<button class='button button3' onclick='podcastsCanal("+dades.id+")'>"+dades.titol+'</button>';
+					trs[i].childNodes[1].innerHTML = "<span class='strong'>"+dades.titol+'</span>';
 					trs[i].childNodes[2].innerHTML = dades.descripcio;
 					trs[i].childNodes[3].innerHTML = dades.imatge;
 				}

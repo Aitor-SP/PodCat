@@ -49,14 +49,12 @@
                                     </div>
                                 </a>
                                 <div class='caixa00 caixa00m'>
-                                    <div class="caixa00m2">
-                                        <form action="formPodcast" method="post">
-                                            <input type="hidden" name="idCanal" th:attr="value=${c.id}" />
-                                            <button type="submit" class='caixa00button efecteButton'>
-                                                &#x271A; Afegir podcast
-                                            </button>
-                                        </form>
-                                    </div>
+                                    <form action="formPodcast" method="post" class="caixa00m2">
+                                        <input type="hidden" name="idCanal" th:attr="value=${c.id}" />
+                                        <button type="submit" class='caixa00button efecteButton'>
+                                            &#x271A; Afegir podcast
+                                        </button>
+                                    </form>
                                     <form action="eliminaCanal" method="post"
                                         class="caixa00m2"
                                         onsubmit="return confirm('Estàs segur que vols eliminar aquest canal?');">
@@ -81,28 +79,41 @@
                     <!-- Formulari nou PODCAST -->
                     <div th:if="${idCanal}">
                         <h1>Afegeix un nou PODCAST</h1>
+                        <h2>al Canal: <span th:text="${titolCanal}"></span></h2>
                         <div class="formulari-entrar">
                             <form action="/nouPodcast" method="post" enctype="multipart/form-data">
-                                <div class="input-group form-group">
-                                    <input type="text" class="form-control" placeholder="Títol" name="titol" required/>
-                                </div>
-                                <div class="input-group form-group">
-                                    <textarea class="form-control" placeholder="Descripció" name="descripcio" required></textarea>
-                                </div>
-                                <div class="input-group form-group">
-                                    <input type="text" class="form-control" placeholder="Gènere" name="genere" required/>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="input-group form-group">
+                                            <input type="text" class="form-control" placeholder="Títol" name="titol" required/>
+                                        </div>
+                                        <div class="input-group form-group">
+                                            <input type="text" class="form-control" placeholder="Gènere" name="genere" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="input-group form-group">
+                                            <textarea class="form-control" placeholder="Descripció" name="descripcio" required></textarea>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="input-group form-group">
                                     <input type="text" class="form-control" placeholder="Etiquetes: separades per comes" name="etiquetes" required/>
                                 </div>
-                                <p>Imatge</p>
-                                <div class="input-group form-group">
-                                    <input type="file" class="form-control" name="imatge"/>
+                                <div class="input-group form-group col-xs-6">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6">
+                                            <label>Imatge</label>
+                                            <input type="file" class="form-control" name="imatge"/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6">
+                                            <label>Arxiu d'àudio</label>
+                                            <input type="file" class="form-control" name="audio"/>
+                                        </div>
+                                    </div>
                                 </div>
-                                <p>Arxiu d'àudio</p>
-                                <div class="input-group form-group">
-                                    <input type="file" class="form-control" name="audio"/>
-                                </div>
+
+
                                 <div class="form-group text-center">
                                     <input type="hidden" name="idCanal" th:attr="value=${idCanal}" />
                                     <button type="submit" class="btn-entrar efecteButton">AFEGEIX</button>
@@ -110,6 +121,7 @@
                             </form>
                         </div>
                     </div>
+
 
                     <!-- Nou CANAL -->
                     <div th:if="${iTitol}">

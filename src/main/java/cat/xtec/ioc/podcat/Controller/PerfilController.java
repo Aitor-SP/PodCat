@@ -83,11 +83,12 @@ public class PerfilController {
     @PostMapping("formPodcast")
     public ModelAndView formPodcast(@RequestParam("idCanal") Long idCanal,
                                     Model model, HttpSession session) {
-    //    Canal canal = canalService.getCanalById(idCanal);
+        Optional<Canal> canalSelecionat = canalService.getCanalById(idCanal);
+        Canal canal = canalSelecionat.get();
 
         ModelAndView modelAndView = new ModelAndView();
         model.addAttribute("idCanal", idCanal);
-    //    model.addAttribute("nomCanal", canal.getTitol());
+        model.addAttribute("titolCanal", canal.getTitol());
         modelAndView.setViewName("perfil");
         return modelAndView;
     }
