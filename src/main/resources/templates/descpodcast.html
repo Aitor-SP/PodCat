@@ -12,7 +12,7 @@
     <!-- Contingut del reproductor multimedia -->
     <section>
         <audio id="audio" style="display:none;" th:text="${podcast.audio}"></audio>
-        <div id="content" th:attr="style='background-image: url(\'/images/'+${podcast.imatge}+'\');'">
+        <div id="content" th:attr="style='background-image: linear-gradient(#11111100, #111111), url(\'/images/'+${podcast.imatge}+'\');'">
             <div id="reproductor">
                 <div id="play">
                     <div id="contenidor-animacio"></div>
@@ -44,8 +44,21 @@
 
     <!-- llista de canals menú Aside -->
     <aside style="background-color: #202020;">
-        <div class="container-aside">
+        <div class="container-aside"></div>
             <h3 class="titol-head-aside" th:text="${podcast.canal.titol}"></h3>
+            <!-- PODCASTS EN FORMA DE CAIXA
+            <div class='caixa00podcasts'>
+                <a class='caixa00 caixa00p'
+                    th:each="p: ${listPodcast}"
+                    th:attr="style='background-image: linear-gradient(#11111100, #111111), url(\'../images/'+${p.imatge}+'\');',
+                        href=${p.id}">
+                    <div>
+                        <div class='caixa00text' th:text="${p.dataPublicacio}"></div>
+                        <div class='caixa00titol' th:text="${p.titol}"></div>
+                    </div>
+                </a>
+            </div>
+            -->
             <div class="info" th:each="podcast: ${listPodcast}">
                 <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}"><img class="esquerra" th:src="@{'/images/'+${podcast.imatge}}"></a>
                 <div class="info-dreta">
