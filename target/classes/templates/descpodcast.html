@@ -43,11 +43,9 @@
         </div>
         <ul class="tags">
             <li th:text="${podcast.getGenere()}"></li>
-            <li th:each="keyword : ${#strings.arraySplit(podcast.getEtiquetes() ,',')}" th:text="${keyword}"></li>
-            <li th:text="${#strings.arraySplit(podcast.getEtiquetes().toString(), ',')}" ></li>
+            <li th:each="paraula : ${#strings.arraySplit(podcast.getEtiquetes() ,',')}" th:text="${paraula}"></li>
         </ul>
     </section>
-
 
     <!-- llista de canals menú Aside -->
     <aside style="background-color: #202020;">
