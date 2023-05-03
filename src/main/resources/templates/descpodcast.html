@@ -4,6 +4,11 @@
 
 <div th:replace="~{fragments :: head}"></div>
 
+<script>
+    let cadena=document.getElementById("etiquetes").innerHTML;
+    alert(cadena);
+</script>
+
 <body>
 
 <div th:insert="~{fragments :: nav}"></div>
@@ -38,7 +43,7 @@
         </div>
         <ul class="tags">
             <li th:text="${podcast.getGenere()}"></li>
-            <li th:text="${podcast.getEtiquetes()}"></li>
+            <li id="etiquetes" th:text="${podcast.getEtiquetes()}"></li>
         </ul>
     </section>
 
