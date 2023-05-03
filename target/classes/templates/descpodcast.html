@@ -4,11 +4,6 @@
 
 <div th:replace="~{fragments :: head}"></div>
 
-<script>
-    let cadena=document.getElementById("etiquetes").innerHTML;
-    alert(cadena);
-</script>
-
 <body>
 
 <div th:insert="~{fragments :: nav}"></div>
@@ -43,7 +38,7 @@
         </div>
         <ul class="tags">
             <li th:text="${podcast.getGenere()}"></li>
-            <li id="etiquetes" th:text="${podcast.getEtiquetes()}"></li>
+            <li th:text="${podcast.getEtiquetes()}"></li>
         </ul>
     </section>
 
@@ -51,7 +46,7 @@
     <!-- llista de canals menú Aside -->
     <aside style="background-color: #202020;">
         <div class="container-aside">
-            <h3 class="titol-head-aside" th:text="${podcast.canal.titol}"></h3>
+            <h3 class="titol-head-aside" th:text="'Canals de '+ ${podcast.canal.titol}"></h3>
             <!-- PODCASTS EN FORMA DE CAIXA
             <div class='caixa00podcasts'>
                 <a class='caixa00 caixa00p'
