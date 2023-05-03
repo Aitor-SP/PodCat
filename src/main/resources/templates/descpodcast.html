@@ -4,6 +4,11 @@
 
 <div th:replace="~{fragments :: head}"></div>
 
+<script>
+    let nombre='boda de drac,goku,vegeta';
+    console.log(nombre.split(','));
+</script>
+
 <body>
 
 <div th:insert="~{fragments :: nav}"></div>
@@ -38,10 +43,9 @@
         </div>
         <ul class="tags">
             <li th:text="${podcast.getGenere()}"></li>
-            <li th:text="${podcast.getEtiquetes()}"></li>
+            <li th:each="paraula : ${#strings.arraySplit(podcast.getEtiquetes() ,',')}" th:text="${paraula}"></li>
         </ul>
     </section>
-
 
     <!-- llista de canals menú Aside -->
     <aside style="background-color: #202020;">
