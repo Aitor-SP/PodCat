@@ -89,11 +89,38 @@ article {
 .portada {
     height: 60vh;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding: 20px;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    padding: var(--marge-doble);
     background: url('../images/foto_intro.jpg') no-repeat center;
     background-size: cover;
+}
+.portadaAside {
+    height: 40vh;
+    margin: -20px;
+}
+
+.publi{
+    margin: 0 0 var(--marge) 0;
+    padding: var(--marge);
+    font-size: 16px;
+    color: var(--color-fons);
+    background-color: var(--color-segon);
+    border-radius: var(--marge-quart);
+}
+.publi p{
+    color: var(--color-fons);
+}
+.publi2{
+    font-size: 16px;
+}
+.publi2 p{
+    color: var(--color-text);
+}
+
+.strong{
+    font-weight: 600;
 }
 
 .textTitols{
@@ -401,6 +428,9 @@ select{
 
     .portada{
         height: 34vh;
+    }
+    .portadaAside {
+        height: 24vh;
     }
 
     .textTitols{

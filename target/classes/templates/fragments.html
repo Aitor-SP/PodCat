@@ -63,7 +63,7 @@
                     <li class="nav-item"  th:if="${session.usuari == null}">
                         <!-- Boto Modal -->
                         <button type="button" style="padding:10px;" class="modal-buttonnav" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            Acces Usuari
+                            Accés Usuari
                         </button>
                     </li>
                     <!-- Amagar a la versió mòbil class="nav-item d-none d-lg-block d-xl-block" -->
@@ -183,7 +183,7 @@
 </aside>
 
 <div th:fragment="filtre">
-    <form class="form-inline" style="float:right;" action="filtre" method="post">
+    <form class="form-inline" action="filtre" method="post">
         <div class="form-group mx-sm-2">
             <input type="text" name="keyword" id="keyword" class="controls" placeholder="Cerca un podcast">
         </div>
