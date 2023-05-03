@@ -123,10 +123,15 @@ aside {
 }
 
 /* PERFIL */
+.perfil p{
+    color:var(--color-text);
+}
+
 .perfilBtn button{
     width: 100%;
     margin-bottom: var(--marge-mig);
 }
+/* fi PERFIL */
 
 footer {
     display: flex;
@@ -382,7 +387,7 @@ select{
 
 
 /* Responsive Mobile */
-@media all and (max-width: 768px){
+@media all and (max-width: 991px){
     .contingut{
         grid-template-areas: "main"
                              "main-2"
@@ -436,6 +441,7 @@ select{
     .perfil p{
         display: inline;
         padding-right: var(--marge-mig);
+        color: var(--color-text);
     }
     .perfilBtn{
         position: relative;
@@ -455,3 +461,27 @@ select{
 
 
 
+@media all and (max-width: 660px){
+
+    .contingut_perfil{
+        margin-top: 220px;
+    }
+
+    /* PERFIL */
+	.perfil {
+        height: 150px;
+    }
+    .perfil div {
+        
+    }
+    .perfilBtn{
+        top: 24px;
+        width: 100%;
+    }
+    .perfilBtn button{
+        min-width: auto;
+        width: calc(50% - var(--marge-quart));
+
+    }
+
+}

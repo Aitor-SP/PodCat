@@ -161,29 +161,30 @@
         
         <aside class='perfil'>
             <h2>PERFIL D'USUARI</h2>
+            
             <p>
                 <span th:text="${session.usuari.username}"></span>
-            <p>
             </p>
+            <p>
                 <span th:text="${session.usuari.nom}"></span>
                 <span th:text="${session.usuari.cognom}"></span>
-            <p>
             </p>
+            <p>
                 <span th:text="${session.usuari.email}"></span>
             </p>
+            
             <div class="perfilBtn">
                 <button type="submit" class="btn-entrar efecteButton"
                     data-bs-toggle="modal" data-bs-target="#modalModUsuari">
                     <i class='fas fa-user-edit'></i> <span class='ocultMobil'>MODIFICAR </span>DADES
                 </button>
-                <br>
+                
                 <!-- Crear NOU CANAL -->
                 <button type="submit" class="btn-entrar efecteButton"
                     data-bs-toggle="modal" data-bs-target="#modalNouCanal">
                     + <span class='ocultMobil'>CREAR NOU </span>CANAL
                 </button>
             </div>
-
         </aside>
 
         <div th:replace="~{fragments :: footer}"></div>
