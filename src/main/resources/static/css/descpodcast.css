@@ -49,7 +49,10 @@ div.reset{
 
 .titol-descripcion{
     margin-left:20px;
+}
 
+.titol-descripcion h4{
+    font-weight:normal;
 }
 
 .content-descripcio{
