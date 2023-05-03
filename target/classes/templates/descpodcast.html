@@ -28,7 +28,8 @@
 
     <!-- Contingut descripcio del Podcast -->
     <section class="seccio-descripcion">
-        <div class="titol-descripcio">
+        <div class="content-descripcio"></div>
+        <div class="titol-descripcion">
             <h3 th:text="${podcast.titol}"></h3>
             <h4 th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></h4>
         </div>

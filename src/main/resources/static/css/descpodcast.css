@@ -1,3 +1,8 @@
+.contingut{
+    display: grid;
+    grid-template-rows:1fr 1fr auto;
+}
+
 .container-aside{
     margin-left: 35px;
 }
@@ -53,7 +58,6 @@ div.reset{
 
 section.seccio-descripcion{
     margin-top: 30px;
-    margin-bottom:60px;
     margin-left:15px;
 }
 
@@ -70,7 +74,11 @@ section.seccio-descripcion article{
 }
 
 /* Responsive Mobile */
-@media all and (max-width:768px){
+@media all and (max-width:970px){
+    .contingut{
+        display:grid;
+        grid-template-rows:0fr 0fr 0fr;
+    }
     #content{
         margin: 20px;
         min-width: 0px;

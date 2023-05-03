@@ -45,13 +45,10 @@ div.reset{
     clear: both;
 }
 
-section.seccio-descripcio{
-    margin-top: -160px;
-}
-
 /* CSS seccio descripcio del PodCast */
 .titol-descripcio{
     margin-left: 20px;
+    margin-top:-160px;
 }
 
 .titol-descripcio h4{
@@ -87,7 +84,7 @@ section.seccio-descripcio article{
     }
 
     .titol-descripcio{
-        margin-top: 80px;
+        margin-top: 20px;
     }
 }
 
