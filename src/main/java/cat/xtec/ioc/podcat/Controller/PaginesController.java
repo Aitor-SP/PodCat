@@ -30,12 +30,20 @@ public class PaginesController {
 
     @Autowired
     private PodcastRepository podcastRepository;
+
+    @RequestMapping("")
+    public String index(Model model) {
+        List<Podcast>listPodcast = podcastService.getPodcasts();
+        model.addAttribute("listPodcast", listPodcast);
+        return "index.html";
+    }
+    /* ANTERIOR
     @RequestMapping("/")
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index.html");
         return modelAndView;
-    }
+    } */
 
     @RequestMapping("admin")
     public ModelAndView admin() {

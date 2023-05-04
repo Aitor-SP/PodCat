@@ -5,6 +5,7 @@
 <body>
     <div th:insert="~{fragments :: nav}"></div>
 
+    
     <!-- Contingut Main -->
     <div class="contingut">
         <main>
@@ -12,14 +13,15 @@
                 <article>
                     <h2>Últims podcasts publicats</h2>
                     <div class='caixa00podcasts'>
-                        <a class='caixa00 caixa00p'
-                            th:each="p: ${listPodcast}"
+                        <a class='caixa00 caixa00p caixa00portada'
+                            th:each="p,pNum: ${listPodcast}"
+                            th:if="${pNum.index < 8}"
                             th:attr="style='background-image: linear-gradient(#11111100, #111111), url(\'images/'+${p.imatge}+'\');',
                                 href='podcast/'+${p.id}+''">
                             <div>
-                                <!-- <div class='caixa00text' th:text="${p.dataPublicacio}"></div> -->
+                                <div class='caixa00text' th:text="*{#temporals.format(p.dataPublicacio, 'dd/MM/yyyy')}"></div>
                                 <div class='caixa00text' th:text="${p.canal.titol}"></div>
-                                <div class='caixa00text' th:text="${p.descripcio}"></div>
+                                <!-- <div class='caixa00text' th:text="${p.descripcio}"></div> -->
                                 <div class='caixa00titol' th:text="${p.titol}"></div>
                             </div>
                         </a>

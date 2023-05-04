@@ -10,14 +10,11 @@
         <main>
            <section>
                 <article>
-
-
                     <!-- Llista de CANALS
                     <div th:if="${#lists.isEmpty(llistaCanals)}">
                         <p>No hi ha cap canal</p>
                     </div>
                     -->
-
                     <div th:unless="${#lists.isEmpty(llistaCanals)}">
                         <div class="text-left" th:each="c: ${llistaCanals}">
                             <h3 th:text="${c.titol}"></h3>
@@ -123,9 +120,22 @@
                     </div>
 
 
+                    <!-- Nou Podcast -->
+                    <div th:if="${audio}">
+                        <h1>Has penjat un nou podcast</h1>
+                        <h2 th:text="${titol}"></h2>
+                        <p>
+                            <form action="perfil">
+                                <button class="btn-registre efecteButton">< Torna al perfil</button>
+                            </form>
+                        </p>
+                    </div>
+
+
                     <!-- Nou CANAL -->
                     <div th:if="${iTitol}">
-                        <h1>Has creat el nou canal: <span th:text="${iTitol}"></span></h1>
+                        <h1>Has creat el nou canal</h1>
+                        <h2 th:text="${iTitol}"></h2>
                         <p th:text="${iDesc}"></p>
                         <p>
                             <form action="perfil">
