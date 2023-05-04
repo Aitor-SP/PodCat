@@ -10,14 +10,11 @@
         <main>
            <section>
                 <article>
-
-
                     <!-- Llista de CANALS
                     <div th:if="${#lists.isEmpty(llistaCanals)}">
                         <p>No hi ha cap canal</p>
                     </div>
                     -->
-
                     <div th:unless="${#lists.isEmpty(llistaCanals)}">
                         <div class="text-left" th:each="c: ${llistaCanals}">
                             <h3 th:text="${c.titol}"></h3>

@@ -376,6 +376,7 @@ select{
     background-position: center;
     transition: var(--transicio);
 }
+
 .caixa00portada {
     flex: 1 0 40%;
 }

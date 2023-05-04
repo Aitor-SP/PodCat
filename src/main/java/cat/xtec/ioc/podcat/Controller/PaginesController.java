@@ -43,8 +43,7 @@ public class PaginesController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index.html");
         return modelAndView;
-    }
-    */
+    } */
 
     @RequestMapping("admin")
     public ModelAndView admin() {
