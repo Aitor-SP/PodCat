@@ -107,6 +107,7 @@ article {
     font-size: 16px;
     color: var(--color-fons);
     background-color: var(--color-segon);
+    box-shadow: 0px -4px 30px #000000;
     border-radius: var(--marge-quart);
 }
 .publi p{
@@ -374,6 +375,9 @@ select{
     background-size: cover;
     background-position: center;
     transition: var(--transicio);
+}
+.caixa00portada {
+    flex: 1 0 40%;
 }
 .caixa00m{
     display: flex;
