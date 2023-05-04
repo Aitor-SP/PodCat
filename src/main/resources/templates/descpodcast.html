@@ -4,11 +4,6 @@
 
 <div th:replace="~{fragments :: head}"></div>
 
-<script>
-    let nombre='boda de drac,goku,vegeta';
-    console.log(nombre.split(','));
-</script>
-
 <body>
 
 <div th:insert="~{fragments :: nav}"></div>
@@ -64,7 +59,7 @@
                 </a>
             </div>
             -->
-            <div class="info" th:each="podcast: ${listPodcast}">
+            <div class="info" th:each="podcast, limit: ${listPodcast}" th:unless="${limit.index>=6}">
                 <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}"><img class="esquerra" th:src="@{'/images/'+${podcast.imatge}}"></a>
                 <div class="info-dreta">
                     <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p style="font-weight:bold;" th:text="${podcast.titol}"></p></a>
@@ -79,11 +74,7 @@
 
 </div>
 
-<div th:insert="~{fragments :: scripts}"></div>
-<!-- scripts reproductor multimedia -->
-<script type="text/javascript" src="/js/reproductor.js"></script>
-<script type="text/javascript" src="/js/lottie.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+    <div th:insert="~{fragments :: scripts}"></div>
 
 </body>
 </html>
