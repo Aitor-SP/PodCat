@@ -1,7 +1,7 @@
 package cat.xtec.ioc.podcat.Controller;
 
 import cat.xtec.ioc.podcat.Model.Podcast;
-import cat.xtec.ioc.podcat.Service.AudioService;
+import cat.xtec.ioc.podcat.Service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,32 +13,32 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = {"http://127.0.0.1:8080", "http://localhost:8080"})
-@RequestMapping(path = "api/v1/audio")
-public class AudioController {
+@RequestMapping(path = "api/v1/image")
+public class ImageController {
 
     @Autowired
-    private AudioService audioService;
+    private ImageService imageService;
 
     @GetMapping()
-    public List<String> getAudios() {
+    public List<String> getImages() {
 
-        List<String> audios = new ArrayList<>();
+        List<String> images = new ArrayList<>();
         ClassLoader classLoader = getClass().getClassLoader();
-        File folder = new File(classLoader.getResource("static/audios/").getFile());
+        File folder = new File(classLoader.getResource("static/images/").getFile());
         File[] fileList = folder.listFiles();
         for (File file : fileList) {
             if (file.isFile()) {
-                audios.add("static/audios/" + file.getName());
+                images.add("static/images/" + file.getName());
             }
         }
-        return audios;
+        return images;
     }
 
     @PostMapping("/upload")
-    public String uploadAudio(@ModelAttribute("podcast") Podcast podcast, @RequestParam("audio") MultipartFile audioFile) {
+    public String uploadImage(@ModelAttribute("podcast") Podcast podcast, @RequestParam("imatge") MultipartFile imageFile) {
 
         try {
-            audioService.uploadAudio(podcast, audioFile);
+            imageService.uploadImage(podcast, imageFile);
         } catch (IOException e) {
             e.printStackTrace();
             return "S'ha produït un error en crear Podcast.";
@@ -47,10 +47,10 @@ public class AudioController {
     }
 
     @PutMapping("/update/{id}")
-    public String updateAudio(@PathVariable Long id, @RequestParam("audio") MultipartFile audioFile) throws IOException {
+    public String updateImage(@PathVariable Long id, @RequestParam("imatge") MultipartFile imageFile) throws IOException {
 
-        // Cridar al mètode del servei per a actualitzar el Podcast amb el nou arxiu d'àudio
-        audioService.updateAudio(id, audioFile);
+        // Cridar al mètode del servei per a actualitzar el Podcast amb el nou arxiu d'imatge
+        imageService.updateImage(id, imageFile);
 
         // Retornar una resposta
         return "Podcast actualitzat correctament";

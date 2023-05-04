@@ -4,10 +4,7 @@ import cat.xtec.ioc.podcat.Model.Canal;
 import cat.xtec.ioc.podcat.Model.Podcast;
 import cat.xtec.ioc.podcat.Model.Usuari;
 import cat.xtec.ioc.podcat.Repository.PodcastRepository;
-import cat.xtec.ioc.podcat.Service.AudioService;
-import cat.xtec.ioc.podcat.Service.CanalService;
-import cat.xtec.ioc.podcat.Service.PodcastService;
-import cat.xtec.ioc.podcat.Service.UsuariService;
+import cat.xtec.ioc.podcat.Service.*;
 import cat.xtec.ioc.podcat.Repository.CanalRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +39,10 @@ public class PerfilController {
     private CanalRepository canalRepository;
 
     @Autowired
-    private PodcastRepository podcastRepository;
+    private AudioService audioService;
 
     @Autowired
-    private AudioService audioService;
+    private ImageService imageService;
     
     // Pàgina de perfil
     @RequestMapping("perfil")
@@ -114,10 +111,10 @@ public class PerfilController {
         podcast.setDescripcio(descripcio);
         podcast.setGenere(genere);
         podcast.setEtiquetes(etiquetes);
-        podcast.setImatge("imatge.jpg");
-        //podcast.setAudio("audio.mp3");
-        //podcastRepository.save(podcast);
         audioService.uploadAudio(podcast, audio);
+        imageService.uploadImage(podcast, imatge);
+
+        podcastService.addPodcast(podcast);
 
         ModelAndView modelAndView = new ModelAndView();
         model.addAttribute("titol", titol);
@@ -128,7 +125,6 @@ public class PerfilController {
         model.addAttribute("audio", audio);
         modelAndView.setViewName("perfil");
         return modelAndView;
-
     }
 
     // Eliminar Canal

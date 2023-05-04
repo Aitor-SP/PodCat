@@ -14,30 +14,30 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class AudioService {
+public class ImageService {
 
     @Autowired
     private PodcastRepository podcastRepository;
 
-    public void uploadAudio(Podcast podcast, MultipartFile audioFile) throws IOException {
+    public void uploadImage(Podcast podcast, MultipartFile imageFile) throws IOException {
 
         // Ruta on es desaran els arxius
-        String pathAudios = "X:/X/X/X/X/X/PodCat/src/main/resources/static/audios/";
+        String pathImages = "X:/X/X/X/X/X/PodCat/src/main/resources/static/images/";
 
         // Nom de l'arxiu
-        String nameAudio = audioFile.getOriginalFilename();
+        String nameImage = imageFile.getOriginalFilename();
 
         // Crea un objecte "File" que representa la ruta completa on es desarà l'arxiu
-        File fileAudio = new File(pathAudios + nameAudio);
+        File fileImage = new File(pathImages + nameImage);
 
         // Transfereix l'arxiu pujat a la ruta corresponent
-        audioFile.transferTo(fileAudio);
+        imageFile.transferTo(fileImage);
 
-        // Actualitza el camp "àudio" de l'entitat "Podcast" amb el nom de l'arxiu
-        podcast.setAudio(nameAudio);
+        // Actualitza el camp "imatge" de l'entitat "Podcast" amb el nom de l'arxiu
+        podcast.setImatge(nameImage);
     }
 
-    public void updateAudio(Long id, MultipartFile audioFile) throws IOException {
+    public void updateImage(Long id, MultipartFile imageFile) throws IOException {
 
         // Obtenir el Podcast per ID
         Optional<Podcast> optionalPodcast = podcastRepository.findById(id);
@@ -46,28 +46,28 @@ public class AudioService {
             Podcast podcast = optionalPodcast.get();
 
             // Ruta on es desaran els arxius
-            String pathAudios = "X:/X/X/X/X/X/PodCat/src/main/resources/static/audios/";
+            String pathImages = "X:/X/X/X/X/X/PodCat/src/main/resources/static/images/";
 
             // Nom de l'arxiu
-            String nameAudio = audioFile.getOriginalFilename();
+            String nameImage = imageFile.getOriginalFilename();
 
-            // Eliminar el fitxer d'àudio existent
-            String oldAudio = podcast.getAudio();
-            if (oldAudio != null) {
-                File fileOld = new File(pathAudios + oldAudio);
-                if (fileOld.exists()) {
-                    fileOld.delete();
+            // Eliminar el fitxer d'imatge existent
+            String oldImage = podcast.getImatge();
+            if (oldImage != null) {
+                File oldFile = new File(pathImages + oldImage);
+                if (oldFile.exists()) {
+                    oldFile.delete();
                 }
             }
 
             // Crea un objecte "File" que representa la ruta completa on es desarà l'arxiu
-            File fileAudio = new File(pathAudios + nameAudio);
+            File fileImage = new File(pathImages + nameImage);
 
             // Transfereix l'arxiu pujat a la ruta corresponent
-            audioFile.transferTo(fileAudio);
+            imageFile.transferTo(fileImage);
 
-            // Actualitza el camp "àudio" de l'entitat "Podcast" amb el nom de l'arxiu
-            podcast.setAudio(nameAudio);
+            // Actualitza el camp "imatge" de l'entitat "Podcast" amb el nom de l'arxiu
+            podcast.setImatge(nameImage);
 
         } else {
             throw new EntityNotFoundException("No es va trobar el Podcast amb ID " + id);
