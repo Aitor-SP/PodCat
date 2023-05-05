@@ -71,7 +71,7 @@ nav{
     margin-top: 65px;
     /* grid-template-rows: 1fr 1fr auto; */
     grid-template-areas:"main   aside"
-                        "main-2 aside"
+                        "main   aside"
                         "footer footer";
 }
 
