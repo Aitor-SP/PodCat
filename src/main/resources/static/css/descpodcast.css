@@ -3,7 +3,7 @@
 }
 
 #content{
-    margin-right:20px;
+    margin-right: 20px;
 }
 
 .titol-descripcion{
@@ -11,11 +11,11 @@
 }
 
 .titol-descripcion h4{
-    font-weight:normal;
+    font-weight: normal;
 }
 
 .content-descripcion{
-    padding-right:900px;
+    padding-right: 1200px;
 }
 
 .info-descripcion p{
@@ -39,12 +39,12 @@
 /* Responsive Mobile */
 @media all and (max-width:970px){
     .contingut{
-        display:grid;
-        grid-template-rows:0fr 0fr 0fr;
+        display: grid;
+        grid-template-rows: 0fr 0fr 0fr;
     }
 
     .content-descripcion{
-        padding-right:0;
+        padding-right: 0;
     }
 }
 

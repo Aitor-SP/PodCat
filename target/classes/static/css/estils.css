@@ -37,7 +37,6 @@ body{
     background-color: var(--color-fons);
     display:flex;
     flex-direction: column;
-
     min-height: 100vh;
 }
 /*
@@ -384,6 +383,11 @@ select{
     width: 100%;
     height: calc(50% - 5px);
 }
+.caixa00m3{
+    width: 100%;
+    max-height: auto;
+    height: calc(33% - 10px);
+}
 .caixa00button{
     width: 100%;
     height: 100%;
@@ -458,11 +462,12 @@ select{
 		top: 65px;
 		left: 0;
 		width: 100%;
-        height: 70vh;
+        height: 100px;
 		padding: var(--marge);
 		transition: var(--transicio);
         box-shadow: 0px 0px 25px #000000;
         line-height: 10px;
+        min-height: 0!important;
     }
 
     .perfil p{
@@ -508,10 +513,6 @@ select{
         min-width: auto;
         width: calc(50% - var(--marge-quart));
 
-    }
-
-    .perfil {
-        min-height: 0vh;
     }
 
 }
