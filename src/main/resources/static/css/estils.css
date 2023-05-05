@@ -101,7 +101,7 @@ article {
     margin: -20px;
 }
 
-.publi{
+.requadre{
     margin: 0 0 var(--marge) 0;
     padding: var(--marge);
     font-size: 16px;
@@ -110,13 +110,13 @@ article {
     box-shadow: 0px -4px 30px #000000;
     border-radius: var(--marge-quart);
 }
-.publi p{
+.requadre p{
     color: var(--color-fons);
 }
-.publi2{
+.requadre2{
     font-size: 16px;
 }
-.publi2 p{
+.requadre2 p{
     color: var(--color-text);
 }
 

@@ -38,7 +38,7 @@
                 <span class='textTitols'>Res millor que un podcast!</span>
             </div>
 
-            <div class='publi' th:if="${session.usuari != null}">
+            <div class='requadre' th:if="${session.usuari != null}">
                 <!-- Si l'usuari està logejat-->
                 <h3>Hola <span th:text="${session.usuari.username}"></span>!</h3>
                 <p>
@@ -52,7 +52,7 @@
                 </a>
             </div>
 
-            <div class='publi' th:if="${session.usuari == null}">
+            <div class='requadre' th:if="${session.usuari == null}">
                 <!-- Si l'usuari és un visitant-->
                 <h3>UNEIX-TE A PODCAT!</h3>
                 <p>
@@ -67,7 +67,7 @@
                 </p>
             </div>
 
-            <div class="publi2">
+            <div class="requadre2">
                 <p>
                     <span class="strong">PodCat</span> és una plataforma lliure per gestiornar arxius d'àudio,
                     permet penjar i programar continguts, des de notes de veu en format breu fins a arxius més llargs de tipus podcast.
@@ -75,10 +75,6 @@
                 <p>
                     Tot el contingut és obert i qualsevol visitant té accés als àudios.
                 </p>
-
-
-
-
             </div>
         </aside>
 
