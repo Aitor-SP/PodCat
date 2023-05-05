@@ -75,6 +75,44 @@ public class PerfilController {
         return modelAndView;
     }
 
+    // Formulari Modificar CANAL
+    @PostMapping("formModCanal")
+    public ModelAndView formModCanal(@RequestParam("formModCanal") Long idCanal,
+                                    Model model, HttpSession session) {
+        Optional<Canal> canalSelecionat = canalService.getCanalById(idCanal);
+        Canal canal = canalSelecionat.get();
+
+        ModelAndView modelAndView = new ModelAndView();
+        model.addAttribute("formModCanal", idCanal);
+        model.addAttribute("formTitolCanal", canal.getTitol());
+        model.addAttribute("formDescCanal", canal.getDescripcio());
+        modelAndView.setViewName("perfil");
+        return modelAndView;
+    }
+
+    // Modificar CANAL
+    @PostMapping("modCanal")
+    public ModelAndView modCanal(  @RequestParam("modCanalID") Long idCanal,
+                                    @RequestParam("modCanalTitol") String titol,
+                                    @RequestParam("modCanalDesc") String descripcio,
+                                    Model model) {
+        // Obtenim el Canal
+        Optional<Canal> canalSelecionat = canalService.getCanalById(idCanal);
+        Canal canal = canalSelecionat.get();
+
+        canal.setTitol(titol);
+        canal.setDescripcio(descripcio);
+
+        // Modifiquem el Canal
+        canalService.updateFullCanalById(canal, idCanal);
+
+        // Pàgina amb avis d'actualització
+        ModelAndView modelAndView = new ModelAndView();
+        model.addAttribute("canalModificat", titol);
+        modelAndView.setViewName("perfil");
+        return modelAndView;
+    }
+
 
     // Formulari Nou Podcast
     @PostMapping("formPodcast")
