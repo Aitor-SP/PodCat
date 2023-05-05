@@ -1,79 +1,22 @@
-.contingut{
-    display: grid;
-    grid-template-rows:1fr 1fr auto;
+#content{
+    margin-right:20px;
 }
 
-.container-aside{
-    margin-left: 35px;
-}
 
-.titol-head-aside{
-    margin-bottom: 15px;
-}
-
-div.info{
-    color: #fff;
-    padding: 0 20px 15px 0;
-}
-
-div.info img.esquerra{
-    float: left;
-    margin-right: 15px;
-}
-
-.esquerra{
-    width: 200px;
-    height: 120px;
-    background-color: #336699;
-    border-radius: 4px;
-    background-size: cover;
-    background-position: center;
-}
-
-.info-dreta{
-    float: left;
-    font-size: 16px;
-}
-
-.info-dreta a, p{
-    color:#c99500;
-}
-
-.info-dreta a:hover{
-    color:#c99500;
-}
-
-div.reset{
-    clear: both;
-}
 
 .titol-descripcion{
-    margin-left:20px;
+    margin-left: 20px;
+    margin-top: 30px;
 }
 
 .titol-descripcion h4{
     font-weight:normal;
 }
 
-.content-descripcio{
-    padding-right:850px;
+.content-descripcion{
+    padding-right:900px;
 }
 
-section.seccio-descripcion{
-    margin-top: 30px;
-}
-
-section.seccio-descripcion article{
-    text-align:justify;
-}
-
-.tags li{
-    display: inline-block;
-    padding: 6px;
-    border-radius: 6px;
-    background-color: #333;
-    margin: 2px;
-}
 
 /* Responsive Mobile */
 @media all and (max-width:970px){
@@ -81,23 +24,13 @@ section.seccio-descripcion article{
         display:grid;
         grid-template-rows:0fr 0fr 0fr;
     }
-    #content{
-        margin: 20px;
-        min-width: 0px;
-    }
 
-    .content-descripcio{
-        padding-right:0px;
-    }
-
-    section.seccio-descripcion {
-        margin-top: 10px;
-        margin-left: 5px;
-        margin-bottom: 0;
+    .content-descripcion{
+        padding-right:0;
     }
 
     .titol-descripcion{
-        margin-left:20px;
+        margin-top:4px;
     }
 }
 

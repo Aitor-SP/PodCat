@@ -27,8 +27,8 @@
     </section>
 
     <!-- Contingut descripcio del Podcast -->
-    <section class="seccio-descripcion">
-        <div class="content-descripcio"></div>
+    <section class="seccio-descripcio">
+        <div class="content-descripcion"></div>
         <div class="titol-descripcion">
             <h3 th:text="${podcast.titol}"></h3>
             <h4 th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></h4>
@@ -44,7 +44,6 @@
 
     <!-- llista de canals menú Aside -->
     <aside style="background-color: #202020;">
-        <div class="container-aside">
             <h3 class="titol-head-aside" th:text="'Canals de '+ ${podcast.canal.titol}"></h3>
             <!-- PODCASTS EN FORMA DE CAIXA
             <div class='caixa00podcasts'>
@@ -67,7 +66,6 @@
                 </div>
                 <div class="reset"></div>
             </div>
-        </div>
     </aside>
 
     <div th:replace="~{fragments :: footer}"></div>
