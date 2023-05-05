@@ -28,14 +28,16 @@
 
     <!-- Contingut descripcio del Podcast -->
     <section class="seccio-descripcio">
+        <p>
         <div class="content-descripcion"></div>
         <div class="titol-descripcion">
             <h3 th:text="${podcast.titol}"></h3>
             <h4 th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></h4>
         </div>
-        <div class="info-descripcio">
-            <article th:text="${podcast.descripcio}"></article>
+        <div class="info-descripcion">
+            <p th:text="${podcast.descripcio}"></p>
         </div>
+        </article>
         <ul class="tags">
             <li th:text="${podcast.getGenere()}"></li>
             <li th:each="paraula : ${#strings.arraySplit(podcast.getEtiquetes() ,',')}" th:text="${paraula}"></li>
