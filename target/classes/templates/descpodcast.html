@@ -4,11 +4,6 @@
 
 <div th:replace="~{fragments :: head}"></div>
 
-<script>
-    let nombre='boda de drac,goku,vegeta';
-    console.log(nombre.split(','));
-</script>
-
 <body>
 
 <div th:insert="~{fragments :: nav}"></div>
@@ -32,24 +27,25 @@
     </section>
 
     <!-- Contingut descripcio del Podcast -->
-    <section class="seccio-descripcion">
-        <div class="content-descripcio"></div>
-        <div class="titol-descripcion">
-            <h3 th:text="${podcast.titol}"></h3>
-            <h4 th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></h4>
-        </div>
-        <div class="info-descripcio">
-            <article th:text="${podcast.descripcio}"></article>
-        </div>
-        <ul class="tags">
-            <li th:text="${podcast.getGenere()}"></li>
-            <li th:each="paraula : ${#strings.arraySplit(podcast.getEtiquetes() ,',')}" th:text="${paraula}"></li>
-        </ul>
+    <section class="seccio-descripcio">
+        <article>
+            <div class="content-descripcion"></div>
+            <div class="titol-descripcion">
+                <h3 th:text="${podcast.titol}"></h3>
+                <h4 th:text="*{#temporals.format(podcast.dataPublicacio, 'dd/MM/yyyy')}"></h4>
+            </div>
+            <div class="info-descripcion">
+                <p th:text="${podcast.descripcio}"></p>
+            </div>
+            <ul class="tags-descripcion">
+                <li th:text="${podcast.getGenere()}"></li>
+                <li th:each="paraula : ${#strings.arraySplit(podcast.getEtiquetes() ,',')}" th:text="${paraula}"></li>
+            </ul>
+        </article>
     </section>
 
     <!-- llista de canals menú Aside -->
     <aside style="background-color: #202020;">
-        <div class="container-aside">
             <h3 class="titol-head-aside" th:text="'Canals de '+ ${podcast.canal.titol}"></h3>
             <!-- PODCASTS EN FORMA DE CAIXA
             <div class='caixa00podcasts'>
@@ -64,7 +60,7 @@
                 </a>
             </div>
             -->
-            <div class="info" th:each="podcast: ${listPodcast}">
+            <div class="info" th:each="podcast, limit: ${listPodcast}" th:unless="${limit.index>=6}">
                 <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}"><img class="esquerra" th:src="@{'/images/'+${podcast.imatge}}"></a>
                 <div class="info-dreta">
                     <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p style="font-weight:bold;" th:text="${podcast.titol}"></p></a>
@@ -72,18 +68,13 @@
                 </div>
                 <div class="reset"></div>
             </div>
-        </div>
     </aside>
 
     <div th:replace="~{fragments :: footer}"></div>
 
 </div>
 
-<div th:insert="~{fragments :: scripts}"></div>
-<!-- scripts reproductor multimedia -->
-<script type="text/javascript" src="/js/reproductor.js"></script>
-<script type="text/javascript" src="/js/lottie.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+    <div th:insert="~{fragments :: scripts}"></div>
 
 </body>
 </html>
