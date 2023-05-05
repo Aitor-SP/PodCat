@@ -35,6 +35,10 @@ body{
     font-size: 14px;
     color: var(--color-text);
     background-color: var(--color-fons);
+    display:flex;
+    flex-direction: column;
+
+    min-height: 100vh;
 }
 /*
 a{ color: var(--color-primer); text-decoration:none; transition:0.4s; }
@@ -71,7 +75,7 @@ nav{
     margin-top: 65px;
     /* grid-template-rows: 1fr 1fr auto; */
     grid-template-areas:"main   aside"
-                        "main-2 aside"
+                        "main   aside"
                         "footer footer";
 }
 
@@ -101,21 +105,22 @@ article {
     margin: -20px;
 }
 
-.publi{
+.requadre{
     margin: 0 0 var(--marge) 0;
     padding: var(--marge);
     font-size: 16px;
     color: var(--color-fons);
     background-color: var(--color-segon);
+    box-shadow: 0px -4px 30px #000000;
     border-radius: var(--marge-quart);
 }
-.publi p{
+.requadre p{
     color: var(--color-fons);
 }
-.publi2{
+.requadre2{
     font-size: 16px;
 }
-.publi2 p{
+.requadre2 p{
     color: var(--color-text);
 }
 
@@ -129,18 +134,6 @@ article {
     font-size: 34px;
     line-height: 38px;
     text-shadow: 0px 2px 5px var(--color-fons);
-}
-
-.main-2 {
-    grid-area: main-2;
-    background-color: var(--color-fons);
-}
-
-.main-2 h3{
-    color: var(--color-text);
-    font-weight: 600;
-    text-align: center;
-    padding:20px;
 }
 
 aside {
@@ -168,6 +161,7 @@ footer {
     background: var(--color-gris-mig);
     color: var(--color-primer);
     line-height: 20px;
+    margin-top:auto;
 }
 
 footer > p{
@@ -375,6 +369,10 @@ select{
     background-position: center;
     transition: var(--transicio);
 }
+
+.caixa00portada {
+    flex: 1 0 40%;
+}
 .caixa00m{
     display: flex;
     flex-direction: column;
@@ -410,14 +408,11 @@ select{
 /* fi PODCASTS CAIXES */
 
 
-
-
-
 /* Responsive Mobile */
 @media all and (max-width: 991px){
     .contingut{
         grid-template-areas: "main"
-                             "main-2"
+                             "main"
                              "aside"
                              "footer";
     }
@@ -429,6 +424,7 @@ select{
     .portada{
         height: 34vh;
     }
+
     .portadaAside {
         height: 24vh;
     }
@@ -462,23 +458,26 @@ select{
 		top: 65px;
 		left: 0;
 		width: 100%;
-        height: 100px;
+        height: 70vh;
 		padding: var(--marge);
 		transition: var(--transicio);
         box-shadow: 0px 0px 25px #000000;
         line-height: 10px;
     }
+
     .perfil p{
         display: inline;
         padding-right: var(--marge-mig);
         color: var(--color-text);
     }
+
     .perfilBtn{
         position: relative;
         float: right;
         top: -48px;
         width: 180px;
     }
+
     .perfilBtn button{
         height: 34px;
     }
@@ -487,9 +486,6 @@ select{
         display: none;
     }
 }
-
-
-
 
 @media all and (max-width: 660px){
 
@@ -512,6 +508,10 @@ select{
         min-width: auto;
         width: calc(50% - var(--marge-quart));
 
+    }
+
+    .perfil {
+        min-height: 0vh;
     }
 
 }

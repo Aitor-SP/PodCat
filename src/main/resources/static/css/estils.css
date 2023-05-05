@@ -35,6 +35,9 @@ body{
     font-size: 14px;
     color: var(--color-text);
     background-color: var(--color-fons);
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 /*
 a{ color: var(--color-primer); text-decoration:none; transition:0.4s; }
@@ -157,6 +160,7 @@ footer {
     background: var(--color-gris-mig);
     color: var(--color-primer);
     line-height: 20px;
+    margin-top:auto;
 }
 
 footer > p{
