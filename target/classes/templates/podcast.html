@@ -47,15 +47,17 @@
                 </article>
                 <ul class="tags">
                     <li>Anime</li>
+                    <li>Akira</li>
+                    <li>CiberPunk</li>
                 </ul>
             </section>
         </div>
 
         <!-- llista de canals menú Aside -->
         <aside style="background-color: #202020;">
-            <div class="container-aside">
+            <div>
                 <h3 class="titol-head-aside">Canals de PodCat</h3>
-                <div class="info" th:each="podcast: ${listaPodcast}">
+                <div class="info" th:each="podcast, limit: ${listaPodcast}" th:unless="${limit.index>=6}">
                     <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}"><img class="esquerra"  th:src="@{'/images/'+${podcast.imatge}}"></a>
                     <div class="info-dreta">
                         <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}" ><p style="font-weight:bold;" th:text="${podcast.canal.titol}"></p></a>
@@ -71,10 +73,6 @@
 </div>
 
         <div th:insert="~{fragments :: scripts}"></div>
-        <!-- scripts reproductor multimedia -->
-        <script type="text/javascript" src="/js/reproductor.js"></script>
-        <script type="text/javascript" src="/js/lottie.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
 
 </body>
 </html>

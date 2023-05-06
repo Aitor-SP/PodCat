@@ -1,5 +1,7 @@
-.contingut {
-    grid-template-rows: 1fr 1fr auto;
+body{
+    display:grid;
+    min-height:100vh;
+    grid-template-rows: auto 1fr auto;
 }
 
 #content{
@@ -15,7 +17,7 @@
 }
 
 .content-descripcion{
-    padding-right: 1200px;
+    padding-right: 850px;
 }
 
 .info-descripcion p{
@@ -38,10 +40,6 @@
 
 /* Responsive Mobile */
 @media all and (max-width:970px){
-    .contingut{
-        display: grid;
-        grid-template-rows: 0fr 0fr 0fr;
-    }
 
     .content-descripcion{
         padding-right: 0;
