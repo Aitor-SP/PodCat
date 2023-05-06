@@ -57,7 +57,7 @@ public class PerfilController {
     }
     
     // Nou Canal
-    @PostMapping("nouCanal")
+    @PostMapping("canal/afegir")
     public ModelAndView nouCanal(   @RequestParam("titol") String titol,
                                     @RequestParam("descripcio") String descripcio,
                                     Model model, HttpSession session) {
@@ -76,7 +76,7 @@ public class PerfilController {
     }
 
     // Formulari Modificar CANAL
-    @PostMapping("formModCanal")
+    @PostMapping("canal/formModCanal")
     public ModelAndView formModCanal(@RequestParam("formModCanal") Long idCanal,
                                     Model model, HttpSession session) {
         Optional<Canal> canalSelecionat = canalService.getCanalById(idCanal);
@@ -91,7 +91,7 @@ public class PerfilController {
     }
 
     // Modificar CANAL
-    @PostMapping("modCanal")
+    @PostMapping("canal/modCanal")
     public ModelAndView modCanal(  @RequestParam("modCanalID") Long idCanal,
                                     @RequestParam("modCanalTitol") String titol,
                                     @RequestParam("modCanalDesc") String descripcio,
@@ -114,7 +114,7 @@ public class PerfilController {
     }
 
     // Eliminar Canal
-    @PostMapping("eliminaCanal")
+    @PostMapping("canal/eliminar")
     public ModelAndView eliminaCanal(   @RequestParam("eliminaIDcanal") Long eliminaIDcanal,
                                         @RequestParam("eliminaNomCanal") String eliminaNomCanal,
                                         Model model) {
@@ -129,7 +129,7 @@ public class PerfilController {
 
 
     // Formulari Nou Podcast
-    @PostMapping("formPodcast")
+    @PostMapping("podcast/afegir")
     public ModelAndView formPodcast(@RequestParam("idCanal") Long idCanal,
                                     Model model, HttpSession session) {
         Optional<Canal> canalSelecionat = canalService.getCanalById(idCanal);
@@ -143,7 +143,7 @@ public class PerfilController {
     }
 
     // Nou Podcast
-    @PostMapping("nouPodcast")
+    @PostMapping("podcast/nouPodcast")
     public ModelAndView nouPodcast (    @RequestParam("titol") String titol,
                                         @RequestParam("descripcio") String descripcio,
                                         @RequestParam("genere") String genere,
@@ -225,8 +225,22 @@ public class PerfilController {
         return modelAndView;
     }
 
+    // Eliminar Podcast
+    @PostMapping("podcast/eliminaPodcast")
+    public ModelAndView eliminaPodcast(   @RequestParam("eliminaIDpodcast") Long eliminaIDpodcast,
+                                        @RequestParam("eliminaNomPodcast") String eliminaNomPodcast,
+                                        Model model) {
+        // Eliminem el Podcast
+        podcastService.deletePodcastById(eliminaIDpodcast);
+        // Creem el model posterior
+        ModelAndView modelAndView = new ModelAndView();
+        model.addAttribute("ePodcast", eliminaNomPodcast);
+        modelAndView.setViewName("perfil");
+        return modelAndView;
+    }
+
     // Modificar usuari
-    @PostMapping("modUsuari")
+    @PostMapping("perfil/modificar")
     public ModelAndView modUsuari(  @RequestParam("username") String username,
                                     @RequestParam("nom") String nom,
                                     @RequestParam("cognom") String cognom,
@@ -251,9 +265,7 @@ public class PerfilController {
         model.addAttribute("modUsername", username);
         modelAndView.setViewName("perfil");
         return modelAndView;
-
         // Redirect /perfil
         // return new ModelAndView("redirect:/perfil");
-
     }
 }
