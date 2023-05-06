@@ -29,13 +29,15 @@
     <!-- Contingut descripcio del Podcast -->
     <section class="seccio-descripcio">
         <article>
-            <form th:if="${podcast.canal.usuari.id == session.usuari.id}" action="formModPodcast" method="post">
-                <!-- Modificar Podcast si és de l'usuari logejat -->
-                <input type="hidden" name="formModPodcastID" th:attr="value=${podcast.id}" />
-                <button type="submit" class='btn-entrar efecteButton' style="float:right; margin-left: 20px;">
-                    <i class="far fa-edit"></i> Modifica <span class="ocultMobil">el PODCAST</span>
-                </button>
-            </form>
+            <div th:if="${session.usuari != null}">
+                <form th:if="${podcast.canal.usuari.id == session.usuari.id}" action="formModPodcast" method="post">
+                    <!-- Modificar Podcast si és de l'usuari logejat -->
+                    <input type="hidden" name="formModPodcastID" th:attr="value=${podcast.id}" />
+                    <button type="submit" class='btn-entrar efecteButton' style="float:right; margin-left: 20px;">
+                        <i class="far fa-edit"></i> Modifica <span class="ocultMobil">el PODCAST</span>
+                    </button>
+                </form>
+            </div>
             <div class="content-descripcion"></div>
             <div class="titol-descripcion">
                 <h3 th:text="${podcast.titol}"></h3>
