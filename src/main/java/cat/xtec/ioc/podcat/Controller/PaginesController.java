@@ -35,7 +35,7 @@ public class PaginesController {
     public String index(Model model) {
         List<Podcast>listPodcast = podcastService.getPodcasts();
         model.addAttribute("listPodcast", listPodcast);
-        return "index.html";
+        return "index";
     }
     /* ANTERIOR
     @RequestMapping("/")

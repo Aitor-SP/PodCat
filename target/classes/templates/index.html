@@ -5,6 +5,7 @@
 <body>
     <div th:insert="~{fragments :: nav}"></div>
 
+    
     <!-- Contingut Main -->
     <div class="contingut">
         <main>
@@ -12,14 +13,15 @@
                 <article>
                     <h2>Últims podcasts publicats</h2>
                     <div class='caixa00podcasts'>
-                        <a class='caixa00 caixa00p'
-                            th:each="p: ${listPodcast}"
+                        <a class='caixa00 caixa00p caixa00portada'
+                            th:each="p,pNum: ${listPodcast}"
+                            th:if="${pNum.index < 8}"
                             th:attr="style='background-image: linear-gradient(#11111100, #111111), url(\'images/'+${p.imatge}+'\');',
                                 href='podcast/'+${p.id}+''">
                             <div>
-                                <!-- <div class='caixa00text' th:text="${p.dataPublicacio}"></div> -->
+                                <div class='caixa00text' th:text="*{#temporals.format(p.dataPublicacio, 'dd/MM/yyyy')}"></div>
                                 <div class='caixa00text' th:text="${p.canal.titol}"></div>
-                                <div class='caixa00text' th:text="${p.descripcio}"></div>
+                                <!-- <div class='caixa00text' th:text="${p.descripcio}"></div> -->
                                 <div class='caixa00titol' th:text="${p.titol}"></div>
                             </div>
                         </a>
@@ -28,15 +30,13 @@
             </section>
         </main>
 
-        <main class="main-2"></main>
-        
         <aside>
             <div class='portada portadaAside'>
                 <div th:replace="~{fragments :: filtre}"></div>
                 <span class='textTitols'>Res millor que un podcast!</span>
             </div>
 
-            <div class='publi' th:if="${session.usuari != null}">
+            <div class='requadre' th:if="${session.usuari != null}">
                 <!-- Si l'usuari està logejat-->
                 <h3>Hola <span th:text="${session.usuari.username}"></span>!</h3>
                 <p>
@@ -50,7 +50,7 @@
                 </a>
             </div>
 
-            <div class='publi' th:if="${session.usuari == null}">
+            <div class='requadre' th:if="${session.usuari == null}">
                 <!-- Si l'usuari és un visitant-->
                 <h3>UNEIX-TE A PODCAT!</h3>
                 <p>
@@ -65,7 +65,7 @@
                 </p>
             </div>
 
-            <div class="publi2">
+            <div class="requadre2">
                 <p>
                     <span class="strong">PodCat</span> és una plataforma lliure per gestiornar arxius d'àudio,
                     permet penjar i programar continguts, des de notes de veu en format breu fins a arxius més llargs de tipus podcast.
@@ -73,10 +73,6 @@
                 <p>
                     Tot el contingut és obert i qualsevol visitant té accés als àudios.
                 </p>
-
-
-
-
             </div>
         </aside>
 
