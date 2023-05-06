@@ -7,6 +7,10 @@ body{
     margin-right: 20px;
 }
 
+.seccio-descripcio{
+    margin-bottom:65px;
+}
+
 .titol-descripcion{
     margin-bottom: 20px;
 }
@@ -42,6 +46,10 @@ body{
 
     .content-descripcion{
         padding-right: 0;
+    }
+
+    .seccio-descripcio{
+        margin-bottom:0;
     }
 }
 
