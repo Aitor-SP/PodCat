@@ -55,7 +55,7 @@
                                     <form action="formModCanal" method="post" class="caixa00m3">
                                         <input type="hidden" name="formModCanal" th:attr="value=${c.id}" />
                                         <button type="submit" class='caixa00button efecteButton'>
-                                            <i class="far fa-edit"></i> Modificar el canal
+                                            <i class="far fa-edit"></i> Modificar el canala
                                         </button>
                                     </form>
                                     <form action="eliminaCanal" method="post" class="caixa00m3"
@@ -74,8 +74,20 @@
                         </div>
 
                     </div>
-                    
 
+
+
+                    <!-- Nou CANAL -->
+                    <div th:if="${iTitol}">
+                        <h1>Has creat el nou canal</h1>
+                        <h2 th:text="${iTitol}"></h2>
+                        <p th:text="${iDesc}"></p>
+                        <p>
+                            <form action="perfil">
+                                <button class="btn-registre efecteButton">< Torna al perfil</button>
+                            </form>
+                        </p>
+                    </div>
 
                     <!-- Formulari modificar CANAL-->
                     <div th:if="${formModCanal}">
@@ -101,6 +113,16 @@
                     <div th:if="${canalModificat}">
                         <h1>Has modificat el canal:</h1>
                         <h2 th:text="${canalModificat}"></h2>
+                        <p>
+                            <form action="perfil">
+                                <button class="btn-registre efecteButton">< Torna al perfil</button>
+                            </form>
+                        </p>
+                    </div>
+
+                    <!-- Eliminar CANAL -->
+                    <div th:if="${eCanal}">
+                        <h2>S'ha eliminat el canal: <span th:text="${eCanal}"></span></h2>
                         <p>
                             <form action="perfil">
                                 <button class="btn-registre efecteButton">< Torna al perfil</button>
@@ -165,28 +187,54 @@
                     </div>
 
 
-                    <!-- Nou CANAL -->
-                    <div th:if="${iTitol}">
-                        <h1>Has creat el nou canal</h1>
-                        <h2 th:text="${iTitol}"></h2>
-                        <p th:text="${iDesc}"></p>
+                    
+                    <!-- Formulari modificar PODCAST-->
+                    <div th:if="${formModPodcastID}">
+                        <h1>Modifica el Podcast</h1>
+                        <h2 th:text="${formTitolPodcast}"></h2>
+                        <div class="formulari-entrar">
+                            <form action="modPodcast" method="post" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="input-group form-group">
+                                            <input type="text" class="form-control" placeholder="Títol" name="modPodcastTitol" th:attr="value=${formTitolPodcast}" required/>
+                                        </div>
+                                        <div class="input-group form-group">
+                                            <input type="text" class="form-control" placeholder="Gènere" name="modPodcastGenere" th:attr="value=${formGenerePodcast}" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="input-group form-group">
+                                            <textarea class="form-control" placeholder="Descripció" name="modPodcastDesc" th:text="${formDescPodcast}" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group form-group">
+                                    <input type="text" class="form-control" placeholder="Etiquetes: separades per comes" name="modPodcastEtiquetes" th:attr="value=${formEtiquetesPodcast}" required/>
+                                </div>
+                                <div class="form-group text-center">
+                                    <input type="hidden" name="modPodcastID" th:attr="value=${formModPodcastID}" />
+                                    <button type="submit" class="btn-entrar efecteButton">MODIFICA</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Podcast modificat -->
+                    <div th:if="${podcastModificat}">
+                        <h1>Has modificat el podcast:</h1>
+                        <h2 th:text="${podcastModificat}"></h2>
                         <p>
-                            <form action="perfil">
-                                <button class="btn-registre efecteButton">< Torna al perfil</button>
+                            <form th:attr="action=${podcastIDmod}">
+                                <button class="btn-registre efecteButton">< Torna al podcast</button>
+                            </form>
+                        </p>
+                        <p>
+                            <form action="../perfil">
+                                <button class="btn-registre efecteButton">Ves al perfil</button>
                             </form>
                         </p>
                     </div>
-
-                    <!-- Eliminar CANAL -->
-                    <div th:if="${eCanal}">
-                        <h2>S'ha eliminat el canal: <span th:text="${eCanal}"></span></h2>
-                        <p>
-                            <form action="perfil">
-                                <button class="btn-registre efecteButton">< Torna al perfil</button>
-                            </form>
-                        </p>
-                    </div>
-
 
                     <!-- Variables modUsuari -->
                     <div th:if="${modUsername}">

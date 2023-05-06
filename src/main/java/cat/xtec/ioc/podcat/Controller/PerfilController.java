@@ -113,6 +113,20 @@ public class PerfilController {
         return modelAndView;
     }
 
+    // Eliminar Canal
+    @PostMapping("eliminaCanal")
+    public ModelAndView eliminaCanal(   @RequestParam("eliminaIDcanal") Long eliminaIDcanal,
+                                        @RequestParam("eliminaNomCanal") String eliminaNomCanal,
+                                        Model model) {
+        // Eliminem el Canal
+        canalService.deleteCanalById(eliminaIDcanal);
+        // Creem el model posterior
+        ModelAndView modelAndView = new ModelAndView();
+        model.addAttribute("eCanal", eliminaNomCanal);
+        modelAndView.setViewName("perfil");
+        return modelAndView;
+    }
+
 
     // Formulari Nou Podcast
     @PostMapping("formPodcast")
@@ -165,16 +179,48 @@ public class PerfilController {
         return modelAndView;
     }
 
-    // Eliminar Canal
-    @PostMapping("eliminaCanal")
-    public ModelAndView eliminaCanal(   @RequestParam("eliminaIDcanal") Long eliminaIDcanal,
-                                        @RequestParam("eliminaNomCanal") String eliminaNomCanal,
+    // Formulari Modificar PODCAST
+    @PostMapping("podcast/formModPodcast")
+    public ModelAndView formModPodcast( @RequestParam("formModPodcastID") Long idPodcast,
                                         Model model) {
-        // Eliminem el Canal
-        canalService.deleteCanalById(eliminaIDcanal);
-        // Creem el model posterior
+        
+        Optional<Podcast> podcastSelecionat = podcastService.getPodcastById(idPodcast);
+        Podcast podcast = podcastSelecionat.get();
+
         ModelAndView modelAndView = new ModelAndView();
-        model.addAttribute("eCanal", eliminaNomCanal);
+        model.addAttribute("formModPodcastID", idPodcast);
+        model.addAttribute("formTitolPodcast", podcast.getTitol());
+        model.addAttribute("formDescPodcast", podcast.getDescripcio());
+        model.addAttribute("formGenerePodcast", podcast.getGenere());
+        model.addAttribute("formEtiquetesPodcast", podcast.getEtiquetes());
+        modelAndView.setViewName("perfil");
+        return modelAndView;
+    }
+
+    // Modificar PODCAST
+    @PostMapping("podcast/modPodcast")
+    public ModelAndView modCanal(  @RequestParam("modPodcastID") Long idPodcast,
+                                    @RequestParam("modPodcastTitol") String titol,
+                                    @RequestParam("modPodcastDesc") String descripcio,
+                                    @RequestParam("modPodcastGenere") String genere,
+                                    @RequestParam("modPodcastEtiquetes") String etiquetes,
+                                    Model model) {
+        // Obtenim el Canal
+        Optional<Podcast> podcastSelecionat = podcastService.getPodcastById(idPodcast);
+        Podcast podcast = podcastSelecionat.get();
+
+        podcast.setTitol(titol);
+        podcast.setDescripcio(descripcio);
+        podcast.setGenere(genere);
+        podcast.setEtiquetes(etiquetes);
+
+        // Modifiquem el Canal
+        podcastService.updateFullPodcastById(podcast, idPodcast);
+
+        // Pàgina amb avis d'actualització
+        ModelAndView modelAndView = new ModelAndView();
+        model.addAttribute("podcastModificat", titol);
+        model.addAttribute("podcastIDmod", idPodcast);
         modelAndView.setViewName("perfil");
         return modelAndView;
     }
