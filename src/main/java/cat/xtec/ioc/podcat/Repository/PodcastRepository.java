@@ -14,6 +14,8 @@ import java.util.List;
 @Repository
 public interface PodcastRepository extends JpaRepository<Podcast, Long> {
 
+    List<Podcast> findAllByOrderByIdDesc();
+
     List<Podcast> findByCanalId(Long id);
 
     List<Podcast> findByUsuariId(Long id);

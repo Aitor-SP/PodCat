@@ -23,6 +23,10 @@ public class PodcastService {
         return podcastRepository.findAll();
     }
 
+    public List<Podcast> getPodcastsByIdDesc(){
+        return podcastRepository.findAllByOrderByIdDesc();
+    }
+
     public Optional<Podcast> getPodcastById(Long id) {
         return podcastRepository.findById(id);
     }

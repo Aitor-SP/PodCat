@@ -27,6 +27,11 @@ public class PodcastController {
         return podcastService.getPodcasts();
     }
 
+    @GetMapping("/sortedById")
+    public List<Podcast> getPodcastsSortedById() {
+        return podcastService.getPodcastsByIdDesc();
+    }
+
     @GetMapping(path = "/{id}")
     public Optional<Podcast> getPodcastById(@PathVariable("id") Long id) {
         return this.podcastService.getPodcastById(id);
