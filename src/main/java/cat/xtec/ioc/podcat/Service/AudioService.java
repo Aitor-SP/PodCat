@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
@@ -19,10 +20,12 @@ public class AudioService {
     @Autowired
     private PodcastRepository podcastRepository;
 
+    private final static String PATH = "X:/X/X/X/X/X/PodCat/src/main/resources/static/audios/";
+
     public void uploadAudio(Podcast podcast, MultipartFile audioFile) throws IOException {
 
         // Ruta on es desaran els arxius
-        String pathAudios = "X:/X/X/X/X/X/PodCat/src/main/resources/static/audios/";
+        String pathAudios = PATH;
 
         // Nom de l'arxiu
         String nameAudio = audioFile.getOriginalFilename();
@@ -46,7 +49,7 @@ public class AudioService {
             Podcast podcast = optionalPodcast.get();
 
             // Ruta on es desaran els arxius
-            String pathAudios = "X:/X/X/X/X/X/PodCat/src/main/resources/static/audios/";
+            String pathAudios = PATH;
 
             // Nom de l'arxiu
             String nameAudio = audioFile.getOriginalFilename();

@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 @CrossOrigin(origins = {"http://127.0.0.1:8080", "http://localhost:8080"})
@@ -19,17 +22,17 @@ public class AudioController {
     @Autowired
     private AudioService audioService;
 
+    private final static String PATH = "X:/X/X/X/X/X/PodCat/src/main/resources/static/audios/";
+
     @GetMapping()
     public List<String> getAudios() {
-
         List<String> audios = new ArrayList<>();
-        ClassLoader classLoader = getClass().getClassLoader();
-        File folder = new File(classLoader.getResource("static/audios/").getFile());
-        File[] fileList = folder.listFiles();
-        for (File file : fileList) {
-            if (file.isFile()) {
-                audios.add("static/audios/" + file.getName());
-            }
+        try (Stream<Path> files = Files.list(Paths.get(PATH))) {
+            files.filter(Files::isRegularFile)
+                    .map(Path::toString)
+                    .forEach(audios::add);
+        } catch (IOException e) {
+            return null;
         }
         return audios;
     }

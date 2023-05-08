@@ -19,10 +19,12 @@ public class ImageService {
     @Autowired
     private PodcastRepository podcastRepository;
 
+    private final static String PATH = "X:/X/X/X/X/X/PodCat/src/main/resources/static/images/";
+
     public void uploadImage(Podcast podcast, MultipartFile imageFile) throws IOException {
 
         // Ruta on es desaran els arxius
-        String pathImages = "X:/X/X/X/X/X/PodCat/src/main/resources/static/images/";
+        String pathImages = PATH;
 
         // Nom de l'arxiu
         String nameImage = imageFile.getOriginalFilename();
@@ -46,7 +48,7 @@ public class ImageService {
             Podcast podcast = optionalPodcast.get();
 
             // Ruta on es desaran els arxius
-            String pathImages = "X:/X/X/X/X/X/PodCat/src/main/resources/static/images/";
+            String pathImages = PATH;
 
             // Nom de l'arxiu
             String nameImage = imageFile.getOriginalFilename();
