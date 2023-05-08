@@ -3,6 +3,9 @@ package cat.xtec.ioc.podcat.Controller;
 import cat.xtec.ioc.podcat.Model.Podcast;
 import cat.xtec.ioc.podcat.Service.AudioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,8 +13,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RestController
@@ -22,19 +25,19 @@ public class AudioController {
     @Autowired
     private AudioService audioService;
 
-    private final static String PATH = "X:/X/X/X/X/X/PodCat/src/main/resources/static/audios/";
+    @Value("${audio.path}")
+    private String audioPath;
 
     @GetMapping()
-    public List<String> getAudios() {
-        List<String> audios = new ArrayList<>();
-        try (Stream<Path> files = Files.list(Paths.get(PATH))) {
-            files.filter(Files::isRegularFile)
+    public ResponseEntity<List<String>> getAudios() {
+        try (Stream<Path> files = Files.list(Paths.get(audioPath))) {
+            List<String> audios = files.filter(Files::isRegularFile)
                     .map(Path::toString)
-                    .forEach(audios::add);
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(audios);
         } catch (IOException e) {
-            return null;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        return audios;
     }
 
     @PostMapping("/upload")

@@ -3,6 +3,7 @@ package cat.xtec.ioc.podcat.Service;
 import cat.xtec.ioc.podcat.Model.Podcast;
 import cat.xtec.ioc.podcat.Repository.PodcastRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,18 +21,16 @@ public class AudioService {
     @Autowired
     private PodcastRepository podcastRepository;
 
-    private final static String PATH = "X:/X/X/X/X/X/PodCat/src/main/resources/static/audios/";
+    @Value("${audio.path}")
+    private String audioPath;
 
     public void uploadAudio(Podcast podcast, MultipartFile audioFile) throws IOException {
-
-        // Ruta on es desaran els arxius
-        String pathAudios = PATH;
 
         // Nom de l'arxiu
         String nameAudio = audioFile.getOriginalFilename();
 
         // Crea un objecte "File" que representa la ruta completa on es desarà l'arxiu
-        File fileAudio = new File(pathAudios + nameAudio);
+        File fileAudio = new File(audioPath + nameAudio);
 
         // Transfereix l'arxiu pujat a la ruta corresponent
         audioFile.transferTo(fileAudio);
@@ -48,23 +47,20 @@ public class AudioService {
         if (optionalPodcast.isPresent()) {
             Podcast podcast = optionalPodcast.get();
 
-            // Ruta on es desaran els arxius
-            String pathAudios = PATH;
-
             // Nom de l'arxiu
             String nameAudio = audioFile.getOriginalFilename();
 
             // Eliminar el fitxer d'àudio existent
             String oldAudio = podcast.getAudio();
             if (oldAudio != null) {
-                File fileOld = new File(pathAudios + oldAudio);
+                File fileOld = new File(audioPath + oldAudio);
                 if (fileOld.exists()) {
                     fileOld.delete();
                 }
             }
 
             // Crea un objecte "File" que representa la ruta completa on es desarà l'arxiu
-            File fileAudio = new File(pathAudios + nameAudio);
+            File fileAudio = new File(audioPath + nameAudio);
 
             // Transfereix l'arxiu pujat a la ruta corresponent
             audioFile.transferTo(fileAudio);

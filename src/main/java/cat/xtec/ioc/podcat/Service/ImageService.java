@@ -3,6 +3,7 @@ package cat.xtec.ioc.podcat.Service;
 import cat.xtec.ioc.podcat.Model.Podcast;
 import cat.xtec.ioc.podcat.Repository.PodcastRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,18 +20,16 @@ public class ImageService {
     @Autowired
     private PodcastRepository podcastRepository;
 
-    private final static String PATH = "X:/X/X/X/X/X/PodCat/src/main/resources/static/images/";
+    @Value("${image.path}")
+    private String imagePath;
 
     public void uploadImage(Podcast podcast, MultipartFile imageFile) throws IOException {
-
-        // Ruta on es desaran els arxius
-        String pathImages = PATH;
 
         // Nom de l'arxiu
         String nameImage = imageFile.getOriginalFilename();
 
         // Crea un objecte "File" que representa la ruta completa on es desarà l'arxiu
-        File fileImage = new File(pathImages + nameImage);
+        File fileImage = new File(imagePath + nameImage);
 
         // Transfereix l'arxiu pujat a la ruta corresponent
         imageFile.transferTo(fileImage);
@@ -47,23 +46,20 @@ public class ImageService {
         if (optionalPodcast.isPresent()) {
             Podcast podcast = optionalPodcast.get();
 
-            // Ruta on es desaran els arxius
-            String pathImages = PATH;
-
             // Nom de l'arxiu
             String nameImage = imageFile.getOriginalFilename();
 
             // Eliminar el fitxer d'imatge existent
             String oldImage = podcast.getImatge();
             if (oldImage != null) {
-                File oldFile = new File(pathImages + oldImage);
+                File oldFile = new File(imagePath + oldImage);
                 if (oldFile.exists()) {
                     oldFile.delete();
                 }
             }
 
             // Crea un objecte "File" que representa la ruta completa on es desarà l'arxiu
-            File fileImage = new File(pathImages + nameImage);
+            File fileImage = new File(imagePath + nameImage);
 
             // Transfereix l'arxiu pujat a la ruta corresponent
             imageFile.transferTo(fileImage);
