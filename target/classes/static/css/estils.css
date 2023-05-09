@@ -411,6 +411,18 @@ select{
     }
 /* fi PODCASTS CAIXES */
 
+/* Taula sense bordes*/
+.taulaInv{
+    border: 0;
+}
+.taulaInvisible{
+    border: 0;
+}
+.taulaInvisible td{
+    margin: 0 var(--marge-mig);
+    padding: 0 var(--marge-mig);
+}
+
 
 /* Responsive Mobile */
 @media all and (max-width: 991px){

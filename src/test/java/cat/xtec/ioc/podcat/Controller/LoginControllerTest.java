@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -26,6 +27,9 @@ public class LoginControllerTest {
     @Mock
     private HttpSession session;
 
+    @Mock
+    private BCryptPasswordEncoder passwordEncoder;
+
     @InjectMocks
     private LoginController loginController;
 
@@ -36,11 +40,14 @@ public class LoginControllerTest {
         Usuari usuari = new Usuari();
         usuari.setRol("admin");
 
+        // Mock del BCryptPasswordEncoder para devolver true al verificar el password en el test
+        when(passwordEncoder.matches("admin", usuari.getPassword())).thenReturn(true);
+
         // WHEN
-        when(usuariService.getUserByUsernameAndPassword("admin", "admin")).thenReturn(usuari);
+        when(usuariService.getUserByUsername("admin")).thenReturn(usuari);
 
         // EXECUTE
-        RedirectView redirectView = loginController.login("admin", "admin", (Model) model, (HttpSession) session);
+        RedirectView redirectView = loginController.login("admin", "admin", model, session);
 
         // ASSERT
         assertEquals("/admin", redirectView.getUrl());
@@ -54,11 +61,14 @@ public class LoginControllerTest {
         Usuari usuari = new Usuari();
         usuari.setRol("usuari");
 
+        // Mock del BCryptPasswordEncoder para devolver true al verificar el password en el test
+        when(passwordEncoder.matches("12345", usuari.getPassword())).thenReturn(true);
+
         // WHEN
-        when(usuariService.getUserByUsernameAndPassword("usuari1", "12345")).thenReturn(usuari);
+        when(usuariService.getUserByUsername("usuari1")).thenReturn(usuari);
 
         // EXECUTE
-        RedirectView redirectView = loginController.login("usuari1", "12345", (Model) model, (HttpSession) session);
+        RedirectView redirectView = loginController.login("usuari1", "12345", model, session);
 
         // ASSERT
         assertEquals("/perfil", redirectView.getUrl());
@@ -71,10 +81,9 @@ public class LoginControllerTest {
         // SET UP
 
         // WHEN
-        when(usuariService.getUserByUsernameAndPassword("", "")).thenReturn(null);
 
         // EXECUTE
-        RedirectView redirectView = loginController.login("", "", (Model) model, (HttpSession) session);
+        RedirectView redirectView = loginController.login("", "", model, session);
 
         // ASSERT
         assertEquals("/login?error", redirectView.getUrl());
@@ -89,10 +98,11 @@ public class LoginControllerTest {
         usuari.setRol("");
 
         // WHEN
-        when(usuariService.getUserByUsernameAndPassword("usuari1", "12345")).thenReturn(usuari);
+        when(passwordEncoder.matches("12345", usuari.getPassword())).thenReturn(true);
+        when(usuariService.getUserByUsername("usuari1")).thenReturn(usuari);
 
         // EXECUTE
-        RedirectView redirectView = loginController.login("usuari1", "12345", (Model) model, (HttpSession) session);
+        RedirectView redirectView = loginController.login("usuari1", "12345", model, session);
 
         // ASSERT
         assertEquals("/login?error", redirectView.getUrl());

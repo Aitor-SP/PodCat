@@ -8,16 +8,21 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.ModelAndView;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RegistreControllerTest {
 
     @Mock
     private UsuariRepository usuariRepository;
+
+    @Mock
+    private BCryptPasswordEncoder passwordEncoder;
 
     @InjectMocks
     private RegistreController registreController;
@@ -31,6 +36,10 @@ public class RegistreControllerTest {
         String cognom = "User";
         String email = "testuser@test.com";
         String password = "password123";
+
+        // WHEN
+        when(passwordEncoder.encode(password)).thenReturn(password);
+
         ModelAndView modelAndView = registreController.registreUsuari(username, nom, cognom, email, password);
 
         // VERIFY - EXECUTE

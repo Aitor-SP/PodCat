@@ -4,6 +4,7 @@ import cat.xtec.ioc.podcat.Model.Usuari;
 import cat.xtec.ioc.podcat.Service.UsuariService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +18,15 @@ public class LoginController {
     @Autowired
     private UsuariService usuariService;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @PostMapping("/login")
     public RedirectView login(@RequestParam("username") String username, @RequestParam("password") String password, Model model, HttpSession session) {
 
-        Usuari usuari = usuariService.getUserByUsernameAndPassword(username, password);
+        Usuari usuari = usuariService.getUserByUsername(username);
 
-        if (usuari != null) {
+        if (usuari != null && passwordEncoder.matches(password, usuari.getPassword())) {
             // Determini el rol de l'usuari
             String rol = usuari.getRol();
 

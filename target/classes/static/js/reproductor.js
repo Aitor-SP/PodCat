@@ -62,4 +62,59 @@ window.onload = function() {
         date.setSeconds(seconds);
         return date.toISOString().substr(11, 8);
     }
+
+    //ona d'audio
+        let context = new AudioContext();
+        let src = context.createMediaElementSource(audio);
+        let analyser = context.createAnalyser();
+
+        let content = document.getElementById("content");
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext("2d");
+
+        let width = content.clientWidth;
+        let height = content.clientHeight;
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        canvas.style.margin = "0 auto";
+
+        src.connect(analyser);
+        analyser.connect(context.destination);
+
+        analyser.fftSize = 512;
+
+        let bufferLength = analyser.frequencyBinCount;
+        console.log(bufferLength);
+
+        let dataArray = new Uint8Array(bufferLength);
+
+
+        let barWidth = (canvas.width / bufferLength) * 2.5;
+        let barHeight;
+        let x = 0;
+
+        function renderFrame() {
+            requestAnimationFrame(renderFrame);
+
+            x = 0;
+
+            analyser.getByteFrequencyData(dataArray);
+
+            //ctx.fillStyle = "rgb(255, 255, 255,0.5)";
+            ctx.fillStyle = "rgb(0, 0, 0,0.5)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < bufferLength; i++) {
+                barHeight = dataArray[i];
+
+                ctx.fillStyle = "rgb(191, 148, 29, 0.5)";
+                ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
+                x += barWidth + 2;
+            }
+        }
+
+        renderFrame();
 };
