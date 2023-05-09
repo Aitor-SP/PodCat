@@ -100,7 +100,7 @@
     <!-- Formulari Registre Usuaris Modal -->
     <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-center">
-            <div class="modal-content">
+            <div class="modal-content modal-content-gran">
                 <div class="title-formulari">
                     <img src="/images/logoPodCat00blanc.svg" width="35"/>
                     <h1>PodCat</h1>
@@ -111,12 +111,49 @@
                         <h3 class="text-center text-white">Registre Usuaris</h3>
                         <br>
                         <form action="/registre" method="post">
-                            <input class="controls form-control" type="text" name="username" placeholder="Nom d'usuari" required/>
-                            <input class="controls form-control" type="text" name="nom" placeholder="Nom" required/>
-                            <input class="controls form-control" type="text" name="cognom" placeholder="Cognom" required/>
-                            <input class="controls form-control" type="email" name="email" placeholder="Correu electrònic" required/>
-                            <input class="controls form-control" type="password" name="password" placeholder="Contrasenya" required/>
-                            <br><br>
+                            <table class="taulaInvisible">
+                                <tr>
+                                    <td>
+                                        <label for="username">Nom d'usuari</label>
+                                    </td>
+                                    <td>
+                                        <input class="controls form-control" type="text" id="username" name="username" placeholder="Nom d'usuari" required/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="nom">Nom</label>
+                                    </td>
+                                    <td>
+                                        <input class="controls form-control" type="text" id="nom" name="nom" placeholder="Nom" required/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="cognom">Cognom</label>
+                                    </td>
+                                    <td>
+                                        <input class="controls form-control" type="text" id="cognom" name="cognom" placeholder="Cognom" required/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="email">Correu electrònic</label>
+                                    </td>
+                                    <td>
+                                        <input class="controls form-control" type="email" id="email" name="email" placeholder="Correu electrònic" required/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="password">Contrasenya</label>
+                                    </td>
+                                    <td>
+                                        <input class="controls form-control" type="password" id="password" name="password" placeholder="Contrasenya" required/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br>
                             <div class="bt">
                                 <button type="submit" class="btn-registre efecteButton">Registra't</button>
                             </div>
@@ -144,17 +181,19 @@
                         <h3 class="text-center text-white">Accés Usuaris</h3>
                         <br>
                         <form action="/login" method="post">
+                            <label for="username">Nom d'usuari</label>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="username" class="form-control" placeholder="Usuari" name="username" required/>
+                                <input type="username" class="form-control" placeholder="Usuari" id="username" name="username" required/>
                             </div>
+                            <label for="password">Contrasenya</label>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input type="password" class="form-control" placeholder="Contrasenya" name="password" required/>
+                                <input type="password" class="form-control" placeholder="Contrasenya" id="password" name="password" required/>
                             </div>
                             <br>
                             <div class="form-group text-center">

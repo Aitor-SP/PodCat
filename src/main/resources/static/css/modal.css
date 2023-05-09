@@ -28,6 +28,10 @@
     background-color: #333333;
 }
 
+.modal-content-gran{
+    max-width: 500px;
+}
+
 .modal-content h1{
     font-size: 28px;
     font-weight: 900;
