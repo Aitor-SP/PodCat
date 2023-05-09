@@ -95,11 +95,13 @@
                         <h2 th:text="${formTitolCanal}"></h2>
                         <div class="formulari-entrar">
                             <form action="modCanal" method="post" enctype="multipart/form-data">
+                                <label for="modCanalTitol">Títol</label>
                                 <div class="input-group form-group">
-                                    <input type="text" class="form-control" placeholder="Títol" name="modCanalTitol" th:attr="value=${formTitolCanal}" required/>
+                                    <input type="text" class="form-control" id="modCanalTitol" name="modCanalTitol" th:attr="value=${formTitolCanal}" required/>
                                 </div>
+                                <label for="modCanalDesc">Descripció</label>
                                 <div class="input-group form-group">
-                                    <textarea class="form-control" placeholder="Descripció" name="modCanalDesc" th:text="${formDescCanal}" required></textarea>
+                                    <textarea class="form-control" id="modCanalDesc" name="modCanalDesc" th:text="${formDescCanal}" required></textarea>
                                 </div>
                                 <div class="form-group text-center">
                                     <input type="hidden" name="modCanalID" th:attr="value=${formModCanal}" />
@@ -139,31 +141,35 @@
                             <form action="nouPodcast" method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6">
+                                        <label for="titol">Títol</label>
                                         <div class="input-group form-group">
-                                            <input type="text" class="form-control" placeholder="Títol" name="titol" required/>
+                                            <input type="text" class="form-control" placeholder="Títol" id="titol" name="titol" required/>
                                         </div>
+                                        <label for="genere">Gènere</label>
                                         <div class="input-group form-group">
-                                            <input type="text" class="form-control" placeholder="Gènere" name="genere" required/>
+                                            <input type="text" class="form-control" placeholder="Gènere" id="genere" name="genere" required/>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
+                                        <label for="descripcio">Descripció</label>
                                         <div class="input-group form-group">
-                                            <textarea class="form-control" placeholder="Descripció" name="descripcio" required></textarea>
+                                            <textarea class="form-control" placeholder="Descripció" id="descripcio" name="descripcio" required></textarea>
                                         </div>
                                     </div>
                                 </div>
+                                <label for="etiquetes">Etiquetes</label>
                                 <div class="input-group form-group">
-                                    <input type="text" class="form-control" placeholder="Etiquetes: separades per comes" name="etiquetes" required/>
+                                    <input type="text" class="form-control" placeholder="Etiquetes: separades per comes" id="etiquetes" name="etiquetes" required/>
                                 </div>
                                 <div class="input-group form-group col-xs-6">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6">
-                                            <label>Imatge</label>
-                                            <input type="file" class="form-control" name="imatge"/>
+                                            <label for="imatge">Imatge</label>
+                                            <input type="file" class="form-control" id="imatge" name="imatge"/>
                                         </div>
                                         <div class="col-xs-12 col-sm-6">
-                                            <label>Arxiu d'àudio</label>
-                                            <input type="file" class="form-control" name="audio"/>
+                                            <label for="audio">Arxiu d'àudio</label>
+                                            <input type="file" class="form-control" id="audio" name="audio"/>
                                         </div>
                                     </div>
                                 </div>
@@ -197,21 +203,25 @@
                             <form action="modPodcast" method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6">
+                                        <label for="modPodcastTitol">Títol</label>
                                         <div class="input-group form-group">
-                                            <input type="text" class="form-control" placeholder="Títol" name="modPodcastTitol" th:attr="value=${formTitolPodcast}" required/>
+                                            <input type="text" class="form-control" placeholder="Títol" id="modPodcastTitol" name="modPodcastTitol" th:attr="value=${formTitolPodcast}" required/>
                                         </div>
+                                        <label for="modPodcastGenere">Gènere</label>
                                         <div class="input-group form-group">
-                                            <input type="text" class="form-control" placeholder="Gènere" name="modPodcastGenere" th:attr="value=${formGenerePodcast}" required/>
+                                            <input type="text" class="form-control" placeholder="Gènere" id="modPodcastGenere" name="modPodcastGenere" th:attr="value=${formGenerePodcast}" required/>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
+                                        <label for="modPodcastDesc">Descripció</label>
                                         <div class="input-group form-group">
-                                            <textarea class="form-control" placeholder="Descripció" name="modPodcastDesc" th:text="${formDescPodcast}" required></textarea>
+                                            <textarea class="form-control" placeholder="Descripció" id="modPodcastDesc" name="modPodcastDesc" th:text="${formDescPodcast}" required></textarea>
                                         </div>
                                     </div>
                                 </div>
+                                <label for="modPodcastEtiquetes">Etiquetes</label>
                                 <div class="input-group form-group">
-                                    <input type="text" class="form-control" placeholder="Etiquetes: separades per comes" name="modPodcastEtiquetes" th:attr="value=${formEtiquetesPodcast}" required/>
+                                    <input type="text" class="form-control" placeholder="Etiquetes: separades per comes" id="modPodcastEtiquetes" name="modPodcastEtiquetes" th:attr="value=${formEtiquetesPodcast}" required/>
                                 </div>
                                 <div class="form-group text-center">
                                     <input type="hidden" name="modPodcastID" th:attr="value=${formModPodcastID}" />
@@ -316,19 +326,22 @@
                         <h3 class="text-center text-white">Modifica les dades d'usuari</h3>
                         <br>
                         <form action="perfil/modificar" method="post">
+                            <label for="modUsername">Nom d'usuari</label>
                             <div class="input-group form-group">
                                 <input th:value="${session.usuari.username}"
-                                    type="text" class="form-control" placeholder="Nom d'usuari" name="username" required />
+                                    type="text" class="form-control" placeholder="Nom d'usuari" id="modUsername" name="username" required />
                             </div>
+                            <label for="modNom">Nom</label> <label for="modCognom">i Congom</label>
                             <div class="input-group form-group">
                                 <input th:value="${session.usuari.nom}"
-                                    type="text" class="form-control" placeholder="Nom" name="nom" required />
+                                    type="text" class="form-control" placeholder="Nom" id="modNom" name="nom" required />
                                 <input th:value="${session.usuari.cognom}"
-                                    type="text" class="form-control" placeholder="Cognom" name="cognom" required />
+                                    type="text" class="form-control" placeholder="Cognom" id="modCognom" name="cognom" required />
                             </div>
+                            <label for="correu">Correu electrònic</label>
                             <div class="input-group form-group">
                                 <input th:value="${session.usuari.email}"
-                                    type="text" class="form-control" placeholder="Correu electrònic" name="email" required />
+                                    type="text" class="form-control" placeholder="Correu electrònic" id="correu" name="email" required />
                             </div>
                             <div class="form-group text-center">
                                 <button type="submit" class="btn-entrar efecteButton">MODIFICA</button>
@@ -354,11 +367,13 @@
                         <h3 class="text-center text-white">Crea un nou CANAL</h3>
                         <br>
                         <form action="canal/afegir" method="post">
+                            <label for="nouCtitol">Títol del Canal</label>
                             <div class="input-group form-group">
-                                <input type="text" class="form-control" placeholder="Títol" name="titol" required/>
+                                <input type="text" class="form-control" placeholder="Títol" id="nouCtitol" name="titol" required/>
                             </div>
+                            <label for="nouCdesc">Descripció</label>
                             <div class="input-group form-group">
-                                <textarea class="form-control" placeholder="Descripció" name="descripcio" required></textarea>
+                                <textarea class="form-control" placeholder="Descripció" id="nouCdesc" name="descripcio" required></textarea>
                             </div>
                             <div class="form-group text-center">
                                 <button type="submit" class="btn-entrar efecteButton">CREA</button>
