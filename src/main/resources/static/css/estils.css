@@ -412,6 +412,9 @@ select{
 /* fi PODCASTS CAIXES */
 
 /* Taula sense bordes*/
+.taulaInv{
+    border: 0;
+}
 .taulaInvisible{
     border: 0;
 }
