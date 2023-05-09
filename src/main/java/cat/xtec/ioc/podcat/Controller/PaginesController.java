@@ -33,7 +33,7 @@ public class PaginesController {
 
     @RequestMapping("")
     public String index(Model model) {
-        List<Podcast>listPodcast = podcastService.getPodcasts();
+        List<Podcast>listPodcast = podcastService.getPodcastsByIdDesc();
         model.addAttribute("listPodcast", listPodcast);
         return "index";
     }
