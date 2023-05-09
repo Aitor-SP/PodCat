@@ -2,7 +2,6 @@ package cat.xtec.ioc.podcat.Controller;
 
 import cat.xtec.ioc.podcat.Model.Usuari;
 import cat.xtec.ioc.podcat.Service.UsuariService;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,9 +56,9 @@ public class UsuariController {
     }
 
     // Encrypt old passwords
-    @PostConstruct
-    public void encriptarContrasenasExistentes() {
-        usuariService.encryptOldPasswords();
-    }
+//    @PostConstruct
+//    public void encriptarContrasenasExistentes() {
+//        usuariService.encryptOldPasswords();
+//    }
 }
 

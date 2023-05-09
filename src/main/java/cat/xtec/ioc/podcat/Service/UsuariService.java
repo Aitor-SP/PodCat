@@ -77,14 +77,14 @@ public class UsuariService {
     }
 
     // Encrypt old passwords
-    public void encryptOldPasswords() {
-
-        List<Usuari> usuaris = usuariRepository.findAll();
-
-        for (Usuari usuari : usuaris) {
-            String encryptPassword = passwordEncoder.encode(usuari.getPassword());
-            usuari.setPassword(encryptPassword);
-        }
-        usuariRepository.saveAll(usuaris);
-    }
+//    public void encryptOldPasswords() {
+//
+//        List<Usuari> usuaris = usuariRepository.findAll();
+//
+//        for (Usuari usuari : usuaris) {
+//            String encryptPassword = passwordEncoder.encode(usuari.getPassword());
+//            usuari.setPassword(encryptPassword);
+//        }
+//        usuariRepository.saveAll(usuaris);
+//    }
 }
