@@ -13,6 +13,7 @@
     <section>
         <audio id="audio" style="display:none;" th:text="${podcast.audio}"></audio>
         <div id="content" th:attr="style='background-image: linear-gradient(#11111100, #111111), url(\'/images/'+${podcast.imatge}+'\');'">
+            <canvas id="canvas"></canvas>
             <div id="reproductor">
                 <div id="play">
                     <div id="contenidor-animacio"></div>
