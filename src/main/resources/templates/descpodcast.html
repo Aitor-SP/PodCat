@@ -61,7 +61,7 @@
         <!-- llista de canals menú Aside -->
         <div class="div3">
             <aside style="background-color: #202020;">
-                <h3 class="titol-head-aside" th:text="'Podcast de '+ ${podcast.canal.titol}"></h3>
+                <h3 class="titol-head-aside" th:text="'Podcast del canal '+ ${podcast.canal.titol}"></h3>
                 <div class="info" th:each="podcast, limit: ${listPodcast}" th:unless="${limit.index>=6}">
                     <a th:href="@{/podcast/{id}(id=*{podcast.getId()})}"><img class="esquerra" th:src="@{'/images/'+${podcast.imatge}}"></a>
                     <div class="info-dreta">
