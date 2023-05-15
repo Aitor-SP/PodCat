@@ -8,7 +8,7 @@ $(document).ready(function () {
         $(".error").remove();
     });
 
-    $("#email").blur(function(){
+    $("#correu").blur(function(){
         $(".error").remove();
     });
 
@@ -24,8 +24,8 @@ $(document).ready(function () {
         if( $("#name").val() == "" ){
             $("#name").focus().after("<span class='error'>Afegeix el seu nom</span>");
             return false;
-        }else if( $("#email").val() == "" || !emailreg.test($("#email").val()) ) {
-            $("#email").focus().after("<span class='error'>Afegeix un email correcte</span>");
+        }else if( $("#correu").val() == "" || !emailreg.test($("#correu").val()) ) {
+            $("#correu").focus().after("<span class='error'>Afegeix un email correcte</span>");
             return false;
         }else if( $("#assumpte").val() == ""){
             $("#assumpte").focus().after("<span class='error'>Afegeix un assumpte</span>");
